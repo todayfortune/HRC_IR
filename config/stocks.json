@@ -1,0 +1,17 @@
+{
+  "stocks": [
+    {"sector": "방산", "name": "현대로템", "code": "064350", "highlight": true},
+    {"sector": "방산", "name": "한화에어로", "code": "012450", "highlight": false},
+    {"sector": "방산", "name": "KAI", "code": "047810", "highlight": false},
+    {"sector": "방산", "name": "LIG넥스원", "code": "079550", "highlight": false},
+    {"sector": "철도", "name": "다원시스", "code": "068240", "highlight": false},
+    {"sector": "그룹사", "name": "현대차", "code": "005380", "highlight": false},
+    {"sector": "그룹사", "name": "기아", "code": "000270", "highlight": false},
+    {"sector": "그룹사", "name": "현대모비스", "code": "012330", "highlight": false},
+    {"sector": "그룹사", "name": "현대글로비스", "code": "086280", "highlight": false},
+    {"sector": "그룹사", "name": "현대오토에버", "code": "307950", "highlight": false},
+    {"sector": "그룹사", "name": "현대위아", "code": "011210", "highlight": false},
+    {"sector": "반도체", "name": "삼성전자", "code": "005930", "highlight": false},
+    {"sector": "반도체", "name": "SK하이닉스", "code": "000660", "highlight": false}
+  ]
+}

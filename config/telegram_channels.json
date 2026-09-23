@@ -1,0 +1,10 @@
+{
+  "channels": [
+    {"source": "신한리서치", "username": "SHINHANRESEARCH"},
+    {"source": "미래에셋리서치", "username": "GLOBALMKTINSIGHT"},
+    {"source": "대신증권", "username": "DAISHINSTRATEGY"}
+  ],
+  "message_limit_per_channel": 100,
+  "excerpt_length": 700,
+  "closing_keywords": ["국내 주식 마감 시황", "국내주식 마감시황", "마감 시황", "마감시황"]
+}

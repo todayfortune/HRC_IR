@@ -1,0 +1,13 @@
+[Unit]
+Description=Collect Daily Trend Telegram excerpts
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=stockview
+Group=stockview
+WorkingDirectory=/opt/stock_view
+EnvironmentFile=/opt/stock_view/.env
+ExecStart=/opt/stock_view/.venv/bin/python scripts/update_telegram.py
+PrivateTmp=true

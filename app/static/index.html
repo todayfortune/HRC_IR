@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock View — Market Desk</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">SV</span><div><strong>Stock View</strong><small>MARKET INTELLIGENCE</small></div></div>
+    <div class="market-state"><span class="pulse"></span> 장 마감 · Dummy mode</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">DAILY COMMAND CENTER</p><h1>오늘의 시장을<br><em>한 화면에서.</em></h1><p class="subtitle">시세, 수급, 뉴스 시그널을 빠르게 검토하고 Excel로 바로 넘기세요.</p></div>
+      <div class="date-card"><span>기준 시각</span><strong id="now">—</strong><small>샘플 데이터 · 실제 주문 기능 없음</small></div>
+    </section>
+
+    <section class="metrics" id="metrics"></section>
+
+    <section class="workspace">
+      <div class="panel watch-panel">
+        <div class="panel-head"><div><span class="kicker">WATCHLIST</span><h2>관심 종목</h2></div><div class="actions"><button id="copyButton">Excel Copy</button><button class="icon-btn" id="refreshButton" title="샘플 데이터 갱신">↻</button></div></div>
+        <div class="copy-status" id="copyStatus" aria-live="polite"></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>종목</th><th>현재가</th><th>등락률</th><th>거래량</th><th>외인 순매수</th><th>시그널</th></tr></thead><tbody id="stockRows"></tbody></table>
+        </div>
+      </div>
+
+      <aside class="panel brief-panel">
+        <div class="panel-head"><div><span class="kicker">SIGNAL BRIEF</span><h2>실시간 브리핑</h2></div><span class="count">20</span></div>
+        <div id="briefs" class="briefs"></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer><span>STOCK VIEW V1</span><span>READ ONLY · NO TRADING</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>

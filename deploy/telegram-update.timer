@@ -1,0 +1,11 @@
+[Unit]
+Description=Collect Daily Trend Telegram excerpts every 30 minutes
+
+[Timer]
+OnCalendar=*-*-* *:00,30:00 Asia/Seoul
+Persistent=true
+RandomizedDelaySec=30
+Unit=telegram-update.service
+
+[Install]
+WantedBy=timers.target

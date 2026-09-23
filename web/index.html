@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>증권시장 동향</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="app-locked">
+  <section class="unlock-gate" id="unlockGate" aria-labelledby="unlockTitle">
+    <div class="unlock-sheet">
+      <p class="unlock-eyebrow">DAILY MARKET BRIEF</p>
+      <h1 id="unlockTitle">으왕레이더 <span>v2</span></h1>
+      <div class="unlock-photo" aria-label="은채와 강아지 사진">
+        <img src="assets/eunchae-dog-hand-cutout.png" alt="손 위의 은채와 강아지">
+      </div>
+      <form id="unlockForm" novalidate>
+        <label for="unlockPassword">비밀번호 입력:</label>
+        <input id="unlockPassword" type="password" inputmode="numeric" autocomplete="off" autofocus>
+        <small>(힌트 은채 생일)</small>
+        <button type="submit">확인</button>
+        <p id="unlockError" role="alert"></p>
+      </form>
+    </div>
+  </section>
+  <main class="report" id="report">
+    <header class="report-header">
+      <h1>증권시장 동향 - <span id="reportDate">----</span></h1>
+      <div class="meta"><span id="marketStatus">업데이트 전</span><span id="updatedAt"></span></div>
+    </header>
+
+    <section>
+      <h2>주요지표</h2>
+      <div class="table-scroll">
+        <table class="data-table indicator-table">
+          <thead><tr><th>대분류</th><th>구분</th><th>전일</th><th>당일</th><th>시총</th><th>전일대비</th><th>%</th><th>거래량</th><th>외국인</th><th>기관</th><th>기타</th></tr></thead>
+          <tbody id="indicatorRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="exchange-note">
+      <h3>(USD 환율 동향)</h3>
+      <div class="comment-view" data-comment-view="USD/KRW"></div>
+      <textarea data-comment-input="USD/KRW" rows="3" placeholder="USD/KRW 동향을 직접 작성하세요."></textarea>
+      <div id="fxReferences" class="reference-list compact"></div>
+    </section>
+
+    <section>
+      <h2>주요종목</h2>
+      <div class="table-scroll">
+        <table class="data-table stock-table">
+          <thead><tr><th>업종</th><th>종목명</th><th>전일</th><th>당일</th><th>시총</th><th>전일대비</th><th>%</th><th>거래량</th><th>외국인</th><th>기관</th><th>기타</th></tr></thead>
+          <tbody id="stockRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>시황</h2>
+      <div id="commentary"></div>
+    </section>
+
+    <section class="telegram-section">
+      <h2>Telegram 마감시황</h2>
+      <p class="source-notice">키워드와 일치한 원문을 그대로 표시합니다. 자동 요약 및 AI 생성 문장은 사용하지 않습니다.</p>
+      <div id="closingMarket" class="telegram-list"></div>
+    </section>
+
+    <section class="telegram-section">
+      <h2>Telegram 종목 뉴스</h2>
+      <p class="source-notice">관심종목명이 포함된 오늘 게시물입니다. 동일 게시물은 한 번만 표시합니다.</p>
+      <div id="stockNews" class="telegram-list"></div>
+    </section>
+  </main>
+
+  <div class="admin-bar">
+    <div class="admin-inner">
+      <span class="admin-label">REPORT CONTROL</span>
+      <button id="marketUpdate">데이터 업데이트</button>
+      <button id="telegramUpdate">Telegram 업데이트</button>
+      <button id="editButton">편집</button>
+      <button id="saveButton" class="primary" disabled>저장</button>
+      <span class="divider"></span>
+      <button id="copyTable">표 복사</button>
+      <button id="copyCommentary">시황 복사</button>
+      <button id="copyAll">전체 복사</button>
+      <span id="actionStatus" role="status"></span>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

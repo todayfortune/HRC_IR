@@ -1,0 +1,11 @@
+.env
+*.session
+*.session-journal
+__pycache__/
+logs/
+data/*.tmp
+data/kis_token.json
+data/*.json
+!data/market_latest.json
+data/*.txt
+.pytest_cache/
