@@ -21,6 +21,9 @@ class KisReadOnlyClient:
         self._access_token: str | None = None
 
     def authenticate(self) -> None:
+        # Repeated calls in one update run reuse the in-memory bearer token.
+        if self._access_token:
+            return
         response = requests.post(f"{PROD_BASE_URL}/oauth2/tokenP", json={"grant_type":"client_credentials","appkey":self._app_key,"appsecret":self._app_secret}, timeout=self._timeout)
         response.raise_for_status()
         token = response.json().get("access_token")

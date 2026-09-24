@@ -23,6 +23,7 @@ class KisTests(unittest.TestCase):
         get.return_value.raise_for_status.return_value = None
         client = KisReadOnlyClient("key", "secret")
         client.authenticate()
+        client.authenticate()
         quote = client.get_domestic_quote()
         self.assertEqual((quote.code, quote.price, quote.volume), ("005930",74200,123456))
         post.assert_called_once_with(
@@ -31,6 +32,7 @@ class KisTests(unittest.TestCase):
             timeout=10.0,
         )
         self.assertEqual(get.call_args.kwargs["headers"]["authorization"], "Bearer hidden-token")
+        self.assertEqual(post.call_count, 1)
 
     @patch("integrations.kis.requests.get")
     def test_query_error_contains_safe_diagnostics(self, get: Mock):

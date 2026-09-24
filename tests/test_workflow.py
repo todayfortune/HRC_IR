@@ -9,6 +9,9 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("workflow_dispatch:", workflow)
         self.assertIn("secrets.KIS_APP_KEY", workflow)
         self.assertIn("secrets.KIS_APP_SECRET", workflow)
+        self.assertIn("refresh_market:", workflow)
+        self.assertIn("default: false", workflow)
+        self.assertEqual(workflow.count("github.event_name == 'schedule' || inputs.refresh_market == true"), 2)
 
     def test_telegram_schedule_and_secret_references(self):
         workflow = (Path(__file__).resolve().parents[1] / ".github" / "workflows" / "telegram-update.yml").read_text(encoding="utf-8")
