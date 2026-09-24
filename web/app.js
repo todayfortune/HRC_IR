@@ -1,5 +1,6 @@
 let report = null;
 let editing = false;
+const emptyComments = {'미국증시':'','국내증시':'','방산':'','현대로템':'','반도체':'','USD/KRW':''};
 const commentOrder = [
   ['미국증시','미국증시'],['국내증시','국내증시'],['방산','방산주'],['현대로템','현대로템'],['반도체','반도체']
 ];
@@ -14,6 +15,25 @@ const marketCap = value => valueOrNull(value) === null ? '-' : `${(Number(value)
 const volume = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억' ? `${comma(value)}억원` : `${comma(Math.round(Number(value)/1000))}천주`;
 const flow = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억' ? `${signed(value)}억원` : `${signed(Math.round(Number(value)/1000))}천주`;
 const esc = value => String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const dataBase = location.pathname.includes('/web/') ? '../data/' : 'data/';
+
+function seoulDate(){
+  const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const value=Object.fromEntries(parts.map(part=>[part.type,part.value]));
+  return `${value.year}-${value.month}-${value.day}`;
+}
+
+async function fetchJson(path,optional=false){
+  const separator=path.includes('?')?'&':'?';
+  const response=await fetch(`${path}${separator}v=${Date.now()}`,{cache:'no-store'});
+  if(optional&&response.status===404)return null;
+  if(!response.ok)throw new Error(`데이터 파일을 불러오지 못했습니다. (${response.status})`);
+  return response.json();
+}
+
+function localComments(day){
+  try{return JSON.parse(localStorage.getItem(`dailyTrendComments:${day}`)||'null');}catch{return null;}
+}
 
 function rowspans(rows,key){const spans={};let start=0;while(start<rows.length){let end=start+1;while(end<rows.length&&rows[end][key]===rows[start][key])end++;spans[start]=end-start;start=end;}return spans;}
 
@@ -51,8 +71,8 @@ function telegramCard(item, showStocks=false){
 }
 function renderTelegramFeed(){
   const feed=report.telegram_feed||{closing:[],stock_news:[]};
-  document.querySelector('#closingMarket').innerHTML=feed.closing?.length?feed.closing.map(item=>telegramCard(item)).join(''):'<div class="telegram-empty">선택한 날짜의 마감시황 게시물이 없습니다.</div>';
-  document.querySelector('#stockNews').innerHTML=feed.stock_news?.length?feed.stock_news.map(item=>telegramCard(item,true)).join(''):'<div class="telegram-empty">선택한 날짜의 관심종목 뉴스가 없습니다.</div>';
+  document.querySelector('#closingMarket').innerHTML=feed.closing?.length?feed.closing.map(item=>telegramCard(item)).join(''):'<div class="telegram-empty">아직 수집된 Telegram 마감시황이 없습니다.</div>';
+  document.querySelector('#stockNews').innerHTML=feed.stock_news?.length?feed.stock_news.map(item=>telegramCard(item,true)).join(''):'<div class="telegram-empty">아직 수집된 Telegram 종목뉴스가 없습니다.</div>';
 }
 
 function render(){
@@ -78,17 +98,36 @@ function renderMarketStatus(){
   document.querySelector('#updatedAt').textContent='';
 }
 
-async function api(path,payload=null){
-  const options=payload?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}:{};
-  const response=await fetch(path,options);const result=await response.json();
-  if(!result.ok)throw new Error(result.error||'요청 실패');return result.report;
-}
 function status(message,error=false){const el=document.querySelector('#actionStatus');el.textContent=message;el.style.color=error?'#ffb6b6':'#dce5ef';}
-async function load(){try{report=await api('/api/report');render();}catch(error){status(error.message,true);}}
-async function update(path,label){status(`${label} 중...`);toggleBusy(true);try{report=await api(path,{date:report.date});render();status(`${label} 완료`);}catch(error){status(error.message,true);}finally{toggleBusy(false);}}
-function toggleBusy(value){document.querySelectorAll('.admin-bar button').forEach(button=>button.disabled=value||(button.id==='saveButton'&&!editing));}
+async function load(){
+  try{
+    const day=seoulDate();
+    const [market,daily]=await Promise.all([
+      fetchJson(`${dataBase}market_latest.json`),
+      fetchJson(`${dataBase}${day}.json`,true)
+    ]);
+    report={
+      date:day,
+      comments:{...emptyComments,...(daily?.comments||{}),...(localComments(day)||{})},
+      telegram:daily?.telegram||{},
+      telegram_feed:daily?.telegram_feed||{closing:[],stock_news:[]},
+      telegram_status:daily?.telegram_status||'아직 수집된 Telegram 데이터가 없습니다.',
+      ...daily,
+      status:market.status,
+      updatedAt:market.updatedAt,
+      updated_at:market.updated_at,
+      market_status:market.market_status,
+      indicators:market.indicators||daily?.indicators||[],
+      stocks:market.stocks||daily?.stocks||[]
+    };
+    report.comments={...emptyComments,...(daily?.comments||{}),...(localComments(day)||{})};
+    render();
+    status(daily?'정적 데이터 로드 완료':'시장 데이터 로드 완료 · Telegram 데이터 대기 중');
+  }catch(error){status(error.message,true);}
+}
+function toggleBusy(value){document.querySelectorAll('.admin-bar button').forEach(button=>{button.disabled=button.dataset.static==='true'||value||(button.id==='saveButton'&&!editing);});}
 function collectComments(){document.querySelectorAll('[data-comment-input]').forEach(input=>{report.comments[input.dataset.commentInput]=input.value.trim();});}
-async function save(){collectComments();status('저장 중...');try{report=await api('/api/report/save',report);editing=false;render();status(`${report.date}.json 저장 완료`);}catch(error){status(error.message,true);}}
+function save(){collectComments();localStorage.setItem(`dailyTrendComments:${report.date}`,JSON.stringify(report.comments));editing=false;render();status('이 브라우저에 시황 메모 저장 완료');}
 
 function indicatorTsv(){return [['대분류','구분','전일','당일','시총','전일대비','%','거래량','외국인','기관','기타'],...report.indicators.map(r=>[r.group,r.name,r.previous??'',r.current??'',r.market_cap??'',r.change??'',r.change_rate??'',r.volume??'',r.foreign??'',r.institution??'',r.other??''])];}
 function stockTsv(){return [['업종','종목명','전일','당일','시총','전일대비','%','거래량','외국인','기관','기타'],...report.stocks.map(r=>[r.sector,r.name,r.previous??'',r.current??'',r.market_cap??'',r.change??'',r.change_rate??'',r.volume??'',r.foreign??'',r.institution??'',r.other??''])];}
@@ -96,8 +135,12 @@ const toTsv=rows=>rows.map(row=>row.join('\t')).join('\n');
 function commentaryText(){collectComments();return ['증권시장 동향 - '+report.date.replaceAll('-','.'),'','○ 미국증시',report.comments['미국증시']||'','', '○ 국내증시',report.comments['국내증시']||'',`- (방산주) ${report.comments['방산']||''}`,`- (현대로템) ${report.comments['현대로템']||''}`,`- (반도체) ${report.comments['반도체']||''}`,'',`○ USD 환율 동향`,report.comments['USD/KRW']||''].join('\n');}
 async function copy(text,label){try{await navigator.clipboard.writeText(text);}catch{const area=document.createElement('textarea');area.value=text;document.body.append(area);area.select();document.execCommand('copy');area.remove();}status(`${label} 완료`);}
 
-document.querySelector('#marketUpdate').onclick=()=>update('/api/market/update','시장 데이터 업데이트');
-document.querySelector('#telegramUpdate').onclick=()=>update('/api/telegram/update','Telegram 업데이트');
+document.querySelector('#marketUpdate').dataset.static='true';
+document.querySelector('#marketUpdate').disabled=true;
+document.querySelector('#marketUpdate').title='GitHub Actions에서 자동 업데이트됩니다.';
+document.querySelector('#telegramUpdate').dataset.static='true';
+document.querySelector('#telegramUpdate').disabled=true;
+document.querySelector('#telegramUpdate').title='GitHub Actions에서 자동 업데이트됩니다.';
 document.querySelector('#editButton').onclick=()=>{editing=!editing;render();};
 document.querySelector('#saveButton').onclick=save;
 document.querySelector('#copyTable').onclick=()=>copy(`${toTsv(indicatorTsv())}\n\n${toTsv(stockTsv())}`,'표 복사');
