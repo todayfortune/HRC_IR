@@ -1,8 +1,8 @@
 {
-  "date": "2026-09-24",
+  "date": "2026-09-25",
   "status": "success",
-  "updatedAt": "2026-09-24T15:37:20+09:00",
-  "updated_at": "2026-09-24T15:37:20+09:00",
+  "updatedAt": "2026-09-25T08:46:23+09:00",
+  "updated_at": "2026-09-25T08:46:23+09:00",
   "market_status": "KIS 업데이트 완료",
   "indicators": [
     {
@@ -44,16 +44,16 @@
     {
       "group": "미국",
       "name": "S&P500",
-      "previous": 7764.64,
-      "current": 7706.03,
+      "previous": 7706.03,
+      "current": 7704.13,
       "market_cap": null,
-      "change": -58.61,
-      "change_rate": -0.754832,
+      "change": -1.9,
+      "change_rate": -0.024656,
       "turnover": null,
       "foreign": null,
       "institution": null,
       "personal": null,
-      "tradingDate": "2026-09-23",
+      "tradingDate": "2026-09-24",
       "unit": {
         "turnover": "억원",
         "flow": "억원"
@@ -62,16 +62,16 @@
     {
       "group": "미국",
       "name": "NASDAQ",
-      "previous": 27244.28,
-      "current": 26936.04,
+      "previous": 26936.04,
+      "current": 26939.37,
       "market_cap": null,
-      "change": -308.24,
-      "change_rate": -1.131393,
+      "change": 3.33,
+      "change_rate": 0.012363,
       "turnover": null,
       "foreign": null,
       "institution": null,
       "personal": null,
-      "tradingDate": "2026-09-23",
+      "tradingDate": "2026-09-24",
       "unit": {
         "turnover": "억원",
         "flow": "억원"
@@ -80,20 +80,17 @@
     {
       "group": "환율",
       "name": "USD",
-      "previous": 1356.5,
-      "current": 1366.0,
+      "previous": null,
+      "current": null,
       "market_cap": null,
-      "change": 9.5,
-      "change_rate": 0.700332,
+      "change": null,
+      "change_rate": null,
       "turnover": null,
       "foreign": null,
       "institution": null,
       "personal": null,
-      "tradingDate": "2026-09-23",
-      "unit": {
-        "turnover": "억원",
-        "flow": "억원"
-      }
+      "tradingDate": null,
+      "unit": null
     },
     {
       "group": "환율",
