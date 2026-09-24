@@ -1,0 +1,68 @@
+name: Telegram Research Update
+
+on:
+  schedule:
+    # UTC 00:00, 03:00, 06:00, 07:00 = KST 09:00, 12:00, 15:00, 16:00.
+    - cron: "0 0,3,6,7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: telegram-research-update
+  cancel-in-progress: false
+
+jobs:
+  update-telegram-data:
+    runs-on: ubuntu-latest
+    env:
+      TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+      TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+      TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Collect Telegram research messages
+        run: python scripts/update_telegram.py
+
+      - name: Commit refreshed Telegram data
+        shell: bash
+        run: |
+          DATA_FILE="data/$(TZ=Asia/Seoul date +%F).json"
+          if [ ! -f "$DATA_FILE" ]; then
+            echo "No Telegram data file was created."
+            exit 0
+          fi
+
+          git add -f "$DATA_FILE"
+          if git diff --cached --quiet; then
+            echo "No Telegram data changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: update telegram feed"
+
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt ${attempt} failed; retrying after refreshing main."
+            sleep $((attempt * 5))
+          done
+          exit 1

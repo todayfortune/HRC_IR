@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 import re
 from datetime import date, datetime
 from pathlib import Path
@@ -19,6 +20,11 @@ SEOUL = ZoneInfo("Asia/Seoul")
 
 
 def session_value(value: str):
+    if os.getenv("GITHUB_ACTIONS") == "true":
+        try:
+            return StringSession(value)
+        except Exception as exc:
+            raise RuntimeError("GitHub Actions에서는 유효한 Telegram StringSession이 필요합니다.") from exc
     if len(value) > 100 and not any(char in value for char in ("/", "\\")):
         return StringSession(value)
     path = Path(value)

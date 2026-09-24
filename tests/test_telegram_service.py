@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import Mock, patch
 
-from app.services.telegram.service import classify_messages, excerpt, normalize
+from telethon.sessions import StringSession
+
+from app.services.telegram.service import classify_messages, excerpt, normalize, session_value
+from scripts.update_telegram import main as update_telegram
 
 
 class TelegramFilterTests(unittest.TestCase):
@@ -28,6 +32,36 @@ class TelegramFilterTests(unittest.TestCase):
         result = excerpt(value, 80)
         self.assertTrue(result.endswith("…"))
         self.assertLessEqual(len(result), 81)
+
+    def test_github_actions_requires_string_session(self):
+        valid = StringSession.save(StringSession())
+        with patch.dict("os.environ", {"GITHUB_ACTIONS":"true"}):
+            self.assertIsInstance(session_value(valid), StringSession)
+            with self.assertRaises(RuntimeError):
+                session_value("local-file.session")
+
+
+class TelegramUpdateScriptTests(unittest.TestCase):
+    @patch("scripts.update_telegram.TelegramService")
+    @patch("scripts.update_telegram.ReportService")
+    def test_does_not_save_when_feed_is_unchanged(self, report_service, telegram_service):
+        reports = report_service.return_value
+        current = {"telegram_feed":{"closing":[], "stock_news":[]}}
+        reports.load.return_value = current
+        telegram_service.return_value.update.return_value = current
+        update_telegram()
+        reports.save.assert_not_called()
+
+    @patch("scripts.update_telegram.TelegramService")
+    @patch("scripts.update_telegram.ReportService")
+    def test_saves_when_feed_changes(self, report_service, telegram_service):
+        reports = report_service.return_value
+        current = {"telegram_feed":{"closing":[], "stock_news":[]}}
+        updated = {"telegram_feed":{"closing":[{"message_id":1}], "stock_news":[]}}
+        reports.load.return_value = current
+        telegram_service.return_value.update.return_value = updated
+        update_telegram()
+        reports.save.assert_called_once_with(updated)
 
 
 if __name__ == "__main__":
