@@ -21,11 +21,14 @@ class FakeKisClient:
     def get_domestic_index(self, code):
         if self.fail_on == code:
             raise RuntimeError("query failed")
-        return {"bstp_nmix_prpr":"2700", "bstp_nmix_prdy_vrss":"10", "bstp_nmix_prdy_ctrt":"0.37", "acml_vol":"100"}
+        return {"bstp_nmix_prpr":"2700", "bstp_nmix_prdy_vrss":"10", "bstp_nmix_prdy_ctrt":"0.37", "acml_vol":"999999", "acml_tr_pbmn":"1234500"}
+
+    def get_market_investor_daily(self, index_code, market_code, trading_date):
+        return {"stck_bsop_date":"20260923", "frgn_ntby_tr_pbmn":"-498704", "orgn_ntby_tr_pbmn":"323347", "prsn_ntby_tr_pbmn":"-1454311"}
 
     def get_global_chart(self, market_code, item_code, start, end):
         self.global_codes.append(item_code)
-        return {"ovrs_nmix_prpr":"5000", "ovrs_nmix_prdy_clpr":"4990", "ovrs_nmix_prdy_vrss":"10", "prdy_ctrt":"0.2", "acml_vol":"100"}
+        return {"stck_bsop_date":"20260923", "ovrs_nmix_prpr":"5000", "ovrs_nmix_prdy_clpr":"4990", "ovrs_nmix_prdy_vrss":"10", "prdy_ctrt":"0.2", "acml_vol":"100"}
 
     def get_domestic_quote_raw(self, code):
         if self.fail_on == code:
@@ -33,7 +36,7 @@ class FakeKisClient:
         return {"stck_prpr":"70000", "prdy_vrss":"1000", "prdy_ctrt":"1.45", "acml_vol":"10000", "hts_avls":"4000000"}
 
     def get_domestic_investor(self, code):
-        return {"frgn_ntby_qty":"100", "orgn_ntby_qty":"200"}
+        return {"stck_bsop_date":"20260923", "frgn_ntby_qty":"100", "orgn_ntby_qty":"200", "prsn_ntby_qty":"-350"}
 
 
 def service_with(client):
@@ -55,6 +58,15 @@ class MarketUpdateTests(unittest.TestCase):
         self.assertRegex(updated["updatedAt"], r"^2026-|^20\d\d-")
         self.assertEqual(updated["updatedAt"], updated["updated_at"])
         self.assertEqual(updated["stocks"][0]["current"], 70000)
+        self.assertEqual(updated["stocks"][0]["volume"], 10000)
+        self.assertEqual(updated["stocks"][0]["personal"], -350)
+        self.assertEqual(updated["stocks"][0]["tradingDate"], "2026-09-23")
+        self.assertEqual(updated["indicators"][0]["turnover"], 12345)
+        self.assertEqual(updated["indicators"][0]["foreign"], -4987.04)
+        self.assertEqual(updated["indicators"][0]["institution"], 3233.47)
+        self.assertEqual(updated["indicators"][0]["personal"], -14543.11)
+        self.assertEqual(updated["indicators"][0]["tradingDate"], "2026-09-23")
+        self.assertIsNone(updated["indicators"][2]["turnover"])
         self.assertEqual(client.global_codes, ["SPX", "COMP", "FX@KRW"])
 
     def test_auth_failure_does_not_mutate_existing_report(self):

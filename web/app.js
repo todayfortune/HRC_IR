@@ -12,9 +12,11 @@ const signed = (value, digits=0) => valueOrNull(value) === null ? '-' : `${Numbe
 const rate = value => valueOrNull(value) === null ? '-' : `${Number(value)>0?'▲':Number(value)<0?'▼':'－'}${Math.abs(Number(value)).toFixed(2)}%`;
 const price = (value, kind='stock') => valueOrNull(value) === null ? '-' : kind==='index' ? comma(value,2) : kind==='fx' ? comma(value,2) : `${comma(value)}원`;
 const marketCap = value => valueOrNull(value) === null ? '-' : `${(Number(value)/10000).toLocaleString('ko-KR',{maximumFractionDigits:1})}조원`;
-const volume = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억' ? `${comma(value)}억원` : `${comma(Math.round(Number(value)/1000))}천주`;
-const flow = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억' ? `${signed(value)}억원` : `${signed(Math.round(Number(value)/1000))}천주`;
+const turnover = value => valueOrNull(value) === null ? '-' : `${comma(value,2)}억원`;
+const volume = value => valueOrNull(value) === null ? '-' : `${comma(Math.round(Number(value)/1000))}천주`;
+const flow = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억원' ? `${signed(value,2)}억원` : `${signed(Math.round(Number(value)/1000))}천주`;
 const esc = value => String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const tradingDate = row => row.tradingDate ? `<small class="trading-date">기준 ${esc(row.tradingDate.replaceAll('-','.'))}</small>` : '';
 const dataBase = location.pathname.includes('/web/') ? '../data/' : 'data/';
 
 function seoulDate(){
@@ -40,14 +42,14 @@ function rowspans(rows,key){const spans={};let start=0;while(start<rows.length){
 function renderIndicators(){
   const spans=rowspans(report.indicators,'group');
   document.querySelector('#indicatorRows').innerHTML=report.indicators.map((row,i)=>{
-    const kind=row.group==='환율'?'fx':'index'; const unit=row.group==='국내'?'억':'주';
-    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}</td><td>${price(row.previous,kind)}</td><td>${price(row.current,kind)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,kind==='stock'?0:2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${row.group==='국내'?volume(row.volume,'억'):'-'}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,unit)}</td><td class="${signClass(row.institution)}">${flow(row.institution,unit)}</td><td class="${signClass(row.other)}">${flow(row.other,unit)}</td></tr>`;
+    const kind=row.group==='환율'?'fx':'index';
+    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous,kind)}</td><td>${price(row.current,kind)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${turnover(row.turnover)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,'억원')}</td><td class="${signClass(row.institution)}">${flow(row.institution,'억원')}</td><td class="${signClass(row.personal)}">${flow(row.personal,'억원')}</td></tr>`;
   }).join('');
 }
 
 function renderStocks(){
   const spans=rowspans(report.stocks,'sector');
-  document.querySelector('#stockRows').innerHTML=report.stocks.map((row,i)=>`<tr class="${spans[i]?'group-start':''} ${row.highlight?'highlight':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.sector)}</td>`:''}<td class="name">${esc(row.name)}</td><td>${price(row.previous)}</td><td>${price(row.current)}</td><td>${marketCap(row.market_cap)}</td><td class="${signClass(row.change)}">${signed(row.change)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${volume(row.volume)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign)}</td><td class="${signClass(row.institution)}">${flow(row.institution)}</td><td class="${signClass(row.other)}">${flow(row.other)}</td></tr>`).join('');
+  document.querySelector('#stockRows').innerHTML=report.stocks.map((row,i)=>`<tr class="${spans[i]?'group-start':''} ${row.highlight?'highlight':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.sector)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous)}</td><td>${price(row.current)}</td><td>${marketCap(row.market_cap)}</td><td class="${signClass(row.change)}">${signed(row.change)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${volume(row.volume)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign)}</td><td class="${signClass(row.institution)}">${flow(row.institution)}</td><td class="${signClass(row.personal)}">${flow(row.personal)}</td></tr>`).join('');
 }
 
 function referenceBox(category, title=category){
@@ -129,8 +131,8 @@ function toggleBusy(value){document.querySelectorAll('.admin-bar button').forEac
 function collectComments(){document.querySelectorAll('[data-comment-input]').forEach(input=>{report.comments[input.dataset.commentInput]=input.value.trim();});}
 function save(){collectComments();localStorage.setItem(`dailyTrendComments:${report.date}`,JSON.stringify(report.comments));editing=false;render();status('이 브라우저에 시황 메모 저장 완료');}
 
-function indicatorTsv(){return [['대분류','구분','전일','당일','시총','전일대비','%','거래량','외국인','기관','기타'],...report.indicators.map(r=>[r.group,r.name,r.previous??'',r.current??'',r.market_cap??'',r.change??'',r.change_rate??'',r.volume??'',r.foreign??'',r.institution??'',r.other??''])];}
-function stockTsv(){return [['업종','종목명','전일','당일','시총','전일대비','%','거래량','외국인','기관','기타'],...report.stocks.map(r=>[r.sector,r.name,r.previous??'',r.current??'',r.market_cap??'',r.change??'',r.change_rate??'',r.volume??'',r.foreign??'',r.institution??'',r.other??''])];}
+function indicatorTsv(){return [['대분류','구분','전일','당일','시총','전일대비','%','거래대금(억원)','외국인(억원)','기관(억원)','개인(억원)'],...report.indicators.map(r=>[r.group,r.name,r.previous??'',r.current??'',r.market_cap??'',r.change??'',r.change_rate??'',r.turnover??'',r.foreign??'',r.institution??'',r.personal??''])];}
+function stockTsv(){return [['업종','종목명','전일','당일','시총','전일대비','%','거래량(주)','외국인(주)','기관(주)','개인(주)'],...report.stocks.map(r=>[r.sector,r.name,r.previous??'',r.current??'',r.market_cap??'',r.change??'',r.change_rate??'',r.volume??'',r.foreign??'',r.institution??'',r.personal??''])];}
 const toTsv=rows=>rows.map(row=>row.join('\t')).join('\n');
 function commentaryText(){collectComments();return ['증권시장 동향 - '+report.date.replaceAll('-','.'),'','○ 미국증시',report.comments['미국증시']||'','', '○ 국내증시',report.comments['국내증시']||'',`- (방산주) ${report.comments['방산']||''}`,`- (현대로템) ${report.comments['현대로템']||''}`,`- (반도체) ${report.comments['반도체']||''}`,'',`○ USD 환율 동향`,report.comments['USD/KRW']||''].join('\n');}
 async function copy(text,label){try{await navigator.clipboard.writeText(text);}catch{const area=document.createElement('textarea');area.value=text;document.body.append(area);area.select();document.execCommand('copy');area.remove();}status(`${label} 완료`);}

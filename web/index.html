@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>증권시장 동향</title>
   <link rel="stylesheet" href="styles.css">
+  <style>.trading-date{display:block;margin-top:2px;color:#6b7280;font-size:9px;font-weight:400;letter-spacing:-.02em}</style>
 </head>
 <body class="app-locked">
   <section class="unlock-gate" id="unlockGate" aria-labelledby="unlockTitle">
@@ -33,7 +34,7 @@
       <h2>주요지표</h2>
       <div class="table-scroll">
         <table class="data-table indicator-table">
-          <thead><tr><th>대분류</th><th>구분</th><th>전일</th><th>당일</th><th>시총</th><th>전일대비</th><th>%</th><th>거래량</th><th>외국인</th><th>기관</th><th>기타</th></tr></thead>
+          <thead><tr><th>대분류</th><th>구분</th><th>전일</th><th>당일</th><th>시총</th><th>전일대비</th><th>%</th><th>거래대금</th><th>외국인</th><th>기관</th><th>개인</th></tr></thead>
           <tbody id="indicatorRows"></tbody>
         </table>
       </div>
@@ -50,7 +51,7 @@
       <h2>주요종목</h2>
       <div class="table-scroll">
         <table class="data-table stock-table">
-          <thead><tr><th>업종</th><th>종목명</th><th>전일</th><th>당일</th><th>시총</th><th>전일대비</th><th>%</th><th>거래량</th><th>외국인</th><th>기관</th><th>기타</th></tr></thead>
+          <thead><tr><th>업종</th><th>종목명</th><th>전일</th><th>당일</th><th>시총</th><th>전일대비</th><th>%</th><th>거래량</th><th>외국인</th><th>기관</th><th>개인</th></tr></thead>
           <tbody id="stockRows"></tbody>
         </table>
       </div>

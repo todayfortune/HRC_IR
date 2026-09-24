@@ -15,6 +15,17 @@ class StaticPagesTests(unittest.TestCase):
         self.assertIn("dailyTrendComments:", app)
         self.assertIn("../data/", app)
 
+    def test_market_turnover_and_stock_volume_use_distinct_formatters(self):
+        app = (ROOT / "web" / "app.js").read_text(encoding="utf-8")
+        page = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("const turnover = value", app)
+        self.assertIn("Math.round(Number(value)/1000)", app)
+        self.assertIn("turnover(row.turnover)", app)
+        self.assertNotIn("volume(row.volume,'억')", app)
+        self.assertIn("<th>거래대금</th>", page)
+        self.assertEqual(page.count("<th>개인</th>"), 2)
+        self.assertIn("tradingDate", app)
+
     def test_pages_workflow_deploys_web_and_data(self):
         workflow = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text(encoding="utf-8")
         for expected in (

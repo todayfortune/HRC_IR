@@ -42,5 +42,26 @@ class KisTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "http_status=400, msg_cd=TEST001, msg1=invalid symbol"):
             client.get_global_chart("N", "BAD", "20260901", "20260924")
 
+    @patch("integrations.kis.requests.get")
+    def test_global_chart_uses_dated_closed_rows(self, get: Mock):
+        get.return_value.ok = True
+        get.return_value.status_code = 200
+        get.return_value.json.return_value = {
+            "rt_cd":"0",
+            "output1":{"ovrs_nmix_prpr":"1368.3"},
+            "output2":[
+                {"stck_bsop_date":"20260923","ovrs_nmix_prpr":"1366.0"},
+                {"stck_bsop_date":"20260922","ovrs_nmix_prpr":"1355.0"},
+            ],
+        }
+        client = KisReadOnlyClient("key", "secret")
+        client._access_token = "hidden-token"
+        result = client.get_global_chart("X", "FX@KRW", "20260901", "20260924")
+        self.assertEqual(result["stck_bsop_date"], "20260923")
+        self.assertEqual(result["ovrs_nmix_prpr"], "1366.0")
+        self.assertEqual(result["ovrs_nmix_prdy_clpr"], 1355.0)
+        self.assertEqual(result["ovrs_nmix_prdy_vrss"], 11.0)
+        self.assertAlmostEqual(result["prdy_ctrt"], 0.811808, places=5)
+
 if __name__ == "__main__":
     unittest.main()

@@ -66,21 +66,41 @@ class KisReadOnlyClient:
     def get_domestic_index(self, code: str) -> dict[str, Any]:
         return self._get("/uapi/domestic-stock/v1/quotations/inquire-index-price", "FHPUP02100000", {"FID_COND_MRKT_DIV_CODE":"U","FID_INPUT_ISCD":code})
 
+    def get_market_investor_daily(self, index_code: str, market_code: str, trading_date: str) -> dict[str, Any]:
+        """Return the KOSPI/KOSDAQ cash-market investor totals for one trading day."""
+        output = self._get(
+            "/uapi/domestic-stock/v1/quotations/inquire-investor-daily-by-market",
+            "FHPTJ04040000",
+            {
+                "FID_COND_MRKT_DIV_CODE": "U",
+                "FID_INPUT_ISCD": index_code,
+                "FID_INPUT_DATE_1": trading_date,
+                "FID_INPUT_ISCD_1": market_code,
+                "FID_INPUT_DATE_2": trading_date,
+                "FID_INPUT_ISCD_2": index_code,
+            },
+        )
+        return output[0] if isinstance(output, list) and output else {}
+
     def get_global_chart(self, market_code: str, item_code: str, start: str, end: str) -> dict[str, Any]:
         payload = self._request(
             "/uapi/overseas-price/v1/quotations/inquire-daily-chartprice", "FHKST03030100",
             {"FID_COND_MRKT_DIV_CODE":market_code,"FID_INPUT_ISCD":item_code,"FID_INPUT_DATE_1":start,"FID_INPUT_DATE_2":end,"FID_PERIOD_DIV_CODE":"D"})
-        summary = payload.get("output1") or {}
-        if isinstance(summary, list):
-            summary = summary[0] if summary else {}
         daily = payload.get("output2") or []
         latest = daily[0] if isinstance(daily, list) and daily else {}
-        # Closed overseas markets can expose zeroes in output1; prefer the latest daily row then.
-        result = summary
-        if str(summary.get("ovrs_nmix_prpr", "0")) in ("", "0", "0.0", "0.00") and latest:
-            merged = dict(summary)
-            merged.update(latest)
-            result = merged
+        previous = daily[1] if isinstance(daily, list) and len(daily) > 1 else {}
+        # output1 can be an undated intraday value (notably FX). Use dated daily rows so
+        # the value and tradingDate always describe the same completed market session.
+        result = dict(latest)
+        try:
+            current_value = float(latest.get("ovrs_nmix_prpr"))
+            previous_value = float(previous.get("ovrs_nmix_prpr"))
+            change = round(current_value - previous_value, 6)
+            result["ovrs_nmix_prdy_clpr"] = previous_value
+            result["ovrs_nmix_prdy_vrss"] = change
+            result["prdy_ctrt"] = round(change / previous_value * 100, 6) if previous_value else None
+        except (TypeError, ValueError):
+            pass
         if str(result.get("ovrs_nmix_prpr", "0")) in ("", "0", "0.0", "0.00"):
             raise RuntimeError(
                 "KIS 해외 데이터 없음: "
