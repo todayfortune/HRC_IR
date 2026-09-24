@@ -17,6 +17,12 @@ const volume = value => valueOrNull(value) === null ? '-' : `${comma(Math.round(
 const flow = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억원' ? `${signed(value,2)}억원` : `${signed(Math.round(Number(value)/1000))}천주`;
 const esc = value => String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const tradingDate = row => row.tradingDate ? `<small class="trading-date">기준 ${esc(row.tradingDate.replaceAll('-','.'))}</small>` : '';
+const exchangeMeta = row => {
+  if(row.name!=='USD'||row.source!=='하나은행')return '';
+  const marketDate=report.indicators.find(item=>item.name==='KOSPI')?.tradingDate;
+  const dateNote=row.referenceDate&&row.referenceDate!==marketDate?` · ${row.referenceDate.replaceAll('-','.')}`:'';
+  return `<small class="exchange-rate-meta">하나은행 · 매매기준율<br>${esc(row.announcementTime)} · ${esc(row.announcementNumber)}회차${esc(dateNote)}</small>`;
+};
 const dataBase = location.pathname.includes('/web/') ? '../data/' : 'data/';
 
 function seoulDate(){
@@ -43,7 +49,7 @@ function renderIndicators(){
   const spans=rowspans(report.indicators,'group');
   document.querySelector('#indicatorRows').innerHTML=report.indicators.map((row,i)=>{
     const kind=row.group==='환율'?'fx':'index';
-    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous,kind)}</td><td>${price(row.current,kind)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${turnover(row.turnover)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,'억원')}</td><td class="${signClass(row.institution)}">${flow(row.institution,'억원')}</td><td class="${signClass(row.personal)}">${flow(row.personal,'억원')}</td></tr>`;
+    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous,kind)}</td><td>${price(row.current,kind)}${exchangeMeta(row)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${turnover(row.turnover)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,'억원')}</td><td class="${signClass(row.institution)}">${flow(row.institution,'억원')}</td><td class="${signClass(row.personal)}">${flow(row.personal,'억원')}</td></tr>`;
   }).join('');
 }
 
@@ -104,10 +110,20 @@ function status(message,error=false){const el=document.querySelector('#actionSta
 async function load(){
   try{
     const day=seoulDate();
-    const [market,daily]=await Promise.all([
+    const [market,daily,exchange]=await Promise.all([
       fetchJson(`${dataBase}market_latest.json`),
-      fetchJson(`${dataBase}${day}.json`,true)
+      fetchJson(`${dataBase}${day}.json`,true),
+      fetchJson(`${dataBase}exchange_latest.json`,true)
     ]);
+    const indicators=(market.indicators||daily?.indicators||[]).map(row=>({...row}));
+    const usd=indicators.find(row=>row.name==='USD');
+    if(usd){
+      if(exchange?.value!==undefined&&exchange?.value!==null){
+        Object.assign(usd,{current:exchange.value,previous:null,change:null,change_rate:null,tradingDate:exchange.referenceDate,...exchange});
+      }else{
+        Object.assign(usd,{current:null,previous:null,change:null,change_rate:null,tradingDate:null});
+      }
+    }
     report={
       date:day,
       comments:{...emptyComments,...(daily?.comments||{}),...(localComments(day)||{})},
@@ -119,7 +135,7 @@ async function load(){
       updatedAt:market.updatedAt,
       updated_at:market.updated_at,
       market_status:market.market_status,
-      indicators:market.indicators||daily?.indicators||[],
+      indicators,
       stocks:market.stocks||daily?.stocks||[]
     };
     report.comments={...emptyComments,...(daily?.comments||{}),...(localComments(day)||{})};

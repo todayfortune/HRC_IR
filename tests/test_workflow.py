@@ -21,6 +21,14 @@ class WorkflowTests(unittest.TestCase):
             self.assertIn(f"secrets.{name}", workflow)
         self.assertIn("python scripts/update_telegram.py", workflow)
 
+    def test_hana_exchange_schedule_has_no_kis_authentication(self):
+        workflow = (Path(__file__).resolve().parents[1] / ".github" / "workflows" / "hana-exchange-update.yml").read_text(encoding="utf-8")
+        self.assertIn('cron: "35 6 * * 1-5"', workflow)
+        self.assertIn("workflow_dispatch:", workflow)
+        self.assertIn("python scripts/update_exchange.py", workflow)
+        for forbidden in ("KIS_APP_KEY", "KIS_APP_SECRET", "update_market.py", "tokenP"):
+            self.assertNotIn(forbidden, workflow)
+
 
 if __name__ == "__main__":
     unittest.main()

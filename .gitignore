@@ -7,5 +7,6 @@ data/*.tmp
 data/kis_token.json
 data/*.json
 !data/market_latest.json
+!data/exchange_latest.json
 data/*.txt
 .pytest_cache/

@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ["KIS Daily Market Update", "Telegram Research Update"]
+    workflows: ["KIS Daily Market Update", "Telegram Research Update", "Hana Exchange Rate Update"]
     types: [completed]
 
 permissions:
@@ -41,6 +41,7 @@ jobs:
           test -f _site/app.js
           test -f _site/styles.css
           test -f _site/data/market_latest.json
+          test -f _site/data/exchange_latest.json
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

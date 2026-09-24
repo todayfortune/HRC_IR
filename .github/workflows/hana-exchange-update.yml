@@ -1,0 +1,52 @@
+name: Hana Exchange Rate Update
+
+on:
+  schedule:
+    # GitHub cron is UTC: 06:35 UTC = 15:35 KST.
+    - cron: "35 6 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hana-exchange-rate-update
+  cancel-in-progress: false
+
+jobs:
+  update-exchange-rate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run exchange-rate tests
+        run: python -m unittest tests.test_hana_exchange tests.test_static_pages -v
+
+      - name: Refresh Hana Bank USD rate
+        run: python scripts/update_exchange.py
+
+      - name: Commit refreshed exchange data
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f data/exchange_latest.json
+          if git diff --cached --quiet; then
+            echo "No exchange-rate changes to commit."
+          else
+            git commit -m "chore: refresh Hana exchange rate"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

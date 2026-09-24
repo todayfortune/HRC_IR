@@ -14,6 +14,8 @@ class StaticPagesTests(unittest.TestCase):
         self.assertIn("market_latest.json", app)
         self.assertIn("dailyTrendComments:", app)
         self.assertIn("../data/", app)
+        self.assertIn("exchange_latest.json", app)
+        self.assertIn("Object.assign(usd,{current:null", app)
 
     def test_market_turnover_and_stock_volume_use_distinct_formatters(self):
         app = (ROOT / "web" / "app.js").read_text(encoding="utf-8")
@@ -25,6 +27,8 @@ class StaticPagesTests(unittest.TestCase):
         self.assertIn("<th>거래대금</th>", page)
         self.assertEqual(page.count("<th>개인</th>"), 2)
         self.assertIn("tradingDate", app)
+        self.assertIn("하나은행 · 매매기준율", app)
+        self.assertIn("announcementTime", app)
 
     def test_euwang_telegram_section_titles_and_photo(self):
         page = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
@@ -40,6 +44,7 @@ class StaticPagesTests(unittest.TestCase):
             "Telegram Research Update", "actions/configure-pages@v5",
             "actions/upload-pages-artifact@v3", "actions/deploy-pages@v4",
             "cp -R web/. _site/", "_site/data/market_latest.json",
+            "_site/data/exchange_latest.json",
         ):
             self.assertIn(expected, workflow)
 

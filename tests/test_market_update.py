@@ -67,7 +67,9 @@ class MarketUpdateTests(unittest.TestCase):
         self.assertEqual(updated["indicators"][0]["personal"], -14543.11)
         self.assertEqual(updated["indicators"][0]["tradingDate"], "2026-09-23")
         self.assertIsNone(updated["indicators"][2]["turnover"])
-        self.assertEqual(client.global_codes, ["SPX", "COMP", "FX@KRW"])
+        self.assertEqual(client.global_codes, ["SPX", "COMP"])
+        usd = next(row for row in updated["indicators"] if row["name"] == "USD")
+        self.assertIsNone(usd["current"])
 
     def test_auth_failure_does_not_mutate_existing_report(self):
         before = copy.deepcopy(self.report)

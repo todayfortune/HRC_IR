@@ -76,7 +76,7 @@ class MarketService:
                 errors.append(name)
 
         start, end = (today - timedelta(days=14)).strftime("%Y%m%d"), today.strftime("%Y%m%d")
-        global_targets = (("미국","S&P500","N","SPX"),("미국","NASDAQ","N","COMP"),("환율","USD","X","FX@KRW"))
+        global_targets = (("미국","S&P500","N","SPX"),("미국","NASDAQ","N","COMP"))
         for group, name, market_code, item_code in global_targets:
             try:
                 raw = self.client.get_global_chart(market_code, item_code, start, end)
@@ -92,6 +92,13 @@ class MarketService:
                     "unit":{"turnover":"억원","flow":"억원"}})
             except Exception as exc:
                 errors.append(f"{name} ({exc})")
+        # USD/KRW is maintained independently by the Hana Bank 15:35 KST workflow.
+        # Keep a schema placeholder here so a KIS refresh can never overwrite it.
+        indicators.append({
+            "group":"환율","name":"USD","previous":None,"current":None,"market_cap":None,
+            "change":None,"change_rate":None,"turnover":None,"foreign":None,"institution":None,
+            "personal":None,"tradingDate":None,"unit":None
+        })
         indicators.append({
             "group":"환율","name":"EUR","previous":None,"current":None,"market_cap":None,
             "change":None,"change_rate":None,"turnover":None,"foreign":None,"institution":None,
