@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>증권시장 동향</title>
   <link rel="stylesheet" href="styles.css">
-  <style>.trading-date{display:block;margin-top:2px;color:#6b7280;font-size:9px;font-weight:400;letter-spacing:-.02em}</style>
+  <style>.trading-date{display:block;margin-top:2px;color:#6b7280;font-size:9px;font-weight:400;letter-spacing:-.02em}.section-title-with-photo{display:flex;align-items:center;gap:7px}.section-title-with-photo::before{top:50%;transform:translateY(-50%)}.euwang-thumb{width:28px;height:28px;border:1px solid #9eacbc;border-radius:50%;object-fit:cover;object-position:74% 20%;box-shadow:0 1px 2px rgba(20,42,73,.15)}</style>
 </head>
 <body class="app-locked">
   <section class="unlock-gate" id="unlockGate" aria-labelledby="unlockTitle">
@@ -63,13 +63,13 @@
     </section>
 
     <section class="telegram-section">
-      <h2>Telegram 마감시황</h2>
+      <h2 class="section-title-with-photo">으왕 마감시황 <img class="euwang-thumb" src="assets/euwang-profile.jpg" alt="으왕 사진"></h2>
       <p class="source-notice">키워드와 일치한 원문을 그대로 표시합니다. 자동 요약 및 AI 생성 문장은 사용하지 않습니다.</p>
       <div id="closingMarket" class="telegram-list"></div>
     </section>
 
     <section class="telegram-section">
-      <h2>Telegram 종목 뉴스</h2>
+      <h2 class="section-title-with-photo">으왕 종목뉴스 <img class="euwang-thumb" src="assets/euwang-profile.jpg" alt="으왕 사진"></h2>
       <p class="source-notice">관심종목명이 포함된 오늘 게시물입니다. 동일 게시물은 한 번만 표시합니다.</p>
       <div id="stockNews" class="telegram-list"></div>
     </section>

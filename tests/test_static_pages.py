@@ -26,6 +26,13 @@ class StaticPagesTests(unittest.TestCase):
         self.assertEqual(page.count("<th>개인</th>"), 2)
         self.assertIn("tradingDate", app)
 
+    def test_euwang_telegram_section_titles_and_photo(self):
+        page = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("으왕 마감시황", page)
+        self.assertIn("으왕 종목뉴스", page)
+        self.assertEqual(page.count('src="assets/euwang-profile.jpg"'), 2)
+        self.assertTrue((ROOT / "web" / "assets" / "euwang-profile.jpg").is_file())
+
     def test_pages_workflow_deploys_web_and_data(self):
         workflow = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text(encoding="utf-8")
         for expected in (
