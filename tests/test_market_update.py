@@ -11,6 +11,7 @@ class FakeKisClient:
     def __init__(self, fail_on: str | None = None):
         self.fail_on = fail_on
         self.authenticated = False
+        self.global_codes = []
 
     def authenticate(self):
         if self.fail_on == "auth":
@@ -23,6 +24,7 @@ class FakeKisClient:
         return {"bstp_nmix_prpr":"2700", "bstp_nmix_prdy_vrss":"10", "bstp_nmix_prdy_ctrt":"0.37", "acml_vol":"100"}
 
     def get_global_chart(self, market_code, item_code, start, end):
+        self.global_codes.append(item_code)
         return {"ovrs_nmix_prpr":"5000", "ovrs_nmix_prdy_clpr":"4990", "ovrs_nmix_prdy_vrss":"10", "prdy_ctrt":"0.2", "acml_vol":"100"}
 
     def get_domestic_quote_raw(self, code):
@@ -53,6 +55,7 @@ class MarketUpdateTests(unittest.TestCase):
         self.assertRegex(updated["updatedAt"], r"^2026-|^20\d\d-")
         self.assertEqual(updated["updatedAt"], updated["updated_at"])
         self.assertEqual(updated["stocks"][0]["current"], 70000)
+        self.assertEqual(client.global_codes, ["SPX", "COMP", "FX@KRW"])
 
     def test_auth_failure_does_not_mutate_existing_report(self):
         before = copy.deepcopy(self.report)

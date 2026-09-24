@@ -32,5 +32,15 @@ class KisTests(unittest.TestCase):
         )
         self.assertEqual(get.call_args.kwargs["headers"]["authorization"], "Bearer hidden-token")
 
+    @patch("integrations.kis.requests.get")
+    def test_query_error_contains_safe_diagnostics(self, get: Mock):
+        get.return_value.ok = False
+        get.return_value.status_code = 400
+        get.return_value.json.return_value = {"rt_cd":"1", "msg_cd":"TEST001", "msg1":"invalid symbol"}
+        client = KisReadOnlyClient("key", "secret")
+        client._access_token = "hidden-token"
+        with self.assertRaisesRegex(RuntimeError, "http_status=400, msg_cd=TEST001, msg1=invalid symbol"):
+            client.get_global_chart("N", "BAD", "20260901", "20260924")
+
 if __name__ == "__main__":
     unittest.main()

@@ -39,10 +39,17 @@ class KisReadOnlyClient:
             f"{PROD_BASE_URL}{path}",
             headers={"authorization":f"Bearer {self._access_token}","appkey":self._app_key,"appsecret":self._app_secret,"tr_id":tr_id,"custtype":"P"},
             params=params, timeout=self._timeout)
-        response.raise_for_status()
-        payload: dict[str, Any] = response.json()
-        if payload.get("rt_cd") != "0":
-            raise RuntimeError(f"KIS 조회 실패: {payload.get('msg1', '알 수 없는 오류')}")
+        try:
+            payload: dict[str, Any] = response.json()
+        except ValueError:
+            payload = {}
+        if not response.ok or payload.get("rt_cd") != "0":
+            raise RuntimeError(
+                "KIS 조회 실패: "
+                f"http_status={response.status_code}, "
+                f"msg_cd={payload.get('msg_cd', '-')}, "
+                f"msg1={payload.get('msg1', '응답 메시지 없음')}"
+            )
         return payload
 
     def _get(self, path: str, tr_id: str, params: dict[str, str]) -> Any:
@@ -69,8 +76,15 @@ class KisReadOnlyClient:
         daily = payload.get("output2") or []
         latest = daily[0] if isinstance(daily, list) and daily else {}
         # Closed overseas markets can expose zeroes in output1; prefer the latest daily row then.
+        result = summary
         if str(summary.get("ovrs_nmix_prpr", "0")) in ("", "0", "0.0", "0.00") and latest:
             merged = dict(summary)
             merged.update(latest)
-            return merged
-        return summary
+            result = merged
+        if str(result.get("ovrs_nmix_prpr", "0")) in ("", "0", "0.0", "0.00"):
+            raise RuntimeError(
+                "KIS 해외 데이터 없음: "
+                f"http_status=200, msg_cd={payload.get('msg_cd', '-')}, "
+                f"msg1={payload.get('msg1', '응답 메시지 없음')}, item_code={item_code}"
+            )
+        return result

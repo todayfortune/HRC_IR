@@ -53,7 +53,7 @@ class MarketService:
 
         today = datetime.now(SEOUL).date()
         start, end = (today - timedelta(days=14)).strftime("%Y%m%d"), today.strftime("%Y%m%d")
-        global_targets = (("미국","S&P500","N",".INX"),("미국","NASDAQ","N",".IXIC"),("환율","USD","X","FX@KRW"))
+        global_targets = (("미국","S&P500","N","SPX"),("미국","NASDAQ","N","COMP"),("환율","USD","X","FX@KRW"))
         for group, name, market_code, item_code in global_targets:
             try:
                 raw = self.client.get_global_chart(market_code, item_code, start, end)
@@ -65,8 +65,8 @@ class MarketService:
                 indicators.append({"group":group,"name":name,"previous":previous_value,"current":current,"market_cap":None,
                     "change":change,"change_rate":number(raw.get("prdy_ctrt")),"volume":number(raw.get("acml_vol")),
                     "foreign":None,"institution":None,"other":None})
-            except Exception:
-                errors.append(name)
+            except Exception as exc:
+                errors.append(f"{name} ({exc})")
         indicators.append({"group":"환율","name":"EUR"})
 
         stocks: list[dict[str, Any]] = []
