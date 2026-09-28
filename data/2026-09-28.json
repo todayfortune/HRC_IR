@@ -1,0 +1,557 @@
+{
+  "date": "2026-09-28",
+  "status": "success",
+  "updatedAt": "2026-09-28T08:40:21+09:00",
+  "updated_at": "2026-09-28T08:40:21+09:00",
+  "market_status": "KIS 업데이트 완료",
+  "telegram_status": "Telegram 확인 2026-09-28 10:57 KST · 당일 원문 22건",
+  "indicators": [
+    {
+      "group": "국내",
+      "name": "KOSPI",
+      "previous": 7080.92,
+      "current": 7080.92,
+      "market_cap": null,
+      "change": 0.0,
+      "change_rate": 0.0,
+      "turnover": 0.0,
+      "foreign": 0.0,
+      "institution": 0.0,
+      "personal": 0.0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "turnover": "억원",
+        "flow": "억원"
+      }
+    },
+    {
+      "group": "국내",
+      "name": "KOSDAQ",
+      "previous": 844.48,
+      "current": 844.48,
+      "market_cap": null,
+      "change": 0.0,
+      "change_rate": 0.0,
+      "turnover": 0.0,
+      "foreign": 0.0,
+      "institution": 0.0,
+      "personal": 0.0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "turnover": "억원",
+        "flow": "억원"
+      }
+    },
+    {
+      "group": "미국",
+      "name": "S&P500",
+      "previous": 7704.13,
+      "current": 7743.41,
+      "market_cap": null,
+      "change": 39.28,
+      "change_rate": 0.509856,
+      "turnover": null,
+      "foreign": null,
+      "institution": null,
+      "personal": null,
+      "tradingDate": "2026-09-25",
+      "unit": {
+        "turnover": "억원",
+        "flow": "억원"
+      }
+    },
+    {
+      "group": "미국",
+      "name": "NASDAQ",
+      "previous": 26939.37,
+      "current": 27068.72,
+      "market_cap": null,
+      "change": 129.35,
+      "change_rate": 0.480152,
+      "turnover": null,
+      "foreign": null,
+      "institution": null,
+      "personal": null,
+      "tradingDate": "2026-09-25",
+      "unit": {
+        "turnover": "억원",
+        "flow": "억원"
+      }
+    },
+    {
+      "group": "환율",
+      "name": "USD",
+      "previous": null,
+      "current": null,
+      "market_cap": null,
+      "change": null,
+      "change_rate": null,
+      "turnover": null,
+      "foreign": null,
+      "institution": null,
+      "personal": null,
+      "tradingDate": null,
+      "unit": null
+    },
+    {
+      "group": "환율",
+      "name": "EUR",
+      "previous": null,
+      "current": null,
+      "market_cap": null,
+      "change": null,
+      "change_rate": null,
+      "turnover": null,
+      "foreign": null,
+      "institution": null,
+      "personal": null,
+      "tradingDate": null,
+      "unit": null
+    }
+  ],
+  "stocks": [
+    {
+      "sector": "방산",
+      "name": "현대로템",
+      "code": "064350",
+      "highlight": true,
+      "previous": 115900,
+      "current": 115900,
+      "market_cap": 126496,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "방산",
+      "name": "한화에어로",
+      "code": "012450",
+      "highlight": false,
+      "previous": 1021000,
+      "current": 1021000,
+      "market_cap": 526462,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "방산",
+      "name": "KAI",
+      "code": "047810",
+      "highlight": false,
+      "previous": 127500,
+      "current": 127500,
+      "market_cap": 124281,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "방산",
+      "name": "LIG넥스원",
+      "code": "079550",
+      "highlight": false,
+      "previous": 692000,
+      "current": 692000,
+      "market_cap": 152240,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "철도",
+      "name": "다원시스",
+      "code": "068240",
+      "highlight": false,
+      "previous": 2530,
+      "current": 2530,
+      "market_cap": 966,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대차",
+      "code": "005380",
+      "highlight": false,
+      "previous": 353500,
+      "current": 353500,
+      "market_cap": 719254,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "그룹사",
+      "name": "기아",
+      "code": "000270",
+      "highlight": false,
+      "previous": 115400,
+      "current": 115400,
+      "market_cap": 450537,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대모비스",
+      "code": "012330",
+      "highlight": false,
+      "previous": 367500,
+      "current": 367500,
+      "market_cap": 330091,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대글로비스",
+      "code": "086280",
+      "highlight": false,
+      "previous": 196900,
+      "current": 196900,
+      "market_cap": 147675,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대오토에버",
+      "code": "307950",
+      "highlight": false,
+      "previous": 377500,
+      "current": 377500,
+      "market_cap": 103526,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대위아",
+      "code": "011210",
+      "highlight": false,
+      "previous": 52500,
+      "current": 52500,
+      "market_cap": 14277,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 0,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "반도체",
+      "name": "삼성전자",
+      "code": "005930",
+      "highlight": false,
+      "previous": 285500,
+      "current": 285500,
+      "market_cap": 16691125,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 2361,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    },
+    {
+      "sector": "반도체",
+      "name": "SK하이닉스",
+      "code": "000660",
+      "highlight": false,
+      "previous": 1862000,
+      "current": 1862000,
+      "market_cap": 13601768,
+      "change": 0,
+      "change_rate": 0.0,
+      "volume": 4,
+      "foreign": 0,
+      "institution": 0,
+      "personal": 0,
+      "tradingDate": "2026-09-28",
+      "unit": {
+        "volume": "주",
+        "flow": "주"
+      }
+    }
+  ],
+  "comments": {
+    "미국증시": "",
+    "국내증시": "",
+    "방산": "",
+    "현대로템": "",
+    "반도체": "",
+    "USD/KRW": ""
+  },
+  "telegram": {
+    "현대로템": [
+      {
+        "date": "2026-09-28T10:45+09:00",
+        "channel": "미래에셋리서치",
+        "text": "중국 상무부, 8차 미중 경제무역 협상 성과 발표\n\n1. 미중 무역이사회 신설\n기존 경제무역 협상 메커니즘 산하에 무역이사회 설치\n양국 교역 확대와 분쟁 관리의 상설 협의체로 활용\n\n2. 300억달러 규모 상호 관세 인하\n양측이 각각 약 300억달러 규모 수입품의 관세 인하에 합의\n대상 품목의 약 90%를 최혜국(MFN) 세율 수준까지 인하…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7610"
+      }
+    ],
+    "방산": [
+      {
+        "date": "2026-09-28T07:37+09:00",
+        "channel": "신한리서치",
+        "text": "[신한투자증권 금융팀 은경완/임희연]\n \n금융데일리: 26/9/28\n \n[은행/카드]\n \n정기예금 금리 3.7%까지…증시 떠난 돈 은행으로 <이데일리>\nhttps://alie.kr/EI6YPKy\n \n갈아탔더니 이자 더 내라고?..은행 11곳, 주담대 대환 금리가 더 비쌌다 <파이낸셜뉴스>\nhttps://alie.kr/EI6YPKp…",
+        "link": "https://t.me/SHINHANRESEARCH/52872"
+      },
+      {
+        "date": "2026-09-28T06:53+09:00",
+        "channel": "대신증권",
+        "text": "대신증권에서 투자전략을 담당하는 이경민입니다.\n\n추석 연휴 잘 보내셨나요? 다행히 이번 추석 연휴에는 채권금리가 5%를 넘어 튀어오른 것 외에는 충격 변수는 없어서 다행입니다.\n자 그러면… 채권금리 튀어오른걸 어떻게 봐야 하나…\n지난주 후반 3일 동안 채권금리 급등 대부분은 텀 프리미엄의 상승이었습니다.…",
+        "link": "https://t.me/DAISHINSTRATEGY/6307"
+      },
+      {
+        "date": "2026-09-28T06:34+09:00",
+        "channel": "신한리서치",
+        "text": "[신한 철강금속/자동차 박광래]\n\n!! 신한 철강금속/자동차 텔레그램 채널 !!\n→ https://t.me/shinhan_park\n\n:: 신한 철강금속 뉴스 (260928) ::\n\n▶ 포스코그룹, 잭니클라우스GC 매각 착수…약 3,500억원 예상…",
+        "link": "https://t.me/SHINHANRESEARCH/52870"
+      }
+    ],
+    "반도체": [
+      {
+        "date": "2026-09-28T10:13+09:00",
+        "channel": "미래에셋리서치",
+        "text": "마켓 뷰 (9월 28일)\n▶ Summary: 밀린 재료 반영의 날\n-코스피 7,005.61(-75.31p, -1.06%), 코스닥 860.35(+15.87p, +1.88%) \n-상승 종목 비율 월등히 높음에도 반도체주 약세 영향에 코스피 장 중 7천선 이탈\n\n· 서진시스템: 반도체 장비 사업 성장과 ESS 사업 정상화 힘입은 하반기 실적 회복 기대.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7608"
+      },
+      {
+        "date": "2026-09-28T08:05+09:00",
+        "channel": "대신증권",
+        "text": "안녕하세요, 대신증권 FICC리서치부에서 전략/시황을 담당하고 있는 이경민입니다.\n[9월 28일 주요국 이슈] 보내드립니다.\n\n# 미국\n도널드 트럼프 미 대통령, 이란과 이번 주 추가 회담 가능성 언급. 트럼프 대통령은 27일 악시오스와의 인터뷰에서 이란이 합의를 원하고 있다며 추가 협상 가능성을 언급했으나, 이란이 원하는 합의 내용은 받아들이기 어렵다는…",
+        "link": "https://t.me/DAISHINSTRATEGY/6310"
+      },
+      {
+        "date": "2026-09-28T07:50+09:00",
+        "channel": "신한리서치",
+        "text": "신한 해외주식 데일리(9/28)\n“유가 하락에 물가 부담 완화, 미중 정상회담 효과는 중립. 반도체 중심 반등“\n\n▶️ 특징주\n[블룸에너지(+8.3%)] 블루 아울 캐피털이 금번 Oracle의 공시가 블룸에너지의 재무 성과나 펀더멘털에 실질적인 영향을 미치지 않는다고 언급…",
+        "link": "https://t.me/SHINHANRESEARCH/52877"
+      }
+    ],
+    "미국증시": [
+      {
+        "date": "2026-09-28T10:13+09:00",
+        "channel": "미래에셋리서치",
+        "text": "마켓 뷰 (9월 28일)\n▶ Summary: 밀린 재료 반영의 날\n-코스피 7,005.61(-75.31p, -1.06%), 코스닥 860.35(+15.87p, +1.88%) \n-상승 종목 비율 월등히 높음에도 반도체주 약세 영향에 코스피 장 중 7천선 이탈\n\n· 서진시스템: 반도체 장비 사업 성장과 ESS 사업 정상화 힘입은 하반기 실적 회복 기대.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7608"
+      },
+      {
+        "date": "2026-09-28T08:05+09:00",
+        "channel": "신한리서치",
+        "text": "★ Daily Market Digest - 2026년 9월 28일 투자전략부 김기백 ☎️02-3772-2649  ▶ Daily Review Summary\n - 미국 시장은 韓 연휴 간 장기금리 급등과 유가 불안에 따른 충격 후 일부 되돌림. S&P500 +0.5%, NASDAQ +0.5%, Dow +0.9%…",
+        "link": "https://t.me/SHINHANRESEARCH/52881"
+      },
+      {
+        "date": "2026-09-28T08:05+09:00",
+        "channel": "대신증권",
+        "text": "안녕하세요, 대신증권 FICC리서치부에서 전략/시황을 담당하고 있는 이경민입니다.\n[9월 28일 주요국 이슈] 보내드립니다.\n\n# 미국\n도널드 트럼프 미 대통령, 이란과 이번 주 추가 회담 가능성 언급. 트럼프 대통령은 27일 악시오스와의 인터뷰에서 이란이 합의를 원하고 있다며 추가 협상 가능성을 언급했으나, 이란이 원하는 합의 내용은 받아들이기 어렵다는…",
+        "link": "https://t.me/DAISHINSTRATEGY/6310"
+      }
+    ],
+    "국내증시": [
+      {
+        "date": "2026-09-28T10:13+09:00",
+        "channel": "미래에셋리서치",
+        "text": "마켓 뷰 (9월 28일)\n▶ Summary: 밀린 재료 반영의 날\n-코스피 7,005.61(-75.31p, -1.06%), 코스닥 860.35(+15.87p, +1.88%) \n-상승 종목 비율 월등히 높음에도 반도체주 약세 영향에 코스피 장 중 7천선 이탈\n\n· 서진시스템: 반도체 장비 사업 성장과 ESS 사업 정상화 힘입은 하반기 실적 회복 기대.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7608"
+      },
+      {
+        "date": "2026-09-28T08:36+09:00",
+        "channel": "신한리서치",
+        "text": "# 신한 운송 Weekly T.M.I (26년 9월 5주차)\n[신한 운송 최민기]\n\n▶️ Trend Comment: 데이터센터 물류, 규모와 영역 모두 확장\n\n- Kuehne+Nagel(K+N)은 9/21 아마존과 장기 전략적 협력 계약 체결. 건설 자재·장비 반입부터 유지보수·증설까지 데이터센터 전 생애주기 물류 담당…",
+        "link": "https://t.me/SHINHANRESEARCH/52885"
+      },
+      {
+        "date": "2026-09-28T07:48+09:00",
+        "channel": "신한리서치",
+        "text": "<신한생각>\n『참신한 자산전략 (10월호); 긴축이 걷어낸 불확실성』\n신한투자증권 투자전략부\n☎️ 02-3772-1946\n\n[Summary]\n- 자산배분 로드맵\n- 자산별 투자의견\n- 신한 포트폴리오\n- 자산별 투자전략\n\n[자산시장 전망]\n- 자산배분: 긴축이 걷어낸 불확실성\n- 해외주식: 상방으로 기울어진 비대칭적 보상 구조…",
+        "link": "https://t.me/SHINHANRESEARCH/52875"
+      }
+    ],
+    "환율": [
+      {
+        "date": "2026-09-28T10:45+09:00",
+        "channel": "미래에셋리서치",
+        "text": "중국 상무부, 8차 미중 경제무역 협상 성과 발표\n\n1. 미중 무역이사회 신설\n기존 경제무역 협상 메커니즘 산하에 무역이사회 설치\n양국 교역 확대와 분쟁 관리의 상설 협의체로 활용\n\n2. 300억달러 규모 상호 관세 인하\n양측이 각각 약 300억달러 규모 수입품의 관세 인하에 합의\n대상 품목의 약 90%를 최혜국(MFN) 세율 수준까지 인하…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7610"
+      },
+      {
+        "date": "2026-09-28T10:13+09:00",
+        "channel": "미래에셋리서치",
+        "text": "마켓 뷰 (9월 28일)\n▶ Summary: 밀린 재료 반영의 날\n-코스피 7,005.61(-75.31p, -1.06%), 코스닥 860.35(+15.87p, +1.88%) \n-상승 종목 비율 월등히 높음에도 반도체주 약세 영향에 코스피 장 중 7천선 이탈\n\n· 서진시스템: 반도체 장비 사업 성장과 ESS 사업 정상화 힘입은 하반기 실적 회복 기대.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7608"
+      },
+      {
+        "date": "2026-09-28T08:36+09:00",
+        "channel": "신한리서치",
+        "text": "# 신한 운송 Weekly T.M.I (26년 9월 5주차)\n[신한 운송 최민기]\n\n▶️ Trend Comment: 데이터센터 물류, 규모와 영역 모두 확장\n\n- Kuehne+Nagel(K+N)은 9/21 아마존과 장기 전략적 협력 계약 체결. 건설 자재·장비 반입부터 유지보수·증설까지 데이터센터 전 생애주기 물류 담당…",
+        "link": "https://t.me/SHINHANRESEARCH/52885"
+      }
+    ]
+  },
+  "telegram_feed": {
+    "closing": [],
+    "stock_news": [
+      {
+        "channel": "GLOBALMKTINSIGHT",
+        "message_id": 7608,
+        "source": "미래에셋리서치",
+        "date": "2026-09-28T10:13+09:00",
+        "excerpt": "마켓 뷰 (9월 28일)\n▶ Summary: 밀린 재료 반영의 날\n-코스피 7,005.61(-75.31p, -1.06%), 코스닥 860.35(+15.87p, +1.88%) \n-상승 종목 비율 월등히 높음에도 반도체주 약세 영향에 코스피 장 중 7천선 이탈\n\n· 서진시스템: 반도체 장비 사업 성장과 ESS 사업 정상화 힘입은 하반기 실적 회복 기대. 서진시스템(+14.93%)\n· LG이노텍: 라이다 센서 사업 확대 위해 지난해 투자한 아에바 지분가치 60% 가량 급등. LG이노텍 (+8.79%)\n· SK하이닉스: 손자회사 솔리다임 내년 미국 IPO 추진설에 중복 상장, 소액주주 가치 훼손 우려 반영. SK하이닉스(-2.90%), SK스퀘어(-5.21%) \n\n· 한은 “연휴 기간 주요국 국채 금리 등 글로벌 금융시장 불확실성 고조”\n· BOJ 의사록 “기준금리 계속 인상하고 통화 완화 정도 조정해 나가야”\n\n▶ 테마&이슈\n· HLB\n- 미국 자회사 엘레바 테라퓨틱스, FDA로부터 담관암 표적 항암 신약 ‘리픽투’ 품목 허가 승인..그룹주 동반 급등\n- HLB(+29.95%), HLB제약(+30.00%), HLB바이오스텝(+30.00%), HLB생명과학(+29.96%), HLB글로벌(+29.82%)\n\n· 태양광\n- 미국 태양광 모듈, 폴리실리콘 가격 동반 상승..미국 무역 규제 강화로 중국산 저가 제품 입지 축소, 국내 업체 수혜 기대…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7608",
+        "stocks": [
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 52874,
+        "source": "신한리서치",
+        "date": "2026-09-28T07:45+09:00",
+        "excerpt": "[신한투자증권 IT팀 오강호, 김형태, 박현우, 송혜수, 김예성]\n\n9/28(월)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ 로이터 “SK하이닉스 손자회사 솔리다임, 이르면 내년 美상장 검토” (전자신문)\nhttps://alie.kr/DwH2RHZ\n\n▶️ TSMC 파운드리 3~6% 인상 전망…삼성·인텔·후공정도 영향권 (전자신문)\nhttps://alie.kr/614wIWx\n\n▶️ 마이크론, '역대 최대' 실적 경신 임박…AI메모리 수요 굳건 (ZDNET)\nhttps://alie.kr/C0CheJB\n\n▶️ AI發 파운드리·메모리 증설로 12인치 웨이퍼 공급 타이트…2027년 LTA 가격 15~40%+ 인상설 (TrendForce)\nhttps://alie.kr/6ijyDnI\n\n▶️ CXMT, YMTC, 메모리 용량 확대…하지만 2027년까지 중국 내에서 신규 공급 물량 소진될 전망 (TrendForce)\nhttps://alie.kr/BeNBhJw\n\n▶️ 삼성전자, 양자컴 메모리도 '수직 적층'…한국·미국 특허 등록 (전자신문)\nhttps://alie.kr/1y1Vjlb\n\n\n✅ 디스플레이\n\n▶️ LCD 팔고 OLED 투자 늘린 LGD…8.6세대는 왜 신중할까 (쿠키뉴스)\nhttps://alie.kr/3YGKZ6p\n\n▶️ AMD \"BOE와 컴퓨팅·디스플레이 경험 함께 혁신\" (ZDNET)\nhttps://alie.kr/BeNBgdX…",
+        "link": "https://t.me/SHINHANRESEARCH/52874",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "DAISHINSTRATEGY",
+        "message_id": 6307,
+        "source": "대신증권",
+        "date": "2026-09-28T06:53+09:00",
+        "excerpt": "대신증권에서 투자전략을 담당하는 이경민입니다.\n\n추석 연휴 잘 보내셨나요? 다행히 이번 추석 연휴에는 채권금리가 5%를 넘어 튀어오른 것 외에는 충격 변수는 없어서 다행입니다.\n자 그러면… 채권금리 튀어오른걸 어떻게 봐야 하나…\n지난주 후반 3일 동안 채권금리 급등 대부분은 텀 프리미엄의 상승이었습니다.\n실질 금리, 기대인플레이션은 가만히 있는데 텀 프리미엄이 튄 것이죠\n5년물 입찰이 크게 부진하면서 나타난 현상인데요.\n\n궁극적으로 미국채에 대한 매력도가 낮아졌고, 이로 인한 추가 상승압력이 커질 수 있을 것입니다.\n하지만, 반대로… 매력도가 낮아져서 입찰이 부진해서 채권금리가 튀면, 매력도는 높아질까요? 낮아질까요?\n너무 단순한 생각일 수 있지만, 가격이 떨어지면 무한대로 떨어질 수는 없습니다.\n어느 수준에 도달하게 되면 가격 메리트가 부각되고, 반대로 매력도는 상승 반전할 수 있겠죠\n제가 무조건 현재 채권금리가 고점이다! 라고 말씀드리는게 아닙니다.\n채권금리 급등, 레벨업에 대한 공포가 커질수록 반대로 가격, 밸류 매력은 높아진다라는 말씀들 드리는 겁니다.\n단적인 예로 원/달러 환율이 1,560원대를 넘나들 때를 생각해 보시면 좋을 것 같습니다.\n\n7월에도 채권금리는 꾸준히 상승했습니다. 그래도 KOSPI는 7,000선을 넘어섰고요\n금리가 문제다! 가 아니라 금리를 이길 수 있는 모멘텀이 무엇이냐!가 문제죠…",
+        "link": "https://t.me/DAISHINSTRATEGY/6307",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 52870,
+        "source": "신한리서치",
+        "date": "2026-09-28T06:34+09:00",
+        "excerpt": "[신한 철강금속/자동차 박광래]\n\n!! 신한 철강금속/자동차 텔레그램 채널 !!\n→ https://t.me/shinhan_park\n\n:: 신한 철강금속 뉴스 (260928) ::\n\n▶ 포스코그룹, 잭니클라우스GC 매각 착수…약 3,500억원 예상\n: 포스코그룹이 송도 잭니클라우스골프클럽(GC) 매각 절차를 공식 개시했으며 딜로이트안진이 매각자문을 맡았고 시장 예상 거래금액은 약 3,500억원 수준\n: 지난 2022년 약 3,000억원에 인수할 당시 회원권 보증금 채무 약 2,350억원을 승계하고 현금 약 700억원을 투입한 자산\n: 유입되는 매각대금은 그룹 전반의 재무건전성 개선과 함께 2차전지 소재 및 에너지 등 미래 핵심 성장사업 투자 재원으로 활용할 계획\n: 장인화 회장 체제 출범 이후 중국 장가항포항불수강과 발전법인 지분 등 80여건의 사업·자산을 매각 및 청산해 약 2.2조원을 확보한 구조조정의 연장선\n: 단순 자산 처분을 넘어 저수익·비핵심 자산 현금화를 지속하며 철강-리튬-에너지 중심의 트리플 코어 구조로 자본 배분을 집중하는 전략\n\n▶ 한국, 중국산 철강에 무역장벽 확대…특수강봉까지 AD 범위 확장\n: 무역위원회가 9월 17일 중국산 특수강봉에 대해 25.08-27.96%의 잠정 반덤핑(AD) 관세 부과를 권고하며 국내 철강 산업에 대한 무역구제 범위를 대폭 확대…",
+        "link": "https://t.me/SHINHANRESEARCH/52870",
+        "stocks": [
+          "한화에어로"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 52869,
+        "source": "신한리서치",
+        "date": "2026-09-28T06:34+09:00",
+        "excerpt": "[신한 자동차/철강금속 박광래]\n\n!! 신한 자동차/철강금속 텔레그램 채널 !!\n→ https://t.me/shinhan_park\n\n:: 신한 자동차 뉴스 (260928) ::\n\n▶ 현대차그룹, 美 3Q 판매에서 사상 처음 Ford 추월 전망\n: Cox Automotive는 3Q26 현대차·기아·제네시스의 미국 합산 판매량을 51.1만대(+6.5% YoY)로 전망하며 Ford(50.4만대, -7.1% YoY)를 제치고 사상 처음 3위에 오를 것으로 예측\n: 미국 시장 전체 순위는 GM 67.2만대, Toyota 64.3만대에 이은 3위로, 아시아계 OEM의 강세 속에서 사상 최저 수준으로 하락한 디트로이트 3사의 점유율을 흡수\n: 고유가 기조가 이어지는 가운데 연비 경쟁력을 갖춘 HEV 라인업의 상품성이 판매 확대를 견인\n: 단순 판매량 증가를 넘어 고수익 SUV 및 HEV 중심의 믹스 개선이 ASP와 공장 가동률을 방어하는 핵심 동력으로 작용\n\n▶ 신형 팰리세이드 30만대 돌파 임박…국내 HEV 비중 72%\n: 2세대 팰리세이드는 2025년 1월 출시 이후 2026년 8월까지 글로벌 누적 28만1,920대가 판매되며 1세대 모델 대비 30만대 달성 시점을 약 6-7개월 단축할 전망\n: 2026년 1-8월 국내 판매량 2만4,024대 중 하이브리드 모델이 1만7,332대로 72.1%를 차지하며 가솔린 판매량의 약 2.6배 기록…",
+        "link": "https://t.me/SHINHANRESEARCH/52869",
+        "stocks": [
+          "현대차",
+          "기아",
+          "삼성전자"
+        ]
+      }
+    ]
+  },
+  "saved_at": "2026-09-28T10:57:33+09:00"
+}
