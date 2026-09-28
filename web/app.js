@@ -166,14 +166,30 @@ document.querySelector('#copyCommentary').onclick=()=>copy(commentaryText(),'시
 document.querySelector('#copyAll').onclick=()=>copy(`${toTsv(indicatorTsv())}\n\n${toTsv(stockTsv())}\n\n${commentaryText()}`,'전체 복사');
 
 function unlock(){
-  localStorage.setItem('dailyTrendUnlocked','true');
+  localStorage.setItem('dailyTrendUnlockedDate',seoulDate());
+  localStorage.removeItem('dailyTrendUnlocked');
   document.body.classList.remove('app-locked');
   document.querySelector('#unlockError').textContent='';
   load();
+}
+function lockWhenDayChanges(){
+  if(localStorage.getItem('dailyTrendUnlockedDate')===seoulDate())return false;
+  document.body.classList.add('app-locked');
+  const password=document.querySelector('#unlockPassword');
+  password.value='';
+  document.querySelector('#unlockError').textContent='';
+  return true;
 }
 document.querySelector('#unlockForm').addEventListener('submit',event=>{
   event.preventDefault();
   if(document.querySelector('#unlockPassword').value==='260616')unlock();
   else{document.querySelector('#unlockError').textContent='비밀번호가 맞지 않습니다.';document.querySelector('#unlockPassword').select();}
 });
-if(localStorage.getItem('dailyTrendUnlocked')==='true')unlock();
+if(localStorage.getItem('dailyTrendUnlockedDate')===seoulDate())unlock();
+else{
+  localStorage.removeItem('dailyTrendUnlocked');
+  localStorage.removeItem('dailyTrendUnlockedDate');
+}
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden&&lockWhenDayChanges())document.querySelector('#unlockPassword').focus();
+});

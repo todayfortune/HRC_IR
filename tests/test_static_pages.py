@@ -17,6 +17,13 @@ class StaticPagesTests(unittest.TestCase):
         self.assertIn("exchange_latest.json", app)
         self.assertIn("Object.assign(usd,{current:null", app)
 
+    def test_unlock_expires_once_per_kst_day(self):
+        app = (ROOT / "web" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("dailyTrendUnlockedDate',seoulDate()", app)
+        self.assertIn("localStorage.getItem('dailyTrendUnlockedDate')===seoulDate()", app)
+        self.assertIn("visibilitychange", app)
+        self.assertNotIn("localStorage.setItem('dailyTrendUnlocked','true')", app)
+
     def test_market_turnover_and_stock_volume_use_distinct_formatters(self):
         app = (ROOT / "web" / "app.js").read_text(encoding="utf-8")
         page = (ROOT / "web" / "index.html").read_text(encoding="utf-8")
