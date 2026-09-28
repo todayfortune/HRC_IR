@@ -5,7 +5,7 @@ from unittest.mock import Mock, patch
 
 from telethon.sessions import StringSession
 
-from app.services.telegram.service import classify_messages, excerpt, normalize, session_value
+from app.services.telegram.service import classify_messages, excerpt, normalize, session_value, keyword_references
 from scripts.update_telegram import main as update_telegram
 
 
@@ -19,6 +19,11 @@ class TelegramFilterTests(unittest.TestCase):
 
     def test_normalize_ignores_space_and_case(self):
         self.assertEqual(normalize(" Market  CLOSE\n"), "marketclose")
+
+    def test_comment_references_are_filtered_and_deduplicated(self):
+        result = keyword_references(self.messages, {"반도체": ["삼성전자"]}, "2026-09-24")
+        self.assertEqual(len(result["반도체"]), 1)
+        self.assertIn("SK하이닉스", result["반도체"][0]["text"])
 
     def test_classifies_deduplicates_and_filters_kst_date(self):
         result = classify_messages(self.messages, ["삼성전자","SK하이닉스"], ["국내주식 마감시황"], "2026-09-24", 700)

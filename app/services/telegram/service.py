@@ -124,9 +124,34 @@ class TelegramService:
     def update(self, report: dict[str, Any]) -> dict[str, Any]:
         target_date = str(report.get("date") or date.today().isoformat())
         stock_names = [str(item["name"]) for item in report.get("stocks", [])]
+        messages = asyncio.run(self._fetch())
+        for channel in self.channels:
+            rows = [m for m in messages if m["channel"] == channel["username"].lstrip("@")]
+            latest = max((m["date"] for m in rows), default="none")
+            print(f"Telegram channel={channel['username']} fetched={len(rows)} latest={latest}")
         report["telegram_feed"] = classify_messages(
-            asyncio.run(self._fetch()), stock_names, self.closing_keywords,
+            messages, stock_names, self.closing_keywords,
             target_date, self.excerpt_length,
         )
-        report["telegram_status"] = f"Telegram 업데이트 완료 ({datetime.now(SEOUL).strftime('%Y-%m-%d %H:%M')})"
+        keywords = json.loads((ROOT / "config" / "news_keywords.json").read_text(encoding="utf-8"))
+        report["telegram"] = keyword_references(messages, keywords, target_date)
+        count = sum(str(m.get("date", ""))[:10] == target_date for m in messages)
+        report["telegram_status"] = f"Telegram 확인 {datetime.now(SEOUL).strftime('%Y-%m-%d %H:%M')} KST · 당일 원문 {count}건"
+        print(f"Telegram fetched={len(messages)} target_date={target_date} today={count} closing={len(report['telegram_feed']['closing'])} stocks={len(report['telegram_feed']['stock_news'])}")
         return report
+
+
+def keyword_references(messages, keywords, target_date):
+    result = {}
+    for category, words in keywords.items():
+        seen = set()
+        items = []
+        for message in sorted(messages, key=lambda m: m.get("date", ""), reverse=True):
+            key = (message["channel"], message["message_id"])
+            if key in seen or message["date"][:10] != target_date:
+                continue
+            seen.add(key)
+            if any(normalize(word) in normalize(message["text"]) for word in words):
+                items.append({"date": message["date"], "channel": message["source"], "text": excerpt(message["text"], 200), "link": message.get("link")})
+        result[category] = items[:3]
+    return result

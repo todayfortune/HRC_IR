@@ -1,9 +1,53 @@
 {
-  "value": 1358.1,
-  "source": "하나은행",
-  "rateType": "매매기준율",
-  "referenceDate": "2026-09-25",
-  "announcementNumber": 4478,
-  "announcementTime": "15:30:08",
-  "updatedAt": "2026-09-25T21:07:42+09:00"
+  "schemaVersion": 2,
+  "rates": {
+    "USD": {
+      "current": {
+        "value": 1358.1,
+        "source": "하나은행",
+        "rateType": "매매기준율",
+        "referenceDate": "2026-09-25",
+        "announcementNumber": 4478,
+        "announcementTime": "15:30:08",
+        "updatedAt": "2026-09-28T10:54:48+09:00",
+        "currency": "USD",
+        "selectionPolicy": "first-at-or-after-15:30"
+      },
+      "previous": {
+        "value": 1368.0,
+        "source": "하나은행",
+        "rateType": "매매기준율",
+        "referenceDate": "2026-09-24",
+        "announcementNumber": 2248,
+        "announcementTime": "15:30:26",
+        "updatedAt": "2026-09-28T10:54:58+09:00",
+        "currency": "USD",
+        "selectionPolicy": "first-at-or-after-15:30"
+      }
+    },
+    "EUR": {
+      "current": {
+        "value": 1546.13,
+        "source": "하나은행",
+        "rateType": "매매기준율",
+        "referenceDate": "2026-09-25",
+        "announcementNumber": 4478,
+        "announcementTime": "15:30:08",
+        "updatedAt": "2026-09-28T10:55:08+09:00",
+        "currency": "EUR",
+        "selectionPolicy": "first-at-or-after-15:30"
+      },
+      "previous": {
+        "value": 1558.08,
+        "source": "하나은행",
+        "rateType": "매매기준율",
+        "referenceDate": "2026-09-24",
+        "announcementNumber": 2248,
+        "announcementTime": "15:30:26",
+        "updatedAt": "2026-09-28T10:55:19+09:00",
+        "currency": "EUR",
+        "selectionPolicy": "first-at-or-after-15:30"
+      }
+    }
+  }
 }

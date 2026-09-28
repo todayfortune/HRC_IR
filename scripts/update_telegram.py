@@ -10,9 +10,9 @@ from app.services.telegram import TelegramService
 def main() -> None:
     reports = ReportService()
     current = reports.load()
-    previous_feed = deepcopy(current.get("telegram_feed"))
+    previous_feed = deepcopy({key: current.get(key) for key in ("telegram_feed", "telegram", "telegram_status")})
     updated = TelegramService().update(current)
-    if updated.get("telegram_feed") == previous_feed:
+    if {key: updated.get(key) for key in previous_feed} == previous_feed:
         print("새 Telegram 메시지가 없어 저장하지 않았습니다.")
         return
     reports.save(updated)

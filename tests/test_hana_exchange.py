@@ -8,6 +8,8 @@ from unittest.mock import Mock, patch
 from app.services.market.hana_exchange import (
     HANA_RATE_URL,
     HanaRateError,
+    NoAnnouncementError,
+    build_exchange_snapshot,
     fetch_hana_usd_rate,
     parse_hana_usd_html,
     save_exchange_snapshot,
@@ -38,9 +40,23 @@ class HanaExchangeTests(unittest.TestCase):
         self.assertNotEqual(result["announcementNumber"], 528)
 
     def test_no_matching_window_fails(self):
-        outside = self.html.replace("15:30:28", "15:29:59").replace("15:31:", "15:33:")
-        with self.assertRaisesRegex(HanaRateError, "고시가 없습니다"):
+        outside = self.html.replace("15:30:", "14:30:").replace("15:31:", "14:31:").replace("15:33:", "14:33:")
+        with self.assertRaisesRegex(NoAnnouncementError, "고시가 없습니다"):
             parse_hana_usd_html(outside, "2026-09-23")
+
+    def test_first_after_1533_is_allowed(self):
+        html = self.html.replace("15:30:", "14:30:").replace("15:31:", "14:31:")
+        self.assertEqual(parse_hana_usd_html(html, "2026-09-23")["announcementTime"], "15:33:34")
+
+    def test_both_currencies_previous_date_and_freeze(self):
+        def fetch(day, currency):
+            if day == date(2026, 9, 27):
+                raise NoAnnouncementError()
+            return {"referenceDate": day.isoformat(), "value": 1358.4 if currency == "USD" else 1590.0, "selectionPolicy": "first-at-or-after-15:30"}
+        result = build_exchange_snapshot(date(2026, 9, 28), {}, fetch)
+        self.assertEqual(result["rates"]["EUR"]["previous"]["referenceDate"], "2026-09-26")
+        never = Mock(side_effect=AssertionError("Fixed rates must not be fetched again"))
+        self.assertEqual(build_exchange_snapshot(date(2026, 9, 28), result, never), result)
 
     def test_html_structure_change_fails(self):
         with self.assertRaisesRegex(HanaRateError, "환율 표 헤더"):

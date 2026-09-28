@@ -17,11 +17,10 @@ const volume = value => valueOrNull(value) === null ? '-' : `${comma(Math.round(
 const flow = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억원' ? `${signed(value,2)}억원` : `${signed(Math.round(Number(value)/1000))}천주`;
 const esc = value => String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const tradingDate = row => row.tradingDate ? `<small class="trading-date">기준 ${esc(row.tradingDate.replaceAll('-','.'))}</small>` : '';
-const exchangeMeta = row => {
-  if(row.name!=='USD'||row.source!=='하나은행')return '';
-  const marketDate=report.indicators.find(item=>item.name==='KOSPI')?.tradingDate;
-  const dateNote=row.referenceDate&&row.referenceDate!==marketDate?` · ${row.referenceDate.replaceAll('-','.')}`:'';
-  return `<small class="exchange-rate-meta">하나은행 · 매매기준율<br>${esc(row.announcementTime)} · ${esc(row.announcementNumber)}회차${esc(dateNote)}</small>`;
+const exchangeMeta = (row, side='current') => {
+  const quote=row.exchange?.[side];
+  if(!quote)return '';
+  return `<small class="exchange-rate-meta">하나은행 · 매매기준율<br>${esc(quote.referenceDate)}<br>${esc(quote.announcementNumber)}회차 · ${esc(quote.announcementTime)}</small>`;
 };
 const dataBase = location.pathname.includes('/web/') ? '../data/' : 'data/';
 
@@ -49,7 +48,7 @@ function renderIndicators(){
   const spans=rowspans(report.indicators,'group');
   document.querySelector('#indicatorRows').innerHTML=report.indicators.map((row,i)=>{
     const kind=row.group==='환율'?'fx':'index';
-    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous,kind)}</td><td>${price(row.current,kind)}${exchangeMeta(row)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${turnover(row.turnover)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,'억원')}</td><td class="${signClass(row.institution)}">${flow(row.institution,'억원')}</td><td class="${signClass(row.personal)}">${flow(row.personal,'억원')}</td></tr>`;
+    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous,kind)}${exchangeMeta(row,'previous')}</td><td>${price(row.current,kind)}${exchangeMeta(row)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${turnover(row.turnover)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,'억원')}</td><td class="${signClass(row.institution)}">${flow(row.institution,'억원')}</td><td class="${signClass(row.personal)}">${flow(row.personal,'억원')}</td></tr>`;
   }).join('');
 }
 
@@ -65,7 +64,7 @@ function referenceBox(category, title=category){
 }
 
 function renderComments(){
-  document.querySelector('#commentary').innerHTML=commentOrder.map(([key,label])=>`<div class="comment-block"><div class="comment-title">${label}</div><div class="comment-body"><div class="comment-view" data-comment-view="${key}">${esc(report.comments?.[key]||'')}</div><textarea data-comment-input="${key}" rows="3" placeholder="${label} 시황을 직접 작성하세요.">${esc(report.comments?.[key]||'')}</textarea></div></div>`).join('');
+  document.querySelector('#commentary').innerHTML=commentOrder.map(([key,label])=>`<div class="comment-block"><div class="comment-title">${label}</div><div class="comment-body"><div class="comment-view" data-comment-view="${key}">${esc(report.comments?.[key]||'')}</div><textarea data-comment-input="${key}" rows="3" placeholder="${label} 시황을 직접 작성하세요.">${esc(report.comments?.[key]||'')}</textarea>${referenceBox(key,label)}</div></div>`).join('');
   document.querySelector('[data-comment-view="USD/KRW"]').textContent=report.comments?.['USD/KRW']||'';
   document.querySelector('[data-comment-input="USD/KRW"]').value=report.comments?.['USD/KRW']||'';
   document.querySelector('#fxReferences').innerHTML=referenceBox('환율','환율');
@@ -79,7 +78,8 @@ function telegramCard(item, showStocks=false){
 }
 function renderTelegramFeed(){
   const feed=report.telegram_feed||{closing:[],stock_news:[]};
-  document.querySelector('#closingMarket').innerHTML=feed.closing?.length?feed.closing.map(item=>telegramCard(item)).join(''):'<div class="telegram-empty">아직 수집된 Telegram 마감시황이 없습니다.</div>';
+  const notice=`<p class="source-notice">${esc(report.telegram_status||'아직 수집 기록이 없습니다.')}</p>`;
+  document.querySelector('#closingMarket').innerHTML=notice+(feed.closing?.length?feed.closing.map(item=>telegramCard(item)).join(''):'<div class="telegram-empty">오늘 마감시황 키워드와 일치하는 게시물이 없습니다.</div>');
   document.querySelector('#stockNews').innerHTML=feed.stock_news?.length?feed.stock_news.map(item=>telegramCard(item,true)).join(''):'<div class="telegram-empty">아직 수집된 Telegram 종목뉴스가 없습니다.</div>';
 }
 
@@ -116,10 +116,13 @@ async function load(){
       fetchJson(`${dataBase}exchange_latest.json`,true)
     ]);
     const indicators=(market.indicators||daily?.indicators||[]).map(row=>({...row}));
-    const usd=indicators.find(row=>row.name==='USD');
-    if(usd){
-      if(exchange?.value!==undefined&&exchange?.value!==null){
-        Object.assign(usd,{current:exchange.value,previous:null,change:null,change_rate:null,tradingDate:exchange.referenceDate,...exchange});
+    for(const currency of ['USD','EUR']){
+      const usd=indicators.find(row=>row.name===currency);
+      if(!usd)continue;
+      const quotes=exchange?.rates?.[currency]||(currency==='USD'&&exchange?.value!=null?{current:exchange}:null);
+      if(quotes?.current?.value!=null){
+        const current=quotes.current.value,previous=quotes.previous?.value??null;
+        Object.assign(usd,{current,previous,change:previous===null?null:current-previous,change_rate:previous===null?null:(current/previous-1)*100,tradingDate:quotes.current.referenceDate,exchange:quotes});
       }else{
         Object.assign(usd,{current:null,previous:null,change:null,change_rate:null,tradingDate:null});
       }
