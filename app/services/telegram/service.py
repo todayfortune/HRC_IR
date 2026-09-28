@@ -151,7 +151,13 @@ def keyword_references(messages, keywords, target_date):
             if key in seen or message["date"][:10] != target_date:
                 continue
             seen.add(key)
-            if any(normalize(word) in normalize(message["text"]) for word in words):
-                items.append({"date": message["date"], "channel": message["source"], "text": excerpt(message["text"], 200), "link": message.get("link")})
+            # Show the matching passage rather than an unrelated opening paragraph.
+            matches = [re.search(re.escape(word), message["text"], re.IGNORECASE) for word in words]
+            matches = [match for match in matches if match]
+            if matches:
+                first = min(matches, key=lambda match: match.start())
+                start = max(0, first.start() - 50)
+                passage = message["text"][start:]
+                items.append({"date": message["date"], "channel": message["source"], "text": ("…" if start else "") + excerpt(passage, 200), "link": message.get("link")})
         result[category] = items[:3]
     return result

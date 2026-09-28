@@ -25,6 +25,20 @@ class TelegramFilterTests(unittest.TestCase):
         self.assertEqual(len(result["반도체"]), 1)
         self.assertIn("SK하이닉스", result["반도체"][0]["text"])
 
+    def test_exact_topics_and_matching_passage(self):
+        from pathlib import Path
+        import json
+        keywords = json.loads((Path(__file__).parents[1] / "config/news_keywords.json").read_text(encoding="utf-8"))
+        self.assertEqual(keywords["현대로템"], ["현대로템"])
+        self.assertEqual(keywords["방산"], ["방산"])
+        base = self.messages[0]
+        unrelated = dict(base, text="폴란드 K2 철도 FA-50 반도체 소식")
+        related = dict(base, message_id=99, text="일반 시장 이야기 " * 100 + "현대로템 방산 소식")
+        result = keyword_references([unrelated, related], keywords, "2026-09-24")
+        for category in ("현대로템", "방산"):
+            self.assertEqual(len(result[category]), 1)
+            self.assertIn(category, result[category][0]["text"])
+
     def test_classifies_deduplicates_and_filters_kst_date(self):
         result = classify_messages(self.messages, ["삼성전자","SK하이닉스"], ["국내주식 마감시황"], "2026-09-24", 700)
         self.assertEqual(len(result["closing"]), 1)
