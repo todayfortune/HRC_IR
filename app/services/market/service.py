@@ -35,6 +35,20 @@ def million_krw_to_eok(value: Any) -> float | None:
     return round(raw / 100, 2) if raw is not None else None
 
 
+def dated_prices(rows, field, end):
+    valid = {}
+    for row in rows:
+        day = str(row.get('stck_bsop_date', ''))
+        value = number(row.get(field))
+        if iso_date(day) and day <= end and value is not None and value > 0:
+            valid[day] = row
+    days = sorted(valid, reverse=True)
+    if len(days) < 2:
+        raise RuntimeError('기준 거래일과 전 거래일 가격을 확인할 수 없습니다.')
+    current, previous = valid[days[0]], valid[days[1]]
+    return current, previous
+
+
 class MarketService:
     """Read-only KIS market-data collector. No trading endpoints exist here."""
 
@@ -44,32 +58,38 @@ class MarketService:
         self.client = KisReadOnlyClient(app_key, app_secret, timeout=15)
 
     def update(self, report: dict[str, Any]) -> dict[str, Any]:
-        # Authenticate once for this process. The token remains in memory only.
+        # Reuse the encrypted token prepared by the workflow; never issue per query.
         self.client.authenticate()
         indicators: list[dict[str, Any]] = []
         errors: list[str] = []
-        today = datetime.now(SEOUL).date()
-        query_date = today.strftime("%Y%m%d")
+        now = datetime.now(SEOUL)
+        today = now.date()
+        # Before the opening, ignore today's placeholder daily rows.
+        price_end = (today - timedelta(days=1) if now.hour < 9 else today).strftime('%Y%m%d')
+        price_start = (today - timedelta(days=40)).strftime('%Y%m%d')
         for group, name, code, market_code in (("국내","KOSPI","0001","KSP"), ("국내","KOSDAQ","1001","KSQ")):
             try:
                 raw = self.client.get_domestic_index(code)
-                current = number(raw.get("bstp_nmix_prpr"))
+                latest, prior = dated_prices(self.client.get_domestic_daily(code, price_start, price_end, index=True), 'bstp_nmix_prpr', price_end)
+                current = number(latest.get("bstp_nmix_prpr"))
                 if current in (None, 0):
                     raise RuntimeError("KIS가 유효한 현재값을 반환하지 않았습니다.")
-                change = number(raw.get("bstp_nmix_prdy_vrss"), 0)
-                investor = self.client.get_market_investor_daily(code, market_code, query_date)
-                trading_date = iso_date(investor.get("stck_bsop_date"))
+                previous = number(prior['bstp_nmix_prpr'])
+                change = round(current - previous, 6)
+                investor = self.client.get_market_investor_daily(code, market_code, latest['stck_bsop_date'])
+                trading_date = iso_date(latest['stck_bsop_date'])
                 if not trading_date:
                     raise RuntimeError("KIS 시장 수급 응답에 기준 거래일이 없습니다.")
                 indicators.append({
-                    "group":group, "name":name, "previous": current - change if current is not None else None,
+                    "group":group, "name":name, "previous": previous, "previousTradingDate":iso_date(prior['stck_bsop_date']),
                     "current":current, "market_cap":number(raw.get("bstp_nmix_avls")), "change":change,
-                    "change_rate":number(raw.get("bstp_nmix_prdy_ctrt")),
-                    "turnover":million_krw_to_eok(raw.get("acml_tr_pbmn")),
+                    "change_rate":round(change / previous * 100, 6),
+                    "turnover":million_krw_to_eok(latest.get("acml_tr_pbmn")),
                     "foreign":million_krw_to_eok(investor.get("frgn_ntby_tr_pbmn")),
                     "institution":million_krw_to_eok(investor.get("orgn_ntby_tr_pbmn")),
                     "personal":million_krw_to_eok(investor.get("prsn_ntby_tr_pbmn")),
                     "tradingDate":trading_date,
+                    "flowTradingDate":iso_date(investor.get('stck_bsop_date')),
                     "unit":{"turnover":"억원","flow":"억원"}
                 })
             except Exception:
@@ -89,6 +109,7 @@ class MarketService:
                     "change":change,"change_rate":number(raw.get("prdy_ctrt")),"turnover":None,
                     "foreign":None,"institution":None,"personal":None,
                     "tradingDate":iso_date(raw.get("stck_bsop_date")),
+                    "previousTradingDate":iso_date(raw.get('previousTradingDate')),
                     "unit":{"turnover":"억원","flow":"억원"}})
             except Exception as exc:
                 errors.append(f"{name} ({exc})")
@@ -110,21 +131,24 @@ class MarketService:
             row = {key: configured.get(key) for key in ("sector","name","code","highlight")}
             try:
                 raw = self.client.get_domestic_quote_raw(row["code"])
-                current = number(raw.get("stck_prpr"))
+                latest, prior = dated_prices(self.client.get_domestic_daily(row['code'], price_start, price_end), 'stck_clpr', price_end)
+                current = number(latest.get("stck_clpr"))
                 if current in (None, 0):
                     raise RuntimeError("KIS가 유효한 현재값을 반환하지 않았습니다.")
-                change = number(raw.get("prdy_vrss"), 0)
+                previous = number(prior['stck_clpr'])
+                change = current - previous
                 investor = self.client.get_domestic_investor(row["code"])
-                foreign = number(investor.get("frgn_ntby_qty"), 0)
-                institution = number(investor.get("orgn_ntby_qty"), 0)
-                personal = number(investor.get("prsn_ntby_qty"), 0)
-                volume = number(raw.get("acml_vol"), 0)
+                foreign = number(investor.get("frgn_ntby_qty"))
+                institution = number(investor.get("orgn_ntby_qty"))
+                personal = number(investor.get("prsn_ntby_qty"))
+                volume = number(latest.get("acml_vol"))
                 row.update({
-                    "previous": current - change if current is not None else None, "current":current,
+                    "previous": previous, "current":current, "previousTradingDate":iso_date(prior['stck_bsop_date']),
                     "market_cap": number(raw.get("hts_avls")), "change":change,
-                    "change_rate":number(raw.get("prdy_ctrt")), "volume":volume,
+                    "change_rate":round(change / previous * 100, 6), "volume":volume,
                     "foreign":foreign, "institution":institution,
-                    "personal":personal, "tradingDate":iso_date(investor.get("stck_bsop_date")),
+                    "personal":personal, "tradingDate":iso_date(latest.get("stck_bsop_date")),
+                    "flowTradingDate":iso_date(investor.get("stck_bsop_date")),
                     "unit":{"volume":"주","flow":"주"}
                 })
             except Exception:

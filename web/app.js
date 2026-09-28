@@ -17,6 +17,8 @@ const volume = value => valueOrNull(value) === null ? '-' : `${comma(Math.round(
 const flow = (value, unit='주') => valueOrNull(value) === null ? '-' : unit==='억원' ? `${signed(value,2)}억원` : `${signed(Math.round(Number(value)/1000))}천주`;
 const esc = value => String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const tradingDate = row => row.tradingDate ? `<small class="trading-date">기준 ${esc(row.tradingDate.replaceAll('-','.'))}</small>` : '';
+const previousDate = row => row.previousTradingDate ? `<small class="trading-date">${esc(row.previousTradingDate.replaceAll('-','.'))}</small>` : '';
+const flowDate = row => row.flowTradingDate && row.flowTradingDate!==row.tradingDate ? `<small class="trading-date">수급 ${esc(row.flowTradingDate.replaceAll('-','.'))}</small>` : '';
 const exchangeMeta = (row, side='current') => {
   const quote=row.exchange?.[side];
   if(!quote)return '';
@@ -48,13 +50,13 @@ function renderIndicators(){
   const spans=rowspans(report.indicators,'group');
   document.querySelector('#indicatorRows').innerHTML=report.indicators.map((row,i)=>{
     const kind=row.group==='환율'?'fx':'index';
-    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous,kind)}${exchangeMeta(row,'previous')}</td><td>${price(row.current,kind)}${exchangeMeta(row)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${turnover(row.turnover)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,'억원')}</td><td class="${signClass(row.institution)}">${flow(row.institution,'억원')}</td><td class="${signClass(row.personal)}">${flow(row.personal,'억원')}</td></tr>`;
+    return `<tr class="${spans[i]?'group-start':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.group)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous,kind)}${previousDate(row)}${exchangeMeta(row,'previous')}</td><td>${price(row.current,kind)}${exchangeMeta(row)}</td><td>${row.group==='국내'?marketCap(row.market_cap):'-'}</td><td class="${signClass(row.change)}">${signed(row.change,2)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${turnover(row.turnover)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign,'억원')}${flowDate(row)}</td><td class="${signClass(row.institution)}">${flow(row.institution,'억원')}</td><td class="${signClass(row.personal)}">${flow(row.personal,'억원')}</td></tr>`;
   }).join('');
 }
 
 function renderStocks(){
   const spans=rowspans(report.stocks,'sector');
-  document.querySelector('#stockRows').innerHTML=report.stocks.map((row,i)=>`<tr class="${spans[i]?'group-start':''} ${row.highlight?'highlight':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.sector)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous)}</td><td>${price(row.current)}</td><td>${marketCap(row.market_cap)}</td><td class="${signClass(row.change)}">${signed(row.change)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${volume(row.volume)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign)}</td><td class="${signClass(row.institution)}">${flow(row.institution)}</td><td class="${signClass(row.personal)}">${flow(row.personal)}</td></tr>`).join('');
+  document.querySelector('#stockRows').innerHTML=report.stocks.map((row,i)=>`<tr class="${spans[i]?'group-start':''} ${row.highlight?'highlight':''}">${spans[i]?`<td class="group" rowspan="${spans[i]}">${esc(row.sector)}</td>`:''}<td class="name">${esc(row.name)}${tradingDate(row)}</td><td>${price(row.previous)}${previousDate(row)}</td><td>${price(row.current)}</td><td>${marketCap(row.market_cap)}</td><td class="${signClass(row.change)}">${signed(row.change)}</td><td class="${signClass(row.change_rate)}">${rate(row.change_rate)}</td><td>${volume(row.volume)}</td><td class="${signClass(row.foreign)}">${flow(row.foreign)}${flowDate(row)}</td><td class="${signClass(row.institution)}">${flow(row.institution)}</td><td class="${signClass(row.personal)}">${flow(row.personal)}</td></tr>`).join('');
 }
 
 function referenceBox(category, title=category){

@@ -10,3 +10,5 @@ data/*.json
 !data/exchange_latest.json
 data/*.txt
 .pytest_cache/
+*.enc
+.kis-cache/

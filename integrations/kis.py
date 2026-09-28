@@ -1,6 +1,8 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
+import os
+from pathlib import Path
 import requests
 
 PROD_BASE_URL = "https://openapi.koreainvestment.com:9443"
@@ -24,12 +26,16 @@ class KisReadOnlyClient:
         # Repeated calls in one update run reuse the in-memory bearer token.
         if self._access_token:
             return
-        response = requests.post(f"{PROD_BASE_URL}/oauth2/tokenP", json={"grant_type":"client_credentials","appkey":self._app_key,"appsecret":self._app_secret}, timeout=self._timeout)
-        response.raise_for_status()
-        token = response.json().get("access_token")
-        if not token:
-            raise RuntimeError("KIS 인증 응답에 access_token이 없습니다.")
-        self._access_token = token
+        cache_path = os.getenv('KIS_TOKEN_CACHE_PATH')
+        if cache_path:
+            from integrations.kis_token import cached_token
+            self._access_token = cached_token(self._app_key, self._app_secret, cache_path, self._timeout)
+            return
+        if os.getenv('GITHUB_ACTIONS') == 'true':
+            raise RuntimeError('KIS_TOKEN_CACHE_PATH is required in Actions; refusing uncached token issuance.')
+        from integrations.kis_token import cached_token
+        local_path = Path(os.getenv('LOCALAPPDATA') or Path.home()) / 'HRC_IR' / 'kis-private' / 'token.enc'
+        self._access_token = cached_token(self._app_key, self._app_secret, local_path, self._timeout, prepare=True)
 
     def get_domestic_quote(self, code: str = "005930") -> KisQuote:
         data = self.get_domestic_quote_raw(code)
@@ -69,6 +75,16 @@ class KisReadOnlyClient:
     def get_domestic_index(self, code: str) -> dict[str, Any]:
         return self._get("/uapi/domestic-stock/v1/quotations/inquire-index-price", "FHPUP02100000", {"FID_COND_MRKT_DIV_CODE":"U","FID_INPUT_ISCD":code})
 
+    def get_domestic_daily(self, code: str, start: str, end: str, *, index=False):
+        params = {"FID_COND_MRKT_DIV_CODE":"U" if index else "J", "FID_INPUT_ISCD":code,
+                  "FID_INPUT_DATE_1":start, "FID_INPUT_DATE_2":end, "FID_PERIOD_DIV_CODE":"D"}
+        if not index:
+            params['FID_ORG_ADJ_PRC'] = '0'
+        payload = self._request(
+            '/uapi/domestic-stock/v1/quotations/' + ('inquire-daily-indexchartprice' if index else 'inquire-daily-itemchartprice'),
+            'FHKUP03500100' if index else 'FHKST03010100', params)
+        return payload.get('output2') or []
+
     def get_market_investor_daily(self, index_code: str, market_code: str, trading_date: str) -> dict[str, Any]:
         """Return the KOSPI/KOSDAQ cash-market investor totals for one trading day."""
         output = self._get(
@@ -90,11 +106,15 @@ class KisReadOnlyClient:
             "/uapi/overseas-price/v1/quotations/inquire-daily-chartprice", "FHKST03030100",
             {"FID_COND_MRKT_DIV_CODE":market_code,"FID_INPUT_ISCD":item_code,"FID_INPUT_DATE_1":start,"FID_INPUT_DATE_2":end,"FID_PERIOD_DIV_CODE":"D"})
         daily = payload.get("output2") or []
+        daily = sorted((row for row in daily if row.get('stck_bsop_date') and row['stck_bsop_date'] <= end and float(row.get('ovrs_nmix_prpr') or 0) > 0), key=lambda row: row['stck_bsop_date'], reverse=True)
+        if len(daily) < 2:
+            raise RuntimeError('KIS overseas daily data requires current and previous trading sessions.')
         latest = daily[0] if isinstance(daily, list) and daily else {}
         previous = daily[1] if isinstance(daily, list) and len(daily) > 1 else {}
         # output1 can be an undated intraday value (notably FX). Use dated daily rows so
         # the value and tradingDate always describe the same completed market session.
         result = dict(latest)
+        result['previousTradingDate'] = previous['stck_bsop_date']
         try:
             current_value = float(latest.get("ovrs_nmix_prpr"))
             previous_value = float(previous.get("ovrs_nmix_prpr"))

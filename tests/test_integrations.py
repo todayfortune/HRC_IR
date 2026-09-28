@@ -14,11 +14,10 @@ class EnvTests(unittest.TestCase):
             self.assertEqual(os.environ["SAFE_KEY"], "process-value")
 
 class KisTests(unittest.TestCase):
+    @patch.dict(os.environ, {'KIS_TOKEN_CACHE_PATH':'test-only-unused.enc'})
     @patch("integrations.kis.requests.get")
-    @patch("integrations.kis.requests.post")
-    def test_auth_and_quote_mapping(self, post: Mock, get: Mock):
-        post.return_value.json.return_value = {"access_token":"hidden-token"}
-        post.return_value.raise_for_status.return_value = None
+    @patch("integrations.kis_token.cached_token", return_value='hidden-token')
+    def test_auth_and_quote_mapping(self, token: Mock, get: Mock):
         get.return_value.json.return_value = {"rt_cd":"0","output":{"stck_prpr":"74200","prdy_vrss":"900","prdy_ctrt":"1.23","acml_vol":"123456"}}
         get.return_value.raise_for_status.return_value = None
         client = KisReadOnlyClient("key", "secret")
@@ -26,13 +25,9 @@ class KisTests(unittest.TestCase):
         client.authenticate()
         quote = client.get_domestic_quote()
         self.assertEqual((quote.code, quote.price, quote.volume), ("005930",74200,123456))
-        post.assert_called_once_with(
-            "https://openapi.koreainvestment.com:9443/oauth2/tokenP",
-            json={"grant_type":"client_credentials","appkey":"key","appsecret":"secret"},
-            timeout=10.0,
-        )
+        token.assert_called_once()
         self.assertEqual(get.call_args.kwargs["headers"]["authorization"], "Bearer hidden-token")
-        self.assertEqual(post.call_count, 1)
+        self.assertEqual(token.call_count, 1)
 
     @patch("integrations.kis.requests.get")
     def test_query_error_contains_safe_diagnostics(self, get: Mock):
