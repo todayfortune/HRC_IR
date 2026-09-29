@@ -90,6 +90,11 @@ jobs:
             echo "No market data changes to commit."
           else
             git commit -m "chore: refresh KIS market data"
+            if ! git diff --quiet; then
+              echo "Unexpected tracked changes remain after market commit."
+              git status --short
+              exit 1
+            fi
             for attempt in 1 2 3; do
               git pull --rebase origin main
               if git push origin HEAD:main; then exit 0; fi

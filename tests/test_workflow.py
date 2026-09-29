@@ -16,6 +16,12 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('actions/cache/restore@v4', workflow)
         self.assertIn('actions/cache/save@v4', workflow)
         self.assertIn('runner.temp', workflow)
+        self.assertIn('Unexpected tracked changes remain after market commit.', workflow)
+
+    def test_market_script_only_saves_public_market_snapshot(self):
+        script = (Path(__file__).resolve().parents[1] / "scripts" / "update_market.py").read_text(encoding="utf-8")
+        self.assertIn("reports.save_market_snapshot(updated)", script)
+        self.assertNotIn("reports.save(updated)", script)
 
     def test_telegram_schedule_and_secret_references(self):
         workflow = (Path(__file__).resolve().parents[1] / ".github" / "workflows" / "telegram-update.yml").read_text(encoding="utf-8")

@@ -12,7 +12,9 @@ def main() -> None:
     reports = ReportService()
     report = reports.load(datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat())
     updated = MarketService().update(report)
-    reports.save(updated)
+    # Telegram owns data/YYYY-MM-DD.json. Updating it here left an unstaged
+    # tracked file and blocked the workflow's rebase/push. The frontend already
+    # merges this market snapshot with the daily Telegram report.
     reports.save_market_snapshot(updated)
     successful = sum(1 for row in updated["stocks"] if row.get("current") is not None)
     index_successful = sum(1 for row in updated["indicators"] if row.get("current") is not None)
