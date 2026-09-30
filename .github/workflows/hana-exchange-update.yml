@@ -1,9 +1,6 @@
 name: Hana Exchange Rate Update
 
 on:
-  schedule:
-    # GitHub cron is UTC: 06:35 UTC = 15:35 KST.
-    - cron: "35 6 * * 1-5"
   workflow_dispatch:
 
 permissions:

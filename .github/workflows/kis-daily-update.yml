@@ -1,16 +1,16 @@
 name: KIS Daily Market Update
 
 on:
-  schedule:
-    # UTC -> KST: 21:00 -> 06:00, 03:00 -> 12:00, 06:35 -> 15:35.
-    - cron: "0 21 * * *"
-    - cron: "0 3 * * *"
-    - cron: "35 6 * * *"
   workflow_dispatch:
     inputs:
       refresh_market:
-        description: "Refresh market data with cached token (off = tests only)"
-        required: false
+        description: "Run the KIS market refresh (false = tests only)"
+        required: true
+        type: boolean
+        default: false
+      allow_initial_token:
+        description: "Permit one tokenP issuance when no valid cached token exists (06:00 KST only)"
+        required: true
         type: boolean
         default: false
 
@@ -45,7 +45,7 @@ jobs:
         run: python -m unittest discover -s tests -v
 
       - name: Restore encrypted KIS token
-        if: github.event_name == 'schedule' || inputs.refresh_market == true
+        if: inputs.refresh_market == true
         uses: actions/cache/restore@v4
         with:
           path: ${{ runner.temp }}/kis-private/token.enc
@@ -55,24 +55,24 @@ jobs:
 
       - name: Prepare daily KIS token
         id: token
-        if: github.event_name == 'schedule' || inputs.refresh_market == true
+        if: inputs.refresh_market == true
         env:
           KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
           KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
           KIS_TOKEN_CACHE_PATH: ${{ runner.temp }}/kis-private/token.enc
-          KIS_ALLOW_INITIAL_TOKEN: ${{ github.event_name == 'schedule' && github.event.schedule == '0 21 * * *' && github.run_attempt == 1 && 'true' || 'false' }}
+          KIS_ALLOW_INITIAL_TOKEN: ${{ inputs.allow_initial_token == true && github.run_attempt == 1 && 'true' || 'false' }}
         run: python scripts/prepare_kis_token.py
 
       # Save even after failed issuance so a rerun cannot retry tokenP that day.
       - name: Persist encrypted KIS token before querying
-        if: always() && (github.event_name == 'schedule' || inputs.refresh_market == true)
+        if: always() && inputs.refresh_market == true
         uses: actions/cache/save@v4
         with:
           path: ${{ runner.temp }}/kis-private/token.enc
           key: kis-private-v1-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Refresh KIS market data
-        if: github.event_name == 'schedule' || inputs.refresh_market == true
+        if: inputs.refresh_market == true
         env:
           KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
           KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
@@ -80,7 +80,7 @@ jobs:
         run: python scripts/update_market.py
 
       - name: Commit refreshed public data
-        if: github.event_name == 'schedule' || inputs.refresh_market == true
+        if: inputs.refresh_market == true
         shell: bash
         run: |
           git config user.name "github-actions[bot]"

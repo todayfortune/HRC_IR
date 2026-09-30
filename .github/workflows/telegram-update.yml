@@ -1,9 +1,6 @@
 name: Telegram Research Update
 
 on:
-  schedule:
-    # UTC 00:00, 03:00, 06:00, 07:00 = KST 09:00, 12:00, 15:00, 16:00.
-    - cron: "0 0,3,6,7 * * *"
   workflow_dispatch:
 
 permissions:
