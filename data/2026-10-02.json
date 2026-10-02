@@ -1,0 +1,216 @@
+{
+  "date": "2026-10-02",
+  "status": null,
+  "updatedAt": null,
+  "updated_at": null,
+  "market_status": "업데이트 전",
+  "telegram_status": "Telegram 확인 2026-10-02 09:00 KST · 당일 원문 20건",
+  "indicators": [
+    {
+      "group": "국내",
+      "name": "KOSPI"
+    },
+    {
+      "group": "국내",
+      "name": "KOSDAQ"
+    },
+    {
+      "group": "미국",
+      "name": "S&P500"
+    },
+    {
+      "group": "미국",
+      "name": "NASDAQ"
+    },
+    {
+      "group": "환율",
+      "name": "USD"
+    },
+    {
+      "group": "환율",
+      "name": "EUR"
+    }
+  ],
+  "stocks": [
+    {
+      "sector": "방산",
+      "name": "현대로템",
+      "code": "064350",
+      "highlight": true
+    },
+    {
+      "sector": "방산",
+      "name": "한화에어로",
+      "code": "012450",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "KAI",
+      "code": "047810",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "LIG넥스원",
+      "code": "079550",
+      "highlight": false
+    },
+    {
+      "sector": "철도",
+      "name": "다원시스",
+      "code": "068240",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대차",
+      "code": "005380",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "기아",
+      "code": "000270",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대모비스",
+      "code": "012330",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대글로비스",
+      "code": "086280",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대오토에버",
+      "code": "307950",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대위아",
+      "code": "011210",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "삼성전자",
+      "code": "005930",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "SK하이닉스",
+      "code": "000660",
+      "highlight": false
+    }
+  ],
+  "comments": {
+    "미국증시": "",
+    "국내증시": "",
+    "방산": "",
+    "현대로템": "",
+    "반도체": "",
+    "USD/KRW": ""
+  },
+  "telegram": {
+    "현대로템": [],
+    "방산": [],
+    "반도체": [
+      {
+        "date": "2026-10-02T07:50+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…01.56/ +0.31%\n- 러셀 2000: 2,806.62/ +0.35%\n- 필라델피아 반도체: 12,829.00/ +1.59%\n - VIX: 16.39/ +0.31% \n\n2. S&P500 업종지수\n에너지 +1.92%/ 산업재 +1.00%/ 정보기술 +0.76%/ 유틸리티 +0.61%/ 금융 +0.16%/ 경기소비재 -0.15%/ 필수소비재 -0.29%/…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7643"
+      },
+      {
+        "date": "2026-10-02T07:49+09:00",
+        "channel": "신한리서치",
+        "text": "신한 해외주식 데일리(10/2)\n“제퍼슨 연준 부의장 발언에 금리 되돌림. 반도체, 광통신 등 기술주 중심 반등“\n\n▶️ 특징주\n[마텔(+18.8%)] Authentic Brands Group의 인수 관심 보도. 바비·핫휠 등 핵심 브랜드 가치에 대한 인수 프리미엄 기대…",
+        "link": "https://t.me/SHINHANRESEARCH/52952"
+      },
+      {
+        "date": "2026-10-02T07:49+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…환율(1개월물): 1,357.42원 / 전일 대비 4원 하락 출발 예상 \n- 필라델피아 반도체: 12,829.00 (+200.38, +1.59%) \n　 \n◆ 외환시장 \n- 달러인덱스: 102.034 (+0.583, +0.57%) \n- 유로/달러: 1.1246 (+0.0002, +0.02%) \n- 달러/엔: 158.10 (+0.01, +0.01%)…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7642"
+      }
+    ],
+    "미국증시": [
+      {
+        "date": "2026-10-02T08:44+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…ity ETF($SCHD) 2.3\n3. 알파벳($GOOGL) 1.9\n4. Vanguard S&P500 ETF($VOO) 1.8\n5. Direxion Semiconductor Bear 3X ETF($SOXS) 1.4\n\n순매수 결제금액\n- 9월 순매수 결제금액은 32.6억 달러로 전월대비 약 32% 감소. 또한 연중 가장 낮은 순매수 결제금액을 기록함.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7644"
+      },
+      {
+        "date": "2026-10-02T08:36+09:00",
+        "channel": "대신증권",
+        "text": "…정적자, AI 투자 확대에 따른 자금 수요 등이 금리 상승을 자극했으나, 국채 저가매수와 연준의 추가 금리 인상 신중론이 금리 진정을 이끈 것으로 분석\n\n\n# 경제지표\n미국, S&P글로벌 제조업 PMI (9월): 55.9 (예상치: 57.0, 이전치: 53.9)\n미국, ISM 제조업 PMI (9월): 54.5 (예상치: 54.8, 이전치: 54.6)…",
+        "link": "https://t.me/DAISHINSTRATEGY/6320"
+      },
+      {
+        "date": "2026-10-02T07:59+09:00",
+        "channel": "신한리서치",
+        "text": "…ummary\n - 미국 시장은 금리 급등 후 진정 과정에서 저가 매수세 유입되며 강보합. S&P500 +0.2%, NASDAQ +0.04%, Dow +0.04%, SOX +1.6%\n- 중동 지역 美 항공모함 추가 파견+中 석유제품 수출 중단 등 보도에 Brent 100$↑…",
+        "link": "https://t.me/SHINHANRESEARCH/52957"
+      }
+    ],
+    "국내증시": [],
+    "환율": [
+      {
+        "date": "2026-10-02T08:56+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…지 반등했음.\nSource: Reuters\n\n미 10년 5.34% 장중 돌파\n미 10년물 금리는 장중 5.34%로 2002년 이후 최고, 영국 30년물은 6%를 넘어 1998년 이후 최고, 프랑스·이탈리아 10년물도 각각 4.96%, 4.69%까지 상승했음.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7647"
+      },
+      {
+        "date": "2026-10-02T08:44+09:00",
+        "channel": "미래에셋리서치",
+        "text": "2026년 9월 외화증권예탁결제 결산\n\n순매수 결제금액 TOP5(억 달러)\n1. iShares 0-3 Month Treasury Bond ETF($SGOV) 2.9\n2. Schwab US Dividend Equity ETF($SCHD) 2.3\n3. 알파벳($GOOGL) 1.9\n4. Vanguard S&P500 ETF($VOO) 1.8\n5.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7644"
+      },
+      {
+        "date": "2026-10-02T08:41+09:00",
+        "channel": "신한리서치",
+        "text": "…자증권 리서치본부\n\n▶️Top down\n- 국내시황 Weekly; 신한 M.R.I: 5% 금리 시대, 후퇴보다는 업종 선별 [강진혁]\n- 한국 수출입; AI 투자 차별적 확산 지속 [문서현]\n- 채권전략; Fixed Income Monthly: [10월] 엇갈릴 대내외 여건 [김찬희]…",
+        "link": "https://t.me/SHINHANRESEARCH/52959"
+      }
+    ]
+  },
+  "telegram_feed": {
+    "closing": [],
+    "stock_news": [
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 52950,
+        "source": "신한리서치",
+        "date": "2026-10-02T07:43+09:00",
+        "excerpt": "[신한투자증권 IT팀 오강호, 김형태, 박현우, 송혜수, 김예성]\n\n10/2(금)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ 마이크론 \"NVHBM, 자체 베이스다이 빠져도 수익성↑\" (디일렉)\nhttps://alie.kr/1RHGFK5\n\n▶️ SK하이닉스 \"솔리다임 상장 미확정\" (디일렉)\nhttps://alie.kr/AasfFkR\n\n▶️ \"1조弗 달성 유력\"…반도체 호조에 누적 수출 8000억弗 상회 (뉴시스)\nhttps://alie.kr/9iIsMKL\n\n▶️ 디아이, 삼성전자에 153억 반도체 검사장비 공급 (뉴시스)\nhttps://alie.kr/28wIBDA\n\n▶️ 미디어텍, 구글향 TPU 수주 감소 설 부인. 2028년 이후 미디어텍의 TPU 매출액 전망치가 상향될 가능성도 제기됨 (Digitimes)\nhttps://alie.kr/1GMVGwl\n\n▶️ TSMC ‘CoWoS-L’에 인텔 ‘EMIB-T’ 도전…승부 가를 ‘수율’ 경쟁 (테크월드)\nhttps://alie.kr/4FvNwJO\n\n\n✅ 디스플레이\n\n▶️ 삼성D·LGD, OLED 초격차 세제 지원 패키지 정부에 건의 (디일렉)\nhttps://alie.kr/1RHGFG6\n\n▶️ LCD보다 빠른 中 OLED 굴기…삼성·LGD \"정부 정책 지원 절실\" (ZDNET)\nhttps://alie.kr/6tekeY6…",
+        "link": "https://t.me/SHINHANRESEARCH/52950",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "DAISHINSTRATEGY",
+        "message_id": 6319,
+        "source": "대신증권",
+        "date": "2026-10-02T07:17+09:00",
+        "excerpt": "[다음주 시장은?] 마이크론을 이어갈 삼성전자 실적 가이던스\n[대신증권 이경민]\n#이경민 #삼성전자\nAI 반도체 모멘텀\nAI, 반도체 업황 및 실적 강세 지속, 마이크론 실적 호조, 한국 수출 증가, 삼성전자 실적 기대\n\n#금리안정 #고용\n금리 안정 기대\n미국 고용 둔화 시 금리 안정화 기대, 트럼프 정책 완화 시 유가 하락 압력\n\n#KOSPI #주가\nKOSPI 상승 전망\n미국 금리 부담 완화, 반도체 주도력 회복, KOSPI 7,000선 돌파 및 안착 기대\n\n📎PDF | ➡️보고서원문| 📝요약/해설",
+        "link": "https://t.me/DAISHINSTRATEGY/6319",
+        "stocks": [
+          "삼성전자"
+        ]
+      }
+    ]
+  },
+  "saved_at": "2026-10-02T09:00:41+09:00"
+}
