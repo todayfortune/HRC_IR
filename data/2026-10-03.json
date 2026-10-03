@@ -1,0 +1,135 @@
+{
+  "date": "2026-10-03",
+  "status": null,
+  "updatedAt": null,
+  "updated_at": null,
+  "market_status": "업데이트 전",
+  "telegram_status": "Telegram 확인 2026-10-03 09:00 KST · 당일 원문 0건",
+  "indicators": [
+    {
+      "group": "국내",
+      "name": "KOSPI"
+    },
+    {
+      "group": "국내",
+      "name": "KOSDAQ"
+    },
+    {
+      "group": "미국",
+      "name": "S&P500"
+    },
+    {
+      "group": "미국",
+      "name": "NASDAQ"
+    },
+    {
+      "group": "환율",
+      "name": "USD"
+    },
+    {
+      "group": "환율",
+      "name": "EUR"
+    }
+  ],
+  "stocks": [
+    {
+      "sector": "방산",
+      "name": "현대로템",
+      "code": "064350",
+      "highlight": true
+    },
+    {
+      "sector": "방산",
+      "name": "한화에어로",
+      "code": "012450",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "KAI",
+      "code": "047810",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "LIG넥스원",
+      "code": "079550",
+      "highlight": false
+    },
+    {
+      "sector": "철도",
+      "name": "다원시스",
+      "code": "068240",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대차",
+      "code": "005380",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "기아",
+      "code": "000270",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대모비스",
+      "code": "012330",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대글로비스",
+      "code": "086280",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대오토에버",
+      "code": "307950",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대위아",
+      "code": "011210",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "삼성전자",
+      "code": "005930",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "SK하이닉스",
+      "code": "000660",
+      "highlight": false
+    }
+  ],
+  "comments": {
+    "미국증시": "",
+    "국내증시": "",
+    "방산": "",
+    "현대로템": "",
+    "반도체": "",
+    "USD/KRW": ""
+  },
+  "telegram": {
+    "현대로템": [],
+    "방산": [],
+    "반도체": [],
+    "미국증시": [],
+    "국내증시": [],
+    "환율": []
+  },
+  "telegram_feed": {
+    "closing": [],
+    "stock_news": []
+  },
+  "saved_at": "2026-10-03T09:00:43+09:00"
+}
