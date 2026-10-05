@@ -3,48 +3,48 @@
   "rates": {
     "USD": {
       "current": {
-        "value": 1350.6,
+        "value": 1345.5,
         "source": "하나은행",
         "rateType": "매매기준율",
-        "referenceDate": "2026-10-02",
-        "announcementNumber": 499,
-        "announcementTime": "15:30:18",
-        "updatedAt": "2026-10-02T15:35:22+09:00",
+        "referenceDate": "2026-10-05",
+        "announcementNumber": 2661,
+        "announcementTime": "15:30:16",
+        "updatedAt": "2026-10-05T15:35:24+09:00",
         "currency": "USD",
         "selectionPolicy": "first-at-or-after-15:30"
       },
       "previous": {
-        "value": 1358.4,
+        "value": 1348.0,
         "source": "하나은행",
         "rateType": "매매기준율",
-        "referenceDate": "2026-10-01",
-        "announcementNumber": 429,
-        "announcementTime": "15:30:16",
-        "updatedAt": "2026-10-01T15:35:21+09:00",
+        "referenceDate": "2026-10-03",
+        "announcementNumber": 1794,
+        "announcementTime": "19:10:31",
+        "updatedAt": "2026-10-05T15:35:38+09:00",
         "currency": "USD",
         "selectionPolicy": "first-at-or-after-15:30"
       }
     },
     "EUR": {
       "current": {
-        "value": 1520.64,
+        "value": 1505.35,
         "source": "하나은행",
         "rateType": "매매기준율",
-        "referenceDate": "2026-10-02",
-        "announcementNumber": 499,
-        "announcementTime": "15:30:18",
-        "updatedAt": "2026-10-02T15:35:24+09:00",
+        "referenceDate": "2026-10-05",
+        "announcementNumber": 2661,
+        "announcementTime": "15:30:16",
+        "updatedAt": "2026-10-05T15:35:44+09:00",
         "currency": "EUR",
         "selectionPolicy": "first-at-or-after-15:30"
       },
       "previous": {
-        "value": 1537.71,
+        "value": 1516.97,
         "source": "하나은행",
         "rateType": "매매기준율",
-        "referenceDate": "2026-10-01",
-        "announcementNumber": 429,
-        "announcementTime": "15:30:16",
-        "updatedAt": "2026-10-01T15:35:24+09:00",
+        "referenceDate": "2026-10-03",
+        "announcementNumber": 1794,
+        "announcementTime": "19:10:31",
+        "updatedAt": "2026-10-05T15:35:56+09:00",
         "currency": "EUR",
         "selectionPolicy": "first-at-or-after-15:30"
       }
