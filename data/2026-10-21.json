@@ -1,0 +1,249 @@
+{
+  "date": "2026-10-21",
+  "status": null,
+  "updatedAt": null,
+  "updated_at": null,
+  "market_status": "업데이트 전",
+  "telegram_status": "Telegram 확인 2026-10-21 09:00 KST · 당일 원문 18건",
+  "indicators": [
+    {
+      "group": "국내",
+      "name": "KOSPI"
+    },
+    {
+      "group": "국내",
+      "name": "KOSDAQ"
+    },
+    {
+      "group": "미국",
+      "name": "S&P500"
+    },
+    {
+      "group": "미국",
+      "name": "NASDAQ"
+    },
+    {
+      "group": "환율",
+      "name": "USD"
+    },
+    {
+      "group": "환율",
+      "name": "EUR"
+    }
+  ],
+  "stocks": [
+    {
+      "sector": "방산",
+      "name": "현대로템",
+      "code": "064350",
+      "highlight": true
+    },
+    {
+      "sector": "방산",
+      "name": "한화에어로",
+      "code": "012450",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "KAI",
+      "code": "047810",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "LIG넥스원",
+      "code": "079550",
+      "highlight": false
+    },
+    {
+      "sector": "철도",
+      "name": "다원시스",
+      "code": "068240",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대차",
+      "code": "005380",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "기아",
+      "code": "000270",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대모비스",
+      "code": "012330",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대글로비스",
+      "code": "086280",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대오토에버",
+      "code": "307950",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대위아",
+      "code": "011210",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "삼성전자",
+      "code": "005930",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "SK하이닉스",
+      "code": "000660",
+      "highlight": false
+    }
+  ],
+  "comments": {
+    "미국증시": "",
+    "국내증시": "",
+    "방산": "",
+    "현대로템": "",
+    "반도체": "",
+    "USD/KRW": ""
+  },
+  "telegram": {
+    "현대로템": [],
+    "방산": [
+      {
+        "date": "2026-10-21T07:47+09:00",
+        "channel": "신한리서치",
+        "text": "…%)] 3Q26 예상 상회. 수주잔고 3,400억달러로 36% 증가하면서 사상 최고기록. 방산 부문 수주액 대비 매출 6.54 기록. 26년 가이던스 상향\n\n[제너럴모터스(-6.8%)] 3분기 조정 EBIT $4.1B·조정 EPS $3.70 기록에도 연간 EPS 전망 13.75로 범위 축소.…",
+        "link": "https://t.me/SHINHANRESEARCH/53199"
+      },
+      {
+        "date": "2026-10-21T07:37+09:00",
+        "channel": "신한리서치",
+        "text": "…회사 영업이익은 베스틸 58억원(-76.3%), 창원특수강 139억원(-59.7%), 항공방산소재 54억원(-13.4%) 추정\n- 4분기는 고가 원료 부담이 완화되며 영업이익 272억원(+42.2%) 전망\n\n▶️Valuation & Risk: 기업가치 추가 상승을 정당화할 근거 마련이 중요\n- 매수 유지.…",
+        "link": "https://t.me/SHINHANRESEARCH/53193"
+      },
+      {
+        "date": "2026-10-21T07:02+09:00",
+        "channel": "신한리서치",
+        "text": "…우주연구원에 위성용 전기추력기 가스를 첫 출하해 7월 적합 판정을 받았고, 8월 항공우주·방산 품질경영시스템(AS9100D) 인증을 획득\n: 2027년부터 국내 반도체사를 대상으로 본격적인 공정 평가를 진행할 예정",
+        "link": "https://t.me/SHINHANRESEARCH/53192"
+      }
+    ],
+    "반도체": [
+      {
+        "date": "2026-10-21T08:51+09:00",
+        "channel": "신한리서치",
+        "text": "…, 김형태, 박현우, 송혜수, 김예성]\n\n10/21(수)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ 삼성전자, 모뎀도 2나노 간다...올해 4나노 M2700은 MX 테스트 통과 (디일렉)\nhttps://alie.kr/5UKnh6q\n\n▶️ 삼성 파운드리, DUV 쓰는 8나노 공정 '8LPU' 2세대 내놓는다 (전자신문)…",
+        "link": "https://t.me/SHINHANRESEARCH/53208"
+      },
+      {
+        "date": "2026-10-21T08:00+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…수개월 내 소진될 수 있다는 우려가 커지고 있다고 보도했음. 이트륨은 항공기 엔진 코팅과 반도체 제조장비 등에 사용되며, 일본은 미국 측에 중국의 수출 제한 완화를 위한 협조를 요청한 것으로 전해졌음.\n출처: Financial Times  \n\n국내 AI 인프라 기업 엘리스 상장 첫날 -32%…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7729"
+      },
+      {
+        "date": "2026-10-21T07:59+09:00",
+        "channel": "신한리서치",
+        "text": "…수익성 개선\n- AI CapEx를 정당화하는 수익성 증명이라는 점에서 시장 반색. 시간외 반도체 반등\n- SMCI(시외 +14.5%) 잠정 매출 서프라이즈에 INTC(+4.1%)·DELL(+5.9%)↑\n\n※ 원문 확인: http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=354413…",
+        "link": "https://t.me/SHINHANRESEARCH/53204"
+      }
+    ],
+    "미국증시": [
+      {
+        "date": "2026-10-21T08:51+09:00",
+        "channel": "신한리서치",
+        "text": "…, 김형태, 박현우, 송혜수, 김예성]\n\n10/21(수)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ 삼성전자, 모뎀도 2나노 간다...올해 4나노 M2700은 MX 테스트 통과 (디일렉)\nhttps://alie.kr/5UKnh6q\n\n▶️ 삼성 파운드리, DUV 쓰는 8나노 공정 '8LPU' 2세대 내놓는다 (전자신문)…",
+        "link": "https://t.me/SHINHANRESEARCH/53208"
+      },
+      {
+        "date": "2026-10-21T08:00+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…내부자료에 따르면 AWS는 새로운 Early Rack Receipt 방식을 통해 미국 내 엔비디아 GB300 서버랙 약 50억달러어치를 조기 확보하고 이후 매월 약 30억달러어치를 추가 확보할 계획이었음. 일부 데이터센터는 전력 공급이 부족해 GPU 서버를 즉시 가동하지 못하고 중간 창고에 보관하고 있으며, AWS는 올해 CapEx를 약 2,200억달러로…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7729"
+      },
+      {
+        "date": "2026-10-21T07:59+09:00",
+        "channel": "신한리서치",
+        "text": "…술주 매도 압력 vs 금융·헬스케어 등 순환매 지속. 시간외 AI주 실적 발표 후 반색. S&P500 +0.3%, NASDAQ -0.02%, Dow +1.0%\n- 파키스탄 등 중동 중재국의 美-이란 중재안 전달설 등 합의 기대에 유가 소폭 진정\n-AI 노이즈 지속 중 반발 매수 유입에 MU(-1.0%)·CRWV(+1.7%) 등 AI주 혼조…",
+        "link": "https://t.me/SHINHANRESEARCH/53204"
+      }
+    ],
+    "국내증시": [
+      {
+        "date": "2026-10-21T08:00+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…리스 상장 첫날 -32%\n국내 AI 클라우드·데이터센터 기업 엘리스(Elice)는 20일 코스닥 상장 첫날 공모가 9만500원 대비 약 32% 하락한 6만1,500원에 마감했음. 약 2,010억원을 조달한 올해 코스닥 최대 규모 IPO였으며, 청약 과정에서 대규모 투자수요가 확인됐음에도 상장 이후 주가는 급락했음.\n출처: Financial Times…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7729"
+      },
+      {
+        "date": "2026-10-21T07:39+09:00",
+        "channel": "신한리서치",
+        "text": "…..보유채권 손실 부담 덜었다 <한국경제>\nhttps://alie.kr/AF3G2be\n \n코스피, 다시 3%대 급락…5,500선 후퇴 <연합뉴스>\nhttps://alie.kr/6BzpTqT\n \n[디지털 금융]\n\n가상자산 과세 강행하던 정부 '신중론'…커지는 유예 기대감 <이데일리>\nhttps://alie.kr/Chrruze…",
+        "link": "https://t.me/SHINHANRESEARCH/53195"
+      }
+    ],
+    "환율": [
+      {
+        "date": "2026-10-21T08:00+09:00",
+        "channel": "미래에셋리서치",
+        "text": "월스파 뉴스(10/21)\n\n아마존, 수십억달러 GPU 선확보에도 전력 부족으로 가동 지연\nBusiness Insider가 확인한 아마존 내부자료에 따르면 AWS는 새로운 Early Rack Receipt 방식을 통해 미국 내 엔비디아 GB300 서버랙 약 50억달러어치를 조기 확보하고 이후 매월 약 30억달러어치를 추가 확보할 계획이었음.…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7729"
+      },
+      {
+        "date": "2026-10-21T07:57+09:00",
+        "channel": "신한리서치",
+        "text": "…의미\n10월 19일 노보에 비만 삼중작용제(GLP-1/GIP/GCG) UBT251 20억달러L/O한 UBT와 장기지속형 평가 계약 체결. InnoLAMP 가능성 확인되면 글로벌 A사, 베링거, 유럽소재 제약사와 본계약 체결, 국내 대형 제약사와 본계약 또는 공동개발 전망돼 이번 UBT와 진전이 큰 트리거 될 전망…",
+        "link": "https://t.me/SHINHANRESEARCH/53203"
+      },
+      {
+        "date": "2026-10-21T07:56+09:00",
+        "channel": "대신증권",
+        "text": "…로 러시아산(약 200만배럴)의 10분의 1 수준\n\n스페이스X, 3분기 매출 145억8천만달러로 시장 전망치를 웃돌며 흑자 전환. 매출은 전년 동기 대비 161% 증가해 LSEG 집계 전망치 평균 127억2천만달러를 상회했고, 영업이익은 27억9천100만달러로 전년 3분기 2억7천300만달러 영업손실에서 만회.…",
+        "link": "https://t.me/DAISHINSTRATEGY/6360"
+      }
+    ]
+  },
+  "telegram_feed": {
+    "closing": [],
+    "stock_news": [
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53208,
+        "source": "신한리서치",
+        "date": "2026-10-21T08:51+09:00",
+        "excerpt": "[신한투자증권 IT팀 오강호, 김형태, 박현우, 송혜수, 김예성]\n\n10/21(수)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ 삼성전자, 모뎀도 2나노 간다...올해 4나노 M2700은 MX 테스트 통과 (디일렉)\nhttps://alie.kr/5UKnh6q\n\n▶️ 삼성 파운드리, DUV 쓰는 8나노 공정 '8LPU' 2세대 내놓는다 (전자신문)\nhttps://alie.kr/DlMPnS8\n\n▶️ 그록, 차세대 칩에 'D램 3차원 적층' 도입 추진…S램 한계 넘는다 (ZDNET)\nhttps://alie.kr/AlnX7fp\n\n▶️ 인텔, 노바 레이크 8+16 첫 샘플 자체 18A-P 백사이드 전력 공정으로 제작…컴퓨트 타일은 TSMC 2나노(N2P)에 맡겨 (WCCFTECH)\nhttps://alie.kr/1cC87Fd\n\n▶️ AMD \"피지컬 AI, 실시간 제어와 안정성이 중요\" (디일렉)\nhttps://alie.kr/FsLVZKf\n\n\n✅ 디스플레이\n\n▶️ 보잉, 한화시스템에 전투기 OLED 요청…LGD 참여가 관건 (디일렉)\nhttps://alie.kr/58VHjTg\n\n▶️ 삼성전자, BOE서 TV LCD 조달량 2028년 800만~900만대까지 늘리기로...작년의 4배 (ZDNET)\nhttps://alie.kr/7bJtSto…",
+        "link": "https://t.me/SHINHANRESEARCH/53208",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53191,
+        "source": "신한리서치",
+        "date": "2026-10-21T07:01+09:00",
+        "excerpt": "[신한 자동차/철강금속 박광래]\n\n!! 신한 자동차/철강금속 텔레그램 채널 !!\n→ https://t.me/shinhan_park\n\n:: 신한 자동차 뉴스 (261021) ::\n\n▶ GM, 3Q26 조정 EBIT 41억달러(+22%)…북미 영업이익률 8.7%로 개선\n: GM의 3Q26 매출액은 500억달러(+2.9% YoY), 조정 EBIT는 41억달러(+22% YoY)를 기록하며 주당순이익(3.70달러)이 시장 예상치(3.63달러)를 상회\n: 고수익 대형 픽업트럭 및 SUV 판매 확대와 적자 EV 판매 축소에 힘입어 북미 조정 EBIT 마진이 8.7%로 YoY 2.5%p 개선\n: 연간 조정 EBIT 가이던스를 기존 140억-160억달러에서 145억-155억달러로 상향 조정하고 200억달러 규모의 신규 자사주 매입 계획을 승인\n\n▶ 현대차·기아, 레벨4 자율주행 대형트럭 실증 추진…모비스·글로비스·마스오토·라이드플럭스 참여\n: 현대차·기아가 남양기술연구소에서 모비스·글로비스 및 스타트업 마스오토·라이드플럭스와 레벨4 자율주행 대형트럭 물류 운송 실증 업무협약을 체결\n: 엑시언트 수소전기트럭 1대와 일반 엑시언트 트럭 1대 등 총 2대를 투입해 도심 복합(약 100km) 및 장거리(약 400km) 총 500km 노선에서 실증을 진행…",
+        "link": "https://t.me/SHINHANRESEARCH/53191",
+        "stocks": [
+          "현대차",
+          "기아"
+        ]
+      }
+    ]
+  },
+  "saved_at": "2026-10-21T09:00:44+09:00"
+}
