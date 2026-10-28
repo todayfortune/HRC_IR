@@ -11,6 +11,9 @@ from app.services.report import ReportService
 def main() -> None:
     reports = ReportService()
     report = reports.load(datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat())
+    # The configured universe is authoritative even when today's Telegram JSON
+    # still contains the stock list captured before a config change.
+    report["stocks"] = reports.blank(report["date"])["stocks"]
     updated = MarketService().update(report)
     # Telegram owns data/YYYY-MM-DD.json. Updating it here left an unstaged
     # tracked file and blocked the workflow's rebase/push. The frontend already
