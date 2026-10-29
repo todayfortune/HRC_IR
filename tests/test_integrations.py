@@ -73,5 +73,26 @@ class KisTests(unittest.TestCase):
         self.assertEqual(get.call_args.kwargs["params"]["FID_ORG_ADJ_PRC"], "0")
         self.assertEqual(get.call_args.kwargs["params"]["FID_COND_MRKT_DIV_CODE"], "J")
 
+    @patch("integrations.kis.requests.get")
+    def test_regular_close_uses_last_krx_trade_at_1530(self, get: Mock):
+        get.return_value.ok = True
+        get.return_value.status_code = 200
+        get.return_value.json.return_value = {
+            "rt_cd":"0",
+            "output2":[
+                {"stck_cntg_hour":"152959", "stck_prpr":"78900"},
+                {"stck_cntg_hour":"153000", "stck_prpr":"79000"},
+                {"stck_cntg_hour":"153001", "stck_prpr":"78300"},
+            ],
+        }
+        client = KisReadOnlyClient("key", "secret")
+        client._access_token = "hidden-token"
+
+        result = client.get_domestic_regular_close("064350")
+
+        self.assertEqual(result["stck_prpr"], "79000")
+        self.assertEqual(get.call_args.kwargs["headers"]["tr_id"], "FHPST01060000")
+        self.assertEqual(get.call_args.kwargs["params"]["FID_INPUT_HOUR_1"], "153000")
+
 if __name__ == "__main__":
     unittest.main()

@@ -49,7 +49,7 @@ def dated_prices(rows, field, end):
     return current, previous
 
 
-def domestic_stock_session_values(raw, latest, prior, today):
+def domestic_stock_session_values(raw, latest, prior, today, regular_close=None):
     """Prefer the KRX(J) quote for today's regular-session price and volume."""
     trading_date = iso_date(latest.get("stck_bsop_date"))
     current = number(latest.get("stck_clpr"))
@@ -59,6 +59,8 @@ def domestic_stock_session_values(raw, latest, prior, today):
         current = number(raw.get("stck_prpr"), current)
         previous = number(raw.get("stck_prdy_clpr"), previous)
         volume = number(raw.get("acml_vol"), volume)
+        if regular_close:
+            current = number(regular_close.get("stck_prpr"), current)
     return current, previous, volume, trading_date
 
 
@@ -145,7 +147,10 @@ class MarketService:
             try:
                 raw = self.client.get_domestic_quote_raw(row["code"])
                 latest, prior = dated_prices(self.client.get_domestic_daily(row['code'], price_start, price_end), 'stck_clpr', price_end)
-                current, previous, volume, trading_date = domestic_stock_session_values(raw, latest, prior, today)
+                regular_close = None
+                if now.hour > 15 or (now.hour == 15 and now.minute >= 30):
+                    regular_close = self.client.get_domestic_regular_close(row["code"])
+                current, previous, volume, trading_date = domestic_stock_session_values(raw, latest, prior, today, regular_close)
                 if current in (None, 0):
                     raise RuntimeError("KIS가 유효한 현재값을 반환하지 않았습니다.")
                 change = current - previous

@@ -7,6 +7,13 @@ import requests
 
 PROD_BASE_URL = "https://openapi.koreainvestment.com:9443"
 
+
+def number_like(value: Any) -> float:
+    try:
+        return float(str(value or "0").replace(",", ""))
+    except ValueError:
+        return 0.0
+
 @dataclass(frozen=True)
 class KisQuote:
     code: str
@@ -67,6 +74,27 @@ class KisReadOnlyClient:
 
     def get_domestic_quote_raw(self, code: str) -> dict[str, Any]:
         return self._get("/uapi/domestic-stock/v1/quotations/inquire-price", "FHKST01010100", {"FID_COND_MRKT_DIV_CODE":"J","FID_INPUT_ISCD":code})
+
+    def get_domestic_regular_close(self, code: str) -> dict[str, Any]:
+        """Return the last KRX trade at or before the 15:30 regular close."""
+        payload = self._request(
+            "/uapi/domestic-stock/v1/quotations/inquire-time-itemconclusion",
+            "FHPST01060000",
+            {
+                "FID_COND_MRKT_DIV_CODE": "J",
+                "FID_INPUT_ISCD": code,
+                "FID_INPUT_HOUR_1": "153000",
+            },
+        )
+        rows = payload.get("output2") or []
+        valid = [
+            row for row in rows
+            if str(row.get("stck_cntg_hour", "")) <= "153000"
+            and number_like(row.get("stck_prpr")) > 0
+        ]
+        if not valid:
+            raise RuntimeError("KIS 정규장 15:30 체결가가 없습니다.")
+        return max(valid, key=lambda row: str(row.get("stck_cntg_hour", "")))
 
     def get_domestic_investor(self, code: str) -> dict[str, Any]:
         output = self._get("/uapi/domestic-stock/v1/quotations/inquire-investor", "FHKST01010900", {"FID_COND_MRKT_DIV_CODE":"J","FID_INPUT_ISCD":code})

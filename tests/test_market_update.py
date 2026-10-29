@@ -44,6 +44,9 @@ class FakeKisClient:
             raise RuntimeError("query failed")
         return {"stck_prpr":"70000", "prdy_vrss":"1000", "prdy_ctrt":"1.45", "acml_vol":"10000", "hts_avls":"4000000"}
 
+    def get_domestic_regular_close(self, code):
+        return {"stck_cntg_hour":"153000", "stck_prpr":"70000"}
+
     def get_domestic_investor(self, code):
         return {"stck_bsop_date":"20260923", "frgn_ntby_qty":"100", "orgn_ntby_qty":"200", "prsn_ntby_qty":"-350"}
 
@@ -60,7 +63,8 @@ class MarketUpdateTests(unittest.TestCase):
         latest = {"stck_bsop_date":"20261029", "stck_clpr":"78500", "acml_vol":"600000"}
         prior = {"stck_bsop_date":"20261028", "stck_clpr":"82600"}
 
-        values = domestic_stock_session_values(raw, latest, prior, date(2026, 10, 29))
+        regular_close = {"stck_cntg_hour":"153000", "stck_prpr":"79000"}
+        values = domestic_stock_session_values(raw, latest, prior, date(2026, 10, 29), regular_close)
 
         self.assertEqual(values, (79000, 82600, 500000, "2026-10-29"))
 
