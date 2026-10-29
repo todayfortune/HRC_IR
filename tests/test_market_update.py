@@ -45,6 +45,8 @@ class FakeKisClient:
         return {"stck_prpr":"70000", "prdy_vrss":"1000", "prdy_ctrt":"1.45", "acml_vol":"10000", "hts_avls":"4000000"}
 
     def get_domestic_regular_close(self, code):
+        if self.fail_on == "regular-close":
+            raise RuntimeError("no 15:30 trade")
         return {"stck_cntg_hour":"153000", "stck_prpr":"70000"}
 
     def get_domestic_investor(self, code):
@@ -67,6 +69,11 @@ class MarketUpdateTests(unittest.TestCase):
         values = domestic_stock_session_values(raw, latest, prior, date(2026, 10, 29), regular_close)
 
         self.assertEqual(values, (79000, 82600, 500000, "2026-10-29"))
+
+    @patch("app.services.market.service.time.sleep", return_value=None)
+    def test_missing_regular_close_falls_back_without_failing_update(self, _sleep):
+        updated = service_with(FakeKisClient("regular-close")).update(self.report)
+        self.assertEqual(updated["stocks"][0]["current"], 70000)
 
     def test_preopen_holiday_ignores_future_placeholder_and_keeps_previous_session(self):
         rows = [

@@ -149,7 +149,12 @@ class MarketService:
                 latest, prior = dated_prices(self.client.get_domestic_daily(row['code'], price_start, price_end), 'stck_clpr', price_end)
                 regular_close = None
                 if now.hour > 15 or (now.hour == 15 and now.minute >= 30):
-                    regular_close = self.client.get_domestic_regular_close(row["code"])
+                    try:
+                        regular_close = self.client.get_domestic_regular_close(row["code"])
+                    except RuntimeError:
+                        # Suspended/illiquid stocks may have no 15:30 trade.
+                        # Their dated daily close remains the safe fallback.
+                        regular_close = None
                 current, previous, volume, trading_date = domestic_stock_session_values(raw, latest, prior, today, regular_close)
                 if current in (None, 0):
                     raise RuntimeError("KIS가 유효한 현재값을 반환하지 않았습니다.")
