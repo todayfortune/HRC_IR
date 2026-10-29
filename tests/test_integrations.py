@@ -61,7 +61,7 @@ class KisTests(unittest.TestCase):
         self.assertAlmostEqual(result["prdy_ctrt"], 0.811808, places=5)
 
     @patch("integrations.kis.requests.get")
-    def test_domestic_daily_requests_original_regular_close(self, get: Mock):
+    def test_domestic_daily_requests_adjusted_history(self, get: Mock):
         get.return_value.ok = True
         get.return_value.status_code = 200
         get.return_value.json.return_value = {"rt_cd":"0", "output2":[]}
@@ -70,7 +70,7 @@ class KisTests(unittest.TestCase):
 
         client.get_domestic_daily("064350", "20261001", "20261029")
 
-        self.assertEqual(get.call_args.kwargs["params"]["FID_ORG_ADJ_PRC"], "1")
+        self.assertEqual(get.call_args.kwargs["params"]["FID_ORG_ADJ_PRC"], "0")
         self.assertEqual(get.call_args.kwargs["params"]["FID_COND_MRKT_DIV_CODE"], "J")
 
 if __name__ == "__main__":

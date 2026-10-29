@@ -4,7 +4,9 @@ import copy
 import unittest
 from unittest.mock import patch
 
-from app.services.market.service import MarketService, dated_prices
+from datetime import date
+
+from app.services.market.service import MarketService, dated_prices, domestic_stock_session_values
 
 
 class FakeKisClient:
@@ -53,6 +55,15 @@ def service_with(client):
 
 
 class MarketUpdateTests(unittest.TestCase):
+    def test_today_uses_krx_quote_instead_of_after_hours_daily_row(self):
+        raw = {"stck_prpr":"79000", "stck_prdy_clpr":"82600", "acml_vol":"500000"}
+        latest = {"stck_bsop_date":"20261029", "stck_clpr":"78500", "acml_vol":"600000"}
+        prior = {"stck_bsop_date":"20261028", "stck_clpr":"82600"}
+
+        values = domestic_stock_session_values(raw, latest, prior, date(2026, 10, 29))
+
+        self.assertEqual(values, (79000, 82600, 500000, "2026-10-29"))
+
     def test_preopen_holiday_ignores_future_placeholder_and_keeps_previous_session(self):
         rows = [
             {'stck_bsop_date':'20260928', 'stck_clpr':'70000'},

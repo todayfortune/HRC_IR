@@ -79,9 +79,7 @@ class KisReadOnlyClient:
         params = {"FID_COND_MRKT_DIV_CODE":"U" if index else "J", "FID_INPUT_ISCD":code,
                   "FID_INPUT_DATE_1":start, "FID_INPUT_DATE_2":end, "FID_PERIOD_DIV_CODE":"D"}
         if not index:
-            # The report must show the actual KRX regular-session close.
-            # KIS: 0=adjusted price, 1=original (unadjusted) traded price.
-            params['FID_ORG_ADJ_PRC'] = '1'
+            params['FID_ORG_ADJ_PRC'] = '0'
         payload = self._request(
             '/uapi/domestic-stock/v1/quotations/' + ('inquire-daily-indexchartprice' if index else 'inquire-daily-itemchartprice'),
             'FHKUP03500100' if index else 'FHKST03010100', params)

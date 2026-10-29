@@ -49,6 +49,19 @@ def dated_prices(rows, field, end):
     return current, previous
 
 
+def domestic_stock_session_values(raw, latest, prior, today):
+    """Prefer the KRX(J) quote for today's regular-session price and volume."""
+    trading_date = iso_date(latest.get("stck_bsop_date"))
+    current = number(latest.get("stck_clpr"))
+    previous = number(prior.get("stck_clpr"))
+    volume = number(latest.get("acml_vol"))
+    if trading_date == today.isoformat():
+        current = number(raw.get("stck_prpr"), current)
+        previous = number(raw.get("stck_prdy_clpr"), previous)
+        volume = number(raw.get("acml_vol"), volume)
+    return current, previous, volume, trading_date
+
+
 class MarketService:
     """Read-only KIS market-data collector. No trading endpoints exist here."""
 
@@ -132,22 +145,20 @@ class MarketService:
             try:
                 raw = self.client.get_domestic_quote_raw(row["code"])
                 latest, prior = dated_prices(self.client.get_domestic_daily(row['code'], price_start, price_end), 'stck_clpr', price_end)
-                current = number(latest.get("stck_clpr"))
+                current, previous, volume, trading_date = domestic_stock_session_values(raw, latest, prior, today)
                 if current in (None, 0):
                     raise RuntimeError("KIS가 유효한 현재값을 반환하지 않았습니다.")
-                previous = number(prior['stck_clpr'])
                 change = current - previous
                 investor = self.client.get_domestic_investor(row["code"])
                 foreign = number(investor.get("frgn_ntby_qty"))
                 institution = number(investor.get("orgn_ntby_qty"))
                 personal = number(investor.get("prsn_ntby_qty"))
-                volume = number(latest.get("acml_vol"))
                 row.update({
                     "previous": previous, "current":current, "previousTradingDate":iso_date(prior['stck_bsop_date']),
                     "market_cap": number(raw.get("hts_avls")), "change":change,
                     "change_rate":round(change / previous * 100, 6), "volume":volume,
                     "foreign":foreign, "institution":institution,
-                    "personal":personal, "tradingDate":iso_date(latest.get("stck_bsop_date")),
+                    "personal":personal, "tradingDate":trading_date,
                     "flowTradingDate":iso_date(investor.get("stck_bsop_date")),
                     "unit":{"volume":"주","flow":"주"}
                 })
