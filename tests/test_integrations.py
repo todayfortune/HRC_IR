@@ -81,8 +81,8 @@ class KisTests(unittest.TestCase):
             "rt_cd":"0",
             "output2":[
                 {"stck_cntg_hour":"152959", "stck_prpr":"78900"},
-                {"stck_cntg_hour":"153000", "stck_prpr":"79000"},
-                {"stck_cntg_hour":"153001", "stck_prpr":"78300"},
+                {"stck_cntg_hour":"153030", "stck_prpr":"79000"},
+                {"stck_cntg_hour":"154000", "stck_prpr":"78300"},
             ],
         }
         client = KisReadOnlyClient("key", "secret")
@@ -92,7 +92,7 @@ class KisTests(unittest.TestCase):
 
         self.assertEqual(result["stck_prpr"], "79000")
         self.assertEqual(get.call_args.kwargs["headers"]["tr_id"], "FHPST01060000")
-        self.assertEqual(get.call_args.kwargs["params"]["FID_INPUT_HOUR_1"], "153000")
+        self.assertEqual(get.call_args.kwargs["params"]["FID_INPUT_HOUR_1"], "153500")
 
 if __name__ == "__main__":
     unittest.main()

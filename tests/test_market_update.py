@@ -65,7 +65,7 @@ class MarketUpdateTests(unittest.TestCase):
         latest = {"stck_bsop_date":"20261029", "stck_clpr":"78500", "acml_vol":"600000"}
         prior = {"stck_bsop_date":"20261028", "stck_clpr":"82600"}
 
-        regular_close = {"stck_cntg_hour":"153000", "stck_prpr":"79000"}
+        regular_close = {"stck_cntg_hour":"153030", "stck_prpr":"79000"}
         values = domestic_stock_session_values(raw, latest, prior, date(2026, 10, 29), regular_close)
 
         self.assertEqual(values, (79000, 82600, 500000, "2026-10-29"))

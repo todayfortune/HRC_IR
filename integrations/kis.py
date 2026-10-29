@@ -76,20 +76,20 @@ class KisReadOnlyClient:
         return self._get("/uapi/domestic-stock/v1/quotations/inquire-price", "FHKST01010100", {"FID_COND_MRKT_DIV_CODE":"J","FID_INPUT_ISCD":code})
 
     def get_domestic_regular_close(self, code: str) -> dict[str, Any]:
-        """Return the last KRX trade at or before the 15:30 regular close."""
+        """Return the final KRX closing-auction trade before after-hours starts."""
         payload = self._request(
             "/uapi/domestic-stock/v1/quotations/inquire-time-itemconclusion",
             "FHPST01060000",
             {
                 "FID_COND_MRKT_DIV_CODE": "J",
                 "FID_INPUT_ISCD": code,
-                "FID_INPUT_HOUR_1": "153000",
+                "FID_INPUT_HOUR_1": "153500",
             },
         )
         rows = payload.get("output2") or []
         valid = [
             row for row in rows
-            if str(row.get("stck_cntg_hour", "")) <= "153000"
+            if str(row.get("stck_cntg_hour", "")) <= "153500"
             and number_like(row.get("stck_prpr")) > 0
         ]
         if not valid:
