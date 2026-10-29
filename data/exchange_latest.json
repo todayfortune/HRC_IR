@@ -3,6 +3,17 @@
   "rates": {
     "USD": {
       "current": {
+        "value": 1336.8,
+        "source": "하나은행",
+        "rateType": "매매기준율",
+        "referenceDate": "2026-10-29",
+        "announcementNumber": 427,
+        "announcementTime": "15:30:23",
+        "updatedAt": "2026-10-29T15:35:21+09:00",
+        "currency": "USD",
+        "selectionPolicy": "first-at-or-after-15:30"
+      },
+      "previous": {
         "value": 1337.7,
         "source": "하나은행",
         "rateType": "매매기준율",
@@ -12,21 +23,21 @@
         "updatedAt": "2026-10-28T15:35:23+09:00",
         "currency": "USD",
         "selectionPolicy": "first-at-or-after-15:30"
-      },
-      "previous": {
-        "value": 1323.7,
-        "source": "하나은행",
-        "rateType": "매매기준율",
-        "referenceDate": "2026-10-27",
-        "announcementNumber": 288,
-        "announcementTime": "15:30:24",
-        "updatedAt": "2026-10-27T15:35:22+09:00",
-        "currency": "USD",
-        "selectionPolicy": "first-at-or-after-15:30"
       }
     },
     "EUR": {
       "current": {
+        "value": 1488.59,
+        "source": "하나은행",
+        "rateType": "매매기준율",
+        "referenceDate": "2026-10-29",
+        "announcementNumber": 427,
+        "announcementTime": "15:30:23",
+        "updatedAt": "2026-10-29T15:35:23+09:00",
+        "currency": "EUR",
+        "selectionPolicy": "first-at-or-after-15:30"
+      },
+      "previous": {
         "value": 1487.59,
         "source": "하나은행",
         "rateType": "매매기준율",
@@ -34,17 +45,6 @@
         "announcementNumber": 469,
         "announcementTime": "15:30:20",
         "updatedAt": "2026-10-28T15:35:26+09:00",
-        "currency": "EUR",
-        "selectionPolicy": "first-at-or-after-15:30"
-      },
-      "previous": {
-        "value": 1478.11,
-        "source": "하나은행",
-        "rateType": "매매기준율",
-        "referenceDate": "2026-10-27",
-        "announcementNumber": 288,
-        "announcementTime": "15:30:24",
-        "updatedAt": "2026-10-27T15:35:24+09:00",
         "currency": "EUR",
         "selectionPolicy": "first-at-or-after-15:30"
       }
