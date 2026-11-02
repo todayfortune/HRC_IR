@@ -4,7 +4,7 @@
   "updatedAt": null,
   "updated_at": null,
   "market_status": "업데이트 전",
-  "telegram_status": "Telegram 확인 2026-11-02 15:30 KST · 당일 원문 43건",
+  "telegram_status": "Telegram 확인 2026-11-02 16:00 KST · 당일 원문 44건",
   "indicators": [
     {
       "group": "국내",
@@ -162,6 +162,12 @@
     ],
     "반도체": [
       {
+        "date": "2026-11-02T15:39+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…웨어, 글로벌 AI 인프라, Energy Transition\n • 국내 Top Pick: 삼성전자, 삼성전기, 삼성SDI, 셀트리온, LG씨엔에스, SK하이닉스, OCI홀딩스\n\n많은 관심 부탁드립니다.\n\n▶️ 미래의 생각(2026년 11월호)\nhttps://han.gl/bzAnR\n\n*미래에셋증권 전략/퀀트\nt.me/eqmirae\n\n감사합니다.",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7812"
+      },
+      {
         "date": "2026-11-02T14:29+09:00",
         "channel": "대신증권",
         "text": "[장 중 시황] 미 반도체 충격 딛고 반등한 KOSPI, 금융투자·연기금·기타법인 순매수 [FICC리서치부 전략/시황: 이경민]\n\n- 국내 증시 수익률(14시 15분): KOSPI +2.72% 상승 / 5,886.62pt\n (KOSDAQ: +1.53% 상승 / 735.45pt)\n- 원/달러 환율 1343.7원 (+9.4원, 종가대비)…",
@@ -172,12 +178,6 @@
         "channel": "미래에셋리서치",
         "text": "…26년 10월 외화증권 예탁결제 결산\n\n순매수 결제금액 TOP5(억 달러)\n1. 디렉시온 반도체 BULL 3배 ETF($SOXL) 29.7\n2. 스페이스X($SPCX) 4.7\n3. 디렉시온 MSCI 한국 BULL ETF($KORU) 2.6\n4. 아이온큐($IONQ)  2.4\n5. PROSHARES ULTRA QQQ ETF($QLD) 2.4…",
         "link": "https://t.me/GLOBALMKTINSIGHT/7805"
-      },
-      {
-        "date": "2026-11-02T13:29+09:00",
-        "channel": "미래에셋리서치",
-        "text": "…[현물 매매 동향]\n- 주간 외국인 순매도 지속됐으나, 규모는 축소(-0.5조). 기관은 반도체 위주 순매수(+2.6조)\n- (산업) 기관, 외국인 동반 순매수 산업: 에너지(2,334억/6,024억), 유틸리티(93억/136억). 반도체는 기관 순매수(2조), 외국인 순매도 지속(-0.7조)\n\n(종목)…",
-        "link": "https://t.me/GLOBALMKTINSIGHT/7803"
       }
     ],
     "미국증시": [
@@ -244,6 +244,18 @@
   "telegram_feed": {
     "closing": [],
     "stock_news": [
+      {
+        "channel": "GLOBALMKTINSIGHT",
+        "message_id": 7812,
+        "source": "미래에셋리서치",
+        "date": "2026-11-02T15:39+09:00",
+        "excerpt": "안녕하세요. 리서치센터 월간 자료 \"미래의 생각\" 11월호를 전해드립니다.\n\n11월호 핵심은 \"변동성과의 싸움, 그래도 AI\"입니다. AI Capex 모멘텀은 여전히 강하지만, 빅테크의 현금 흐름 우려가 완화되기 전까지 변동성이 이어질 것이라는 판단입니다.\n\n중간선거 이후의 정책 변화에도 주목할 필요가 있습니다.\n\n • Top Story: 소프트웨어, 글로벌 AI 인프라, Energy Transition\n • 국내 Top Pick: 삼성전자, 삼성전기, 삼성SDI, 셀트리온, LG씨엔에스, SK하이닉스, OCI홀딩스\n\n많은 관심 부탁드립니다.\n\n▶️ 미래의 생각(2026년 11월호)\nhttps://han.gl/bzAnR\n\n*미래에셋증권 전략/퀀트\nt.me/eqmirae\n\n감사합니다.",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7812",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
       {
         "channel": "DAISHINSTRATEGY",
         "message_id": 6388,
@@ -415,5 +427,5 @@
       }
     ]
   },
-  "saved_at": "2026-11-02T15:30:36+09:00"
+  "saved_at": "2026-11-02T16:00:43+09:00"
 }
