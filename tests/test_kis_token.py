@@ -1,6 +1,8 @@
 import json
 import unittest
+from datetime import datetime
 from unittest.mock import Mock, patch
+from zoneinfo import ZoneInfo
 
 from integrations.kis_token import cached_token, TokenStore
 
@@ -44,6 +46,44 @@ class TokenTests(unittest.TestCase):
             self.run_at(1790542800)
         with self.assertRaisesRegex(RuntimeError, 'limited'):
             self.run_at(1790542900)
+        post.assert_called_once()
+
+    @patch.dict('os.environ', {'GITHUB_ACTIONS':'true', 'KIS_ALLOW_INITIAL_TOKEN':'false'})
+    @patch('integrations.kis_token.requests.post')
+    def test_valid_cached_token_is_reused_without_issuance(self, post):
+        now = 1790542800
+        self.state.update({
+            'token':'still-alive-token',
+            'expiresAt':now + 3600,
+            'lastAttempt':now - 60,
+        })
+
+        self.assertEqual(self.run_at(now), 'still-alive-token')
+        post.assert_not_called()
+
+    @patch.dict('os.environ', {'GITHUB_ACTIONS':'true', 'KIS_ALLOW_INITIAL_TOKEN':'true'})
+    @patch('integrations.kis_token.requests.post')
+    def test_failed_issuance_preserves_existing_cache_state(self, post):
+        now = 1790542800
+        self.state.update({'token':'expired-token', 'expiresAt':now - 1, 'lastAttempt':now - 86400})
+        post.side_effect = RuntimeError('private diagnostic')
+
+        with self.assertRaisesRegex(RuntimeError, 'no retry'):
+            self.run_at(now)
+        self.assertEqual(self.state['token'], 'expired-token')
+        self.assertEqual(self.state['expiresAt'], now - 1)
+
+    @patch.dict('os.environ', {'GITHUB_ACTIONS':'true', 'KIS_ALLOW_INITIAL_TOKEN':'true'})
+    @patch('integrations.kis_token.requests.post')
+    def test_previous_day_scheduler_skew_allows_single_renewal(self, post):
+        post.return_value = self.response
+        now = datetime(2026, 9, 29, 15, 35, tzinfo=ZoneInfo('Asia/Seoul')).timestamp()
+        self.state.update({
+            'token':'expired-token',
+            'expiresAt':now - 1,
+            'lastAttempt':now - 86400 + 120,
+        })
+        self.assertEqual(self.run_at(now), 'test-only-token')
         post.assert_called_once()
 
     @patch('integrations.kis_token.requests.post')

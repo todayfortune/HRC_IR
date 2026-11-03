@@ -12,6 +12,11 @@ import requests
 from cryptography.fernet import Fernet
 
 
+# cron-job.org dispatches can start a few seconds earlier than the previous
+# day's run. Keep the KST once-per-day guard, but tolerate that scheduler skew.
+TOKEN_ISSUANCE_GRACE_SECONDS = 5 * 60
+
+
 class TokenStore:
     def __init__(self, path, app_key, app_secret):
         self.path = Path(path)
@@ -45,12 +50,16 @@ def cached_token(app_key, app_secret, path, timeout, *, prepare=False):
         raise RuntimeError('KIS token unavailable or expired; run token preparation first. No reissue attempted.')
     last = state.get('lastAttempt', 0)
     today = datetime.fromtimestamp(now, ZoneInfo('Asia/Seoul')).date()
-    if last and (now - last < 86400 or datetime.fromtimestamp(last, ZoneInfo('Asia/Seoul')).date() == today):
+    last_day = datetime.fromtimestamp(last, ZoneInfo('Asia/Seoul')).date() if last else None
+    if last and (last_day == today or now - last < 86400 - TOKEN_ISSUANCE_GRACE_SECONDS):
         raise RuntimeError('KIS token issuance limited to once per 24 hours / KST day.')
     if not state and os.getenv('GITHUB_ACTIONS') == 'true' and os.getenv('KIS_ALLOW_INITIAL_TOKEN') != 'true':
         raise RuntimeError('KIS token cache missing; afternoon/manual runs cannot issue a replacement.')
-    # Persist the attempt before contacting KIS. Failure does not trigger retries.
-    store.write({'lastAttempt': now})
+    # Persist the attempt before contacting KIS, without discarding a cached
+    # token that may still have a few usable seconds if tokenP itself fails.
+    attempt_state = dict(state)
+    attempt_state['lastAttempt'] = now
+    store.write(attempt_state)
     try:
         response = requests.post('https://openapi.koreainvestment.com:9443/oauth2/tokenP',
             json={'grant_type':'client_credentials','appkey':app_key,'appsecret':app_secret}, timeout=timeout)
