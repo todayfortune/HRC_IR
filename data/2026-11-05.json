@@ -1,0 +1,272 @@
+{
+  "date": "2026-11-05",
+  "status": null,
+  "updatedAt": null,
+  "updated_at": null,
+  "market_status": "업데이트 전",
+  "telegram_status": "Telegram 확인 2026-11-05 09:00 KST · 당일 원문 24건",
+  "indicators": [
+    {
+      "group": "국내",
+      "name": "KOSPI"
+    },
+    {
+      "group": "국내",
+      "name": "KOSDAQ"
+    },
+    {
+      "group": "미국",
+      "name": "S&P500"
+    },
+    {
+      "group": "미국",
+      "name": "NASDAQ"
+    },
+    {
+      "group": "환율",
+      "name": "USD"
+    },
+    {
+      "group": "환율",
+      "name": "EUR"
+    }
+  ],
+  "stocks": [
+    {
+      "sector": "방산",
+      "name": "현대로템",
+      "code": "064350",
+      "highlight": true
+    },
+    {
+      "sector": "방산",
+      "name": "한화에어로",
+      "code": "012450",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "KAI",
+      "code": "047810",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "LIG넥스원",
+      "code": "079550",
+      "highlight": false
+    },
+    {
+      "sector": "철도",
+      "name": "다원시스",
+      "code": "068240",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대차",
+      "code": "005380",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "기아",
+      "code": "000270",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대모비스",
+      "code": "012330",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대글로비스",
+      "code": "086280",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대오토에버",
+      "code": "307950",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대위아",
+      "code": "011210",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대제철",
+      "code": "004020",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대건설",
+      "code": "000720",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "삼성전자",
+      "code": "005930",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "SK하이닉스",
+      "code": "000660",
+      "highlight": false
+    }
+  ],
+  "comments": {
+    "미국증시": "",
+    "국내증시": "",
+    "방산": "",
+    "현대로템": "",
+    "반도체": "",
+    "USD/KRW": ""
+  },
+  "telegram": {
+    "현대로템": [],
+    "방산": [
+      {
+        "date": "2026-11-05T08:15+09:00",
+        "channel": "신한리서치",
+        "text": "…AI주는 낙폭 확대\n- Blue Wave 트레이드에 태양광(FSLR +4.6%)↑ vs 방산(LMT -6.9%)↓\n- QCOM(시외 -8.0%), AAPL의 자체 칩 사용 확대+스마트폰 매출 부진 등에 약세\n ※ 원문 확인: http://bbs2.shinhansec.com/board/message/file.pdf.do?…",
+        "link": "https://t.me/SHINHANRESEARCH/53479"
+      },
+      {
+        "date": "2026-11-05T07:34+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…션 부담 완화 기대\n-‘강달러’ 앞세운 트럼프 트레이드 되돌림..달러∙금리↓\n-AI인프라∙방산↓-빅테크∙소매∙헬스케어∙신재생에너지↑\n-트럼프 미디어 24%대 급락, 머스크의 테슬라와 스페이스X도 3%대 하락\n\n*Key Takeaways #3\n중간선거3: 종전 기대↑, 유가 급락\n-민주당 양원 장악..트럼프 대이란 정책 둘러싼 정치적 부담↑…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7839"
+      }
+    ],
+    "반도체": [
+      {
+        "date": "2026-11-05T08:57+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…첨단 AI 칩 임대가 포함된 것으로 알려졌으며, 미국 당국의 안보 우려와 중국의 자국산 반도체 사용 압력이 영향을 미친 것으로 보도됐으나 계약 세부내용은 기업 공시로 확인되지 않았음.\n출처: Financial Times  \n\nBrent -8.7%에도  디젤 재고 2003년 이후 최저…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7840"
+      },
+      {
+        "date": "2026-11-05T08:15+09:00",
+        "channel": "신한리서치",
+        "text": "…w Summary\n - 미국 시장은 중간선거 불확실성 해소에 강세 불구 DC 지연 우려에 반도체는 부진. S&P500 +1.6%, NASDAQ +1.4%, Dow +3.0%\n- 민주당의 상하원 장악 속 하원의장 후보의 이란전 종전 필요 언급. WTI 90$ 하회\n- 민주당의 전통적 공화당 우세+DC 개수 상위 지역 Texas 승리 등에 DC 지연 우려…",
+        "link": "https://t.me/SHINHANRESEARCH/53479"
+      },
+      {
+        "date": "2026-11-05T08:06+09:00",
+        "channel": "신한리서치",
+        "text": "…환율 하락에 따른 외화 매출채권 평가손실로 순손실 전환\n- 서버 내 중화권 비중 확대, 반도체 검사장비·광통신·우주 위성통신 및 수술로봇 출하 본격화로 성장 견인 전망\n\n▶️ Valuation&Risk: 목표주가 43,000원으로 상향\n- 목표주가를 기존 38,000원에서 43,000원으로 13% 상향 조정…",
+        "link": "https://t.me/SHINHANRESEARCH/53477"
+      }
+    ],
+    "미국증시": [
+      {
+        "date": "2026-11-05T08:57+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…적인 공화당 강세지역에서도 승리했음. 4일 미국 증시는 다우 +3.0%(+1,569p), S&P500 +1.6% 상승했고 10년물 국채금리는 전일 4.95%에서 4.88%로 하락했음.\n출처: AP\n\n데이터센터 규제 찬성 33건\n3일 중간선거와 함께 실시된 미국 지방투표에서 데이터센터 개발 관련 45개 안건 가운데 33개가 건설 제한에 찬성하는 결과로 집계됐…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7840"
+      },
+      {
+        "date": "2026-11-05T08:15+09:00",
+        "channel": "신한리서치",
+        "text": "…w Summary\n - 미국 시장은 중간선거 불확실성 해소에 강세 불구 DC 지연 우려에 반도체는 부진. S&P500 +1.6%, NASDAQ +1.4%, Dow +3.0%\n- 민주당의 상하원 장악 속 하원의장 후보의 이란전 종전 필요 언급. WTI 90$ 하회\n- 민주당의 전통적 공화당 우세+DC 개수 상위 지역 Texas 승리 등에 DC 지연 우려…",
+        "link": "https://t.me/SHINHANRESEARCH/53479"
+      },
+      {
+        "date": "2026-11-05T08:06+09:00",
+        "channel": "신한리서치",
+        "text": "…환율 하락에 따른 외화 매출채권 평가손실로 순손실 전환\n- 서버 내 중화권 비중 확대, 반도체 검사장비·광통신·우주 위성통신 및 수술로봇 출하 본격화로 성장 견인 전망\n\n▶️ Valuation&Risk: 목표주가 43,000원으로 상향\n- 목표주가를 기존 38,000원에서 43,000원으로 13% 상향 조정…",
+        "link": "https://t.me/SHINHANRESEARCH/53477"
+      }
+    ],
+    "국내증시": [
+      {
+        "date": "2026-11-05T08:10+09:00",
+        "channel": "신한리서치",
+        "text": "…> ★ Daily 신한 생각 11월 5일 신한투자증권 리서치본부   ▶Top down - 국내 주식전략; 5문 5답으로 살펴보는 Blue Wave [강진혁] - 국내 주식전략; KRICS: 산업분류 변화에서 지수·ETF 영향까지 [김기백] - ETF 미식기행; 방어주 로테이션 국면 진단 [박우열] - 국내크레딧; 은행채 발행 급증의 배경 [김상인]…",
+        "link": "https://t.me/SHINHANRESEARCH/53478"
+      }
+    ],
+    "환율": [
+      {
+        "date": "2026-11-05T08:57+09:00",
+        "channel": "미래에셋리서치",
+        "text": "…국 증시는 다우 +3.0%(+1,569p), S&P500 +1.6% 상승했고 10년물 국채금리는 전일 4.95%에서 4.88%로 하락했음.\n출처: AP\n\n데이터센터 규제 찬성 33건\n3일 중간선거와 함께 실시된 미국 지방투표에서 데이터센터 개발 관련 45개 안건 가운데 33개가 건설 제한에 찬성하는 결과로 집계됐음(4일 오전 기준).…",
+        "link": "https://t.me/GLOBALMKTINSIGHT/7840"
+      },
+      {
+        "date": "2026-11-05T08:01+09:00",
+        "channel": "신한리서치",
+        "text": "…; 은행채 발행 급증의 배경』\n신용분석 김상인 ☎02-3772-2636\n\n-10월 국고채 금리 급락, 신용 스프레드 확대. 초우량물 상대 약세 시현\n-대규모 은행채 발행은 선제적 조달 성격. 11월 이후 발행 부담 완화 기대\n\n※ 원문 확인: http://bbs2.shinhansec.com/board/message/file.pdf.do?…",
+        "link": "https://t.me/SHINHANRESEARCH/53475"
+      },
+      {
+        "date": "2026-11-05T07:53+09:00",
+        "channel": "신한리서치",
+        "text": "…인 과불화화합물(PFAS) 노출로 인한 건강 피해 소송 해결을 위해 9년에 걸쳐 73.5억달러 지급 합의하면서 소송 불확실성 해소\n\n[KB홈(+8.6%), 디알호튼(+8.1%), 레나(+7.1%)] 민주당 승리 이후 물가 상승 압력 완화 기대감으로 미 장기 국채금리 하락하면서 주택건설 강세…",
+        "link": "https://t.me/SHINHANRESEARCH/53473"
+      }
+    ]
+  },
+  "telegram_feed": {
+    "closing": [],
+    "stock_news": [
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53470,
+        "source": "신한리서치",
+        "date": "2026-11-05T07:49+09:00",
+        "excerpt": "[신한투자증권 IT팀 오강호, 김형태, 박현우, 송혜수, 김예성]\n\n11/5(목)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ 삼성(전자) 테일러 2공장 2나노, 2030년 양산 전 완전 수주 돌파설…AMD HBM 베이스 다이 주문이 주도 (TrendForce)\nhttps://alie.kr/HSaPpjk\n\n▶️ SK하이닉스 Solidigm, 미국 NAND 팹 2기에 1000억 달러 투자 추진설…키옥시아 채권 재원 활용 가능성 (TrendForce)\nhttps://alie.kr/3jBJK6T\n\n▶️ 공급난에 갇힌 마이크론…한국 메모리 고정거래가 지지선 다진다 (글로벌이코노믹)\nhttps://alie.kr/BeNPSoa\n\n▶️ 엔비디아, 중국 700억 달러 AI GPU 주문 중 1%만 공급 가능…RTX Pro 5500 납품 공급 제약 직격 (Tom's Hardware)\nhttps://alie.kr/jcQeEb\n\n▶️ AMD \"내년 매출 80% 이상 성장...서버 CPU 매출 두 배 증가\" (디일렉)\nhttps://alie.kr/HHfeqyr\n\n\n✅ 디스플레이\n\n▶️ 선익시스템, 내년 세계 디스플레이 장비 매출 1위 전망 (디일렉)\nhttps://alie.kr/AasrZv7\n\n▶️ 이녹스첨단소재, 자체 개발 OCA로 플래그십 스마트폰 뚫었다 (디일렉)\nhttps://alie.kr/5JQ89Rh…",
+        "link": "https://t.me/SHINHANRESEARCH/53470",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53465,
+        "source": "신한리서치",
+        "date": "2026-11-05T07:44+09:00",
+        "excerpt": "[신한투자증권 IT팀 오강호, 김형태, 박현우, 송혜수, 김예성]\n\n11/5(목)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ 삼성(전자) 테일러 2공장 2나노, 2030년 양산 전 완전 수주 돌파설…AMD HBM 베이스 다이 주문이 주도 (TrendForce)\nhttps://alie.kr/HSaPpjk\n\n▶️ SK하이닉스 Solidigm, 미국 NAND 팹 2기에 1000억 달러 투자 추진설…키옥시아 채권 재원 활용 가능성 (TrendForce)\nhttps://alie.kr/3jBJK6T\n\n▶️ 공급난에 갇힌 마이크론…한국 메모리 고정거래가 지지선 다진다 (글로벌이코노믹)\nhttps://alie.kr/BeNPSoa\n\n▶️ 엔비디아, 중국 700억 달러 AI GPU 주문 중 1%만 공급 가능…RTX Pro 5500 납품 공급 제약 직격 (Tom's Hardware)\nhttps://alie.kr/jcQeEb\n\n▶️ AMD \"내년 매출 80% 이상 성장...서버 CPU 매출 두 배 증가\" (디일렉)\nhttps://alie.kr/HHfeqyr\n\n\n✅ 디스플레이\n\n▶️ 선익시스템, 내년 세계 디스플레이 장비 매출 1위 전망 (디일렉)\nhttps://alie.kr/AasrZv7\n\n▶️ 이녹스첨단소재, 자체 개발 OCA로 플래그십 스마트폰 뚫었다 (디일렉)\nhttps://alie.kr/5JQ89Rh…",
+        "link": "https://t.me/SHINHANRESEARCH/53465",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53461,
+        "source": "신한리서치",
+        "date": "2026-11-05T07:28+09:00",
+        "excerpt": "[신한 철강금속/자동차 박광래]\n\n!! 신한 철강금속/자동차 텔레그램 채널 !!\n→ https://t.me/shinhan_park\n\n:: 신한 철강금속 뉴스 (261103) ::\n\n▶ 고려아연, 자사주 소각·액면분할 재추진…3분기 매출 6조원 돌파\n: 고려아연 이사회, 보유 자기주식 중 약 51.4%인 24만6665주를 2025년 1월 소각 결의, 나머지 23만3072주는 10년간 임직원 보상에 활용\n: 투자자 접근성 제고를 위해 액면분할을 내년 3월 정기주총에 상정하고, 3분기 주당 5000원 배당 결의로 누적 3059억원 배당 달성\n: 3분기 연결 매출액 6조861억원(YoY 46.3%↑), 영업이익 1417억원(YoY 48.2%↓)으로 107분기 연속 흑자 및 3분기 연속 매출 6조원대 기록\n: 금속 가격 및 환율 하락 악재와 미국 테네시주 핵심광물 제련소 건설 사업(프로젝트 크루서블) 초기 투자 비용이 3분기 실적에 영향\n\n▶ 세아제강지주, 3Q 영업익 134%↑···세아제강도 '흑자'\n: 세아제강지주의 3분기 연결 기준 매출액은 1조2210억원으로 YoY 32.3% 증가했으며 영업이익은 932억원으로 YoY 134.4% 급증\n: 북미 지역의 오일 및 가스용 에너지 강관 판매 증가와 판매가격 상승, 데이터센터 건설용 수요 확대가 전체 실적 성장을 견인…",
+        "link": "https://t.me/SHINHANRESEARCH/53461",
+        "stocks": [
+          "현대제철"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53460,
+        "source": "신한리서치",
+        "date": "2026-11-05T07:27+09:00",
+        "excerpt": "[신한 자동차/철강금속 박광래]\n\n!! 신한 자동차/철강금속 텔레그램 채널 !!\n→ https://t.me/shinhan_park\n\n:: 신한 자동차 뉴스 (261105) ::\n\n▶ 넥센타이어, 3분기 영업익 전년比 61%↓… 원재료·운임 증가 영향\n: 3분기 연결 영업이익 181억원(YoY 61.1%↓), 당기순이익 466억원 적자 전환, 매출액 8,148억원(YoY 4.4%↑) 기록\n: 중동 분쟁 여파로 원재료 가격과 해상 운임 상승, 원화 강세로 매출원가율 74.0%(YoY 2.6%p↑)로 치솟으며 수익성 급감\n: 고부가가치 제품 판매와 유럽 호조로 외형 성장, 유럽 매출 3491억원(YoY 8.8%↑) 기록하며 전체 비중 43%로 1위 차지\n: 18인치 이상 고인치 타이어 매출 비중 41.5%(YoY 3.4%p↑, 전 분기 대비 2.7%p↑) 기록, 미국 고인치 비중 50%대 회복\n: EU 산림전용방지규정(EUDR) 등 글로벌 환경 규제 선제 대응 체계 구축하며 올웨더·고인치 중심 믹스 개선 추진\n\n▶ KGM, 3분기 영업손실 298억 ‘적자 전환’… 내수 44% ↓\n: 3분기 별도 기준 영업손실 298억원 및 당기순손실 1,332억원으로 적자 전환, 매출액은 9,941억원으로 YoY 16.4% 감소…",
+        "link": "https://t.me/SHINHANRESEARCH/53460",
+        "stocks": [
+          "현대차",
+          "기아"
+        ]
+      }
+    ]
+  },
+  "saved_at": "2026-11-05T09:00:43+09:00"
+}
