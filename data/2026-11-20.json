@@ -1,0 +1,241 @@
+{
+  "date": "2026-11-20",
+  "status": null,
+  "updatedAt": null,
+  "updated_at": null,
+  "market_status": "업데이트 전",
+  "telegram_status": "Telegram 확인 2026-11-20 09:00 KST · 당일 원문 17건",
+  "indicators": [
+    {
+      "group": "국내",
+      "name": "KOSPI"
+    },
+    {
+      "group": "국내",
+      "name": "KOSDAQ"
+    },
+    {
+      "group": "미국",
+      "name": "S&P500"
+    },
+    {
+      "group": "미국",
+      "name": "NASDAQ"
+    },
+    {
+      "group": "환율",
+      "name": "USD"
+    },
+    {
+      "group": "환율",
+      "name": "EUR"
+    }
+  ],
+  "stocks": [
+    {
+      "sector": "방산",
+      "name": "현대로템",
+      "code": "064350",
+      "highlight": true
+    },
+    {
+      "sector": "방산",
+      "name": "한화에어로",
+      "code": "012450",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "KAI",
+      "code": "047810",
+      "highlight": false
+    },
+    {
+      "sector": "방산",
+      "name": "LIG넥스원",
+      "code": "079550",
+      "highlight": false
+    },
+    {
+      "sector": "철도",
+      "name": "다원시스",
+      "code": "068240",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대차",
+      "code": "005380",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "기아",
+      "code": "000270",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대모비스",
+      "code": "012330",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대글로비스",
+      "code": "086280",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대오토에버",
+      "code": "307950",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대위아",
+      "code": "011210",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대제철",
+      "code": "004020",
+      "highlight": false
+    },
+    {
+      "sector": "그룹사",
+      "name": "현대건설",
+      "code": "000720",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "삼성전자",
+      "code": "005930",
+      "highlight": false
+    },
+    {
+      "sector": "반도체",
+      "name": "SK하이닉스",
+      "code": "000660",
+      "highlight": false
+    }
+  ],
+  "comments": {
+    "미국증시": "",
+    "국내증시": "",
+    "방산": "",
+    "현대로템": "",
+    "반도체": "",
+    "USD/KRW": ""
+  },
+  "telegram": {
+    "현대로템": [],
+    "방산": [],
+    "반도체": [
+      {
+        "date": "2026-11-20T08:20+09:00",
+        "channel": "신한리서치",
+        "text": "…-7.7%), Hunterbrook 공매도 보고서의 中 수출 통제 위반 의혹 제기에↓\n- 반도체 투매(SOX -2.4%) 속 INTC(+1.9%, 18A-P 외부 고객 확보 발표) 선방\n- 호실적+가이던스 상향 WMT(-1.0%) 하락. Risk-off에 방어주 포함 전업종↓…",
+        "link": "https://t.me/SHINHANRESEARCH/53743"
+      },
+      {
+        "date": "2026-11-20T07:49+09:00",
+        "channel": "신한리서치",
+        "text": "…, 박현우, 송혜수, 김예성, 김시찬]\n\n11/20(금)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ SK하이닉스 “수출 1조달러, 반도체 상생 협력 결실” (전자신문)\nhttps://alie.kr/31WMqEk\n\n▶️ ”저전력 D램 시장 2배 커진다“…삼성전자, ’소캠2‘로 1위 굳히기 (블로터)\nhttps://alie.kr/A48g4rz…",
+        "link": "https://t.me/SHINHANRESEARCH/53735"
+      },
+      {
+        "date": "2026-11-20T07:33+09:00",
+        "channel": "대신증권",
+        "text": "…권 남용 반대에도 의견 일치\n\n중국 메모리 업체들, 미국 수출통제를 피해 싱가포르 경유로 HBM 핵심 패키징 장비 대거 수입. 서울경제가 중국해관총서 통계를 분석한 결과 상하이·안후이·베이징의 싱가포르산 반도체 열처리 장비 수입액은 2022년 8,808만달러에서 올해 1~7월 3억4,468만달러로 약 4배 증가.…",
+        "link": "https://t.me/DAISHINSTRATEGY/6431"
+      }
+    ],
+    "미국증시": [
+      {
+        "date": "2026-11-20T08:20+09:00",
+        "channel": "신한리서치",
+        "text": "…국 시장은 Anthropic 역대 최대 IPO 따른 수급 쏠림+AMD 악재 속 위험회피. S&P500도 200일선 이탈 -2.0%, NASDAQ -2.3%, Dow -2.2%\n- 11월 Philadelphia 연준 제조업(6.3p) 예상치 하회. VIX(+15.8%) 30p 접근…",
+        "link": "https://t.me/SHINHANRESEARCH/53743"
+      },
+      {
+        "date": "2026-11-20T07:49+09:00",
+        "channel": "신한리서치",
+        "text": "…, 박현우, 송혜수, 김예성, 김시찬]\n\n11/20(금)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ SK하이닉스 “수출 1조달러, 반도체 상생 협력 결실” (전자신문)\nhttps://alie.kr/31WMqEk\n\n▶️ ”저전력 D램 시장 2배 커진다“…삼성전자, ’소캠2‘로 1위 굳히기 (블로터)\nhttps://alie.kr/A48g4rz…",
+        "link": "https://t.me/SHINHANRESEARCH/53735"
+      },
+      {
+        "date": "2026-11-20T07:33+09:00",
+        "channel": "대신증권",
+        "text": "…는 이경민입니다.\n[11월 20일 주요국 이슈] 보내드립니다.\n\n# 미국\n필립 제퍼슨 미 연준 부의장, 기대 인플레이션이 목표 수준에 고정되지 못할 위험이 있다면 더 강력한 대응이 정당화된다고 언급. 제퍼슨 부의장은 브라질 중앙은행·국제통화기금(IMF) 콘퍼런스 연설에서 최근 에너지 가격 충격 당시 미국 인플레이션이 이미 목표치 2%를 웃돌고 있었다고 설명…",
+        "link": "https://t.me/DAISHINSTRATEGY/6431"
+      }
+    ],
+    "국내증시": [],
+    "환율": [
+      {
+        "date": "2026-11-20T08:20+09:00",
+        "channel": "신한리서치",
+        "text": "…-2.0%, NASDAQ -2.3%, Dow -2.2%\n- 11월 Philadelphia 연준 제조업(6.3p) 예상치 하회. VIX(+15.8%) 30p 접근\n- ANT(+17.1%, 공모가 83$),111.5$ 출발, 115.1$ 슈팅 후 매물 출회. 97.2$ 마감…",
+        "link": "https://t.me/SHINHANRESEARCH/53743"
+      },
+      {
+        "date": "2026-11-20T08:03+09:00",
+        "channel": "신한리서치",
+        "text": "…성장의 연료 vs 금융 취약고리 [강진혁]\n- 채권전략; 11월 금통위 Preview: 금리 하단 확인 [김찬희] \n- 디지털 자산; 비트코인·금 동반 하락 점검과 토큰화 예금 상용화 [박성제]\n\n▶️Bottom up\n[기업 분석]\n- 포스코DX (022100/매수) 수주 회복과 Physical AI가 만드는 성장 기회 [박광래]\n\n[해외기업 분석]…",
+        "link": "https://t.me/SHINHANRESEARCH/53742"
+      },
+      {
+        "date": "2026-11-20T08:03+09:00",
+        "channel": "신한리서치",
+        "text": "…순환금융, 성장의 연료 vs 금융 취약고리\n- 채권전략; 11월 금통위 Preview: 금리 하단 확인\n- 디지털 자산; 비트코인·금 동반 하락 점검과 토큰화 예금 상용화\n\n▶Bottom up\n[기업 분석]\n- 포스코DX (022100/매수) 수주 회복과 Physical AI가 만드는 성장 기회\n\n[해외기업 분석]…",
+        "link": "https://t.me/SHINHANRESEARCH/53741"
+      }
+    ]
+  },
+  "telegram_feed": {
+    "closing": [],
+    "stock_news": [
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53735,
+        "source": "신한리서치",
+        "date": "2026-11-20T07:49+09:00",
+        "excerpt": "[신한투자증권 IT팀 오강호, 김형태, 박현우, 송혜수, 김예성, 김시찬]\n\n11/20(금)\n🕗Daily IT 예습하기\n\n✅ 반도체/장비\n\n▶️ SK하이닉스 “수출 1조달러, 반도체 상생 협력 결실” (전자신문)\nhttps://alie.kr/31WMqEk\n\n▶️ ”저전력 D램 시장 2배 커진다“…삼성전자, ’소캠2‘로 1위 굳히기 (블로터)\nhttps://alie.kr/A48g4rz\n\n▶️ 인텔, 파운드리 이중 수주…MS, EMIB 첫 고객 확정·18A 첫 외부 계약 체결 (TrendForce)\nhttps://alie.kr/5UKyZes\n\n▶️ JEDEC, DDR6 예비 규격 공개…대역폭 50% 이상·12.8 GT/s 목표 (TrendForce)\nhttps://alie.kr/15S23Ht\n\n▶️ 中, HBM 핵심 장비 싱가포르 우회 반입 (서울경제)\nhttps://alie.kr/FAgeWZm\n\n\n✅ 디스플레이\n\n▶️ 中, AR 글라스에 ’풀컬러 마이크로 LED‘ 탑재 속도 (전자신문)\nhttps://alie.kr/H6kzJVD\n\n▶️ 애플, 아이맥 OLED 탑재 백지화 검토 (디일렉)\nhttps://alie.kr/4Fvfhwp\n\n▶️ MSI, 삼성전자 제치고 OLED 모니터 2위 브랜드 등극…Q3 2026 (OLED-Info)\nhttps://alie.kr/DaRphBb…",
+        "link": "https://t.me/SHINHANRESEARCH/53735",
+        "stocks": [
+          "삼성전자",
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "DAISHINSTRATEGY",
+        "message_id": 6431,
+        "source": "대신증권",
+        "date": "2026-11-20T07:33+09:00",
+        "excerpt": "안녕하세요, 대신증권 FICC리서치부에서 전략/시황을 담당하고 있는 이경민입니다.\n[11월 20일 주요국 이슈] 보내드립니다.\n\n# 미국\n필립 제퍼슨 미 연준 부의장, 기대 인플레이션이 목표 수준에 고정되지 못할 위험이 있다면 더 강력한 대응이 정당화된다고 언급. 제퍼슨 부의장은 브라질 중앙은행·국제통화기금(IMF) 콘퍼런스 연설에서 최근 에너지 가격 충격 당시 미국 인플레이션이 이미 목표치 2%를 웃돌고 있었다고 설명. 인공지능(AI) 인프라 구축은 수요와 인플레이션에 상승 압력을 가하지만, 앞으로 생산성 향상은 하방 압력으로 작용할 수 있다고 진단. 에너지·무역·AI 충격이 동시에 전개되는 만큼 각국 중앙은행이 이를 함께 고려해야 한다며, 통화정책 기조를 적절히 조정된 상태로 유지하는 것이 임무라고 강조\n\n도널드 트럼프 미 대통령, 이란에 대한 추가 공격 결정을 서두르지 않고 새해가 시작된 뒤 상황을 지켜보겠다고 언급. 트럼프 대통령은 APEC 정상회의를 마친 귀국길에 악시오스와 한 전화 인터뷰에서 이같이 말했으며, 올해 안에는 공격을 자제하고 해상봉쇄 등 경제적 압박을 이어가겠다는 의미로 해석. 백악관은 공습 시나리오를 실행할 경우 이란의 대응이 어떨지 국방부와 정보 전문가들에게 평가를 요청했고, 걸프국 석유·가스 시설에 대한 보복을 촉발하지 않을 방안이 있는지도 문의…",
+        "link": "https://t.me/DAISHINSTRATEGY/6431",
+        "stocks": [
+          "SK하이닉스"
+        ]
+      },
+      {
+        "channel": "SHINHANRESEARCH",
+        "message_id": 53731,
+        "source": "신한리서치",
+        "date": "2026-11-20T06:53+09:00",
+        "excerpt": "신한 자동차/철강금속 박광래\n\n!! 신한 자동차/철강금속 텔레그램 채널 !!\n→ https://t.me/shinhan_park\n\n:: 신한 자동차 뉴스 (261120) ::\n\n▶ 현대차, 엔비디아 협력 유지 재확인…2028년 L2+·2029년 자체 자율주행 AI 양산 로드맵\n: 엔비디아와의 자율주행 기술 협력 차질 없음을 재확인하며 2028년 상반기 레벨 2+, 하반기 도심 주행 레벨 2++ 양산차 적용 계획\n: 2029년 하반기에는 AVP본부·포티투닷 공동 개발 자체 엔드투엔드 모델 '아트리아 AI' 탑재 차량 양산 목표\n: 엔비디아 블랙웰 GPU 5만장 확보 및 새만금 데이터센터 구축을 통해 수백만대 차량의 실제 주행 데이터 학습 추진\n: 자율주행 고도화에 따른 차량용 반도체 탑재량 증가 및 재료비 상승이 향후 핵심 원가 관리 과제로 부상\n\n▶ 제네시스, G80·GV80 하이브리드 공개…347마력, 연비 최대 30% 개선\n: LA에서 G80(세계 최초)·GV80(북미 최초) 하이브리드 공개, 2.5리터 터보 기반 듀얼 모터 병렬형 시스템 탑재\n: 합산 최고출력 347마력(가솔린 대비 약 16% 증가)·최대토크 391lb-ft 발휘, 7단 자동변속기 조합\n: 자체 시험 기준 연비는 GV80 24%, G80 30% 개선됐으며 예상 주행거리는 500마일(약 805km) 이상…",
+        "link": "https://t.me/SHINHANRESEARCH/53731",
+        "stocks": [
+          "현대차",
+          "현대모비스",
+          "삼성전자"
+        ]
+      }
+    ]
+  },
+  "saved_at": "2026-11-20T09:00:44+09:00"
+}
