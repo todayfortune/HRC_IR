@@ -4,7 +4,7 @@
   "updatedAt": null,
   "updated_at": null,
   "market_status": "업데이트 전",
-  "telegram_status": "Telegram 확인 2026-11-27 15:30 KST · 당일 원문 28건",
+  "telegram_status": "Telegram 확인 2026-11-27 16:00 KST · 당일 원문 28건",
   "indicators": [
     {
       "group": "국내",
@@ -357,5 +357,5 @@
       }
     ]
   },
-  "saved_at": "2026-11-27T15:30:44+09:00"
+  "saved_at": "2026-11-27T16:00:47+09:00"
 }
